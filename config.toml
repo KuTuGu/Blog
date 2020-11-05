@@ -1,6 +1,12 @@
+# 先将打包出来的js、css文件路径转为绝对路径
+# "assets/style.css" => "/assets/style.css"
+baseurl = "/"
+# 在根据当前文件路径，将绝对路径转为相对路径
+# 从而使博客放置在子目录路径，也可以正确读取资源
+# "/assets/style.css" => "../../assets/style.css"
+relativeURLs = true
 languageCode = "en-US"
 theme = "terminal"
-paginate = 5
 
 [params]
   contentTypeName = "post"
