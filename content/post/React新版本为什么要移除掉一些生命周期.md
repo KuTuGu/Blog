@@ -4,7 +4,7 @@ date = "2020-08-26T23:26:03+08:00"
 author = "KuTuGu"
 tags = ["前端框架"]
 keywords = ["React", "生命周期", "Fiber架构"]
-cover = "/images/react/react-lifeCycle.png"
+cover = "/img/react/react-lifeCycle.png"
 description = "从React移除一些生命周期的角度来看React新版本架构的迭代调整"
 showFullContent = false
 

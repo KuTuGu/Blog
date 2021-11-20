@@ -2,7 +2,7 @@
 title = "一个事件循环引发的Async原理探究"
 date = "2020-10-06T13:17:27+08:00"
 author = "KuTuGu"
-cover = "/images/eventLoop/async.png"
+cover = "/img/eventLoop/async.png"
 tags = ["前端知识点"]
 keywords = ["事件循环", "Async"]
 description = "记录一个偶然发现的前端事件循环问题，深入了解Async的实现原理"
