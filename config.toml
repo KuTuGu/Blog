@@ -24,7 +24,7 @@ theme = "terminal"
     readOtherPosts = "阅读其它文章"
 
     [languages.en.params.logo]
-      logoText = "主页"
+      logoText = "Main"
       logoHomeLink = "/"
 
     [languages.en.menu]
@@ -33,10 +33,18 @@ theme = "terminal"
         name = "Github"
         url = "https://github.com/KuTuGu"
       [[languages.en.menu.main]]
+        identifier = "twitter"
+        name = "Twitter"
+        url = "https://twitter.com/kutugu1"
+      [[languages.en.menu.main]]
+        identifier = "revery"
+        name = "Revery"
+        url = "https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA"
+      [[languages.en.menu.main]]
         identifier = "resume"
-        name = "简历"
+        name = "Resume"
         url = "https://kutugu.github.io/resume"
       [[languages.en.menu.main]]
         identifier = "about"
-        name = "关于"
+        name = "About"
         url = "/about"
