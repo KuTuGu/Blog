@@ -100,7 +100,7 @@ Fiber = {
 > }    
 > ```       
 
-![Fiber阶段](/images/react/fiber-phase.png)
+![Fiber阶段](/img/react/fiber-phase.png)
 
 前面说了`Fiber`算法中更新是分阶段的，首先是`Reconciliation`阶段，这个阶段在diff前后`virtual dom`树的差异，耗时过长，可以打断；然后是`Commit`的阶段，这个阶段将一直把更新渲染到页面上。     
 
@@ -136,7 +136,7 @@ Fiber = {
 
 于是浏览器暴露了一些接口来细粒化地控制事件循环的绘制：`requestAnimationFrame`、`requestIdleCallback`。
 
-![frame](/images/eventLoop/frame.jpg)
+![frame](/img/eventLoop/frame.jpg)
 
 ### requestAnimationFrame
 
@@ -158,7 +158,7 @@ Fiber = {
 
 `注意`：当页面无其他任务时，`requestIdleCallback`执行的周期会被适当拉长，但最长只能为`50ms`，以防出现`不可预测的任务`（如用户输入）来临时无法及时响应可能会引起用户感知到的`延迟`。      
 
-![requestIdleCallback](/images/eventLoop/requestIdleCallback.png)
+![requestIdleCallback](/img/eventLoop/requestIdleCallback.png)
 
 #### 推荐阅读
 
@@ -167,7 +167,7 @@ Fiber = {
 
 ### Fiber 架构渲染流程
 
-![reconciler](/images/react/reconciler.png)
+![reconciler](/img/react/reconciler.png)
 
 由此我们可以推断`Fiber Reconciler`大致的工作原理：
 - 首次渲染执行，维护一个`virtual dom`，节点为`Fiber`数据结构，指向其他节点。
