@@ -10,10 +10,11 @@ theme = "terminal"
 
 [params]
   contentTypeName = "post"
-  themeColor = "colorful"
   showMenuItems = 10
   fullWidthTheme = false
   centerTheme = true
+  showColorful=true
+  favicon="img/favicon/icon.png"
 
 [languages]
   [languages.en]
