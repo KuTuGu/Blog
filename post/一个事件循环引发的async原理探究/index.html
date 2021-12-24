@@ -1,8 +1,77 @@
-<!doctype html><html lang=en><head><title>一个事件循环引发的Async原理探究 :: KuTuGu的博客</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
+<!doctype html><html lang=en>
+<head>
+<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
+<title>一个事件循环引发的Async原理探究 :: KuTuGu的博客</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
 function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end...&amp;#34;); } test(); console.log(&amp;#34;suspend!&amp;#34;); new Promise((resolve) =&amp;gt; { resolve(&amp;#34;promise&amp;#34;); }).then(val =&amp;gt; console.log(val)); /* 输出 test start... suspend! testing... test end... promise */ 微调 &amp;ndash; 声明async 现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：
-// 只是函数声明微调为async async function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end."><meta name=keywords content="事件循环,Async"><meta name=robots content="noodp"><link rel=canonical href=../../post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/><link rel=stylesheet href=../../assets/style.css><link rel=stylesheet href=../../assets/colorful.css><link rel=apple-touch-icon href=../../img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=../../img/favicon/colorful.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="一个事件循环引发的Async原理探究"><meta property="og:description" content="记录一个偶然发现的前端事件循环问题，深入了解Async的实现原理"><meta property="og:url" content="/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/"><meta property="og:site_name" content="KuTuGu的博客"><meta property="og:image" content="/images/eventLoop/async.png"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2020-10-06 13:17:27 +0800 +0800"></head><body class=colorful><div class="container center headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=../../><div class=logo>主页</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=https://github.com/KuTuGu>Github</a></li><li><a href=../../about>关于</a></li><li><a href=https://kutugu.github.io/resume>简历</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=https://github.com/KuTuGu>Github</a></li><li><a href=../../about>关于</a></li><li><a href=https://kutugu.github.io/resume>简历</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=../../post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/>一个事件循环引发的Async原理探究</a></h1><div class=post-meta><span class=post-date>2020-10-06</span>
-<span class=post-author>:: KuTuGu</span></div><span class=post-tags>#<a href=../../tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/>前端知识点</a>&nbsp;</span>
-<img src=../../images/eventLoop/async.png class=post-cover alt=一个事件循环引发的Async原理探究><div class=post-content><div><h1 id=一个事件循环引发的async原理探究>一个事件循环引发的Async原理探究<a href=#一个事件循环引发的async原理探究 class=hanchor arialabel=Anchor>&#8983;</a></h1><h2 id=起因>起因<a href=#起因 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>最近在复习前端<code>事件循环</code>机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
+// 只是函数声明微调为async async function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end.">
+<meta name=keywords content="事件循环,Async">
+<meta name=robots content="noodp">
+<link rel=canonical href=../../post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/>
+<link rel=stylesheet href=../../assets/style.css>
+<link rel=stylesheet href=../../assets/colorful.css>
+<link rel=apple-touch-icon href=../../img/apple-touch-icon-192x192.png>
+<link rel="shortcut icon" href=../../img/favicon/colorful.png>
+<meta name=twitter:card content="summary">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个事件循环引发的Async原理探究">
+<meta property="og:description" content="记录一个偶然发现的前端事件循环问题，深入了解Async的实现原理">
+<meta property="og:url" content="/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/">
+<meta property="og:site_name" content="KuTuGu的博客">
+<meta property="og:image" content="/images/eventLoop/async.png">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+<meta property="article:published_time" content="2020-10-06 13:17:27 +0800 +0800">
+</head>
+<body class=colorful>
+<div class="container center headings--one-size">
+<header class=header>
+<div id=cryptostamping_v1 data-view=banner data-them=dark></div>
+<div class=header__inner>
+<div class=header__logo>
+<a href=../../>
+<div class=logo>
+主页
+</div>
+</a>
+</div>
+<div class=menu-trigger>menu</div>
+</div>
+<nav class=menu>
+<ul class="menu__inner menu__inner--desktop">
+<li><a href=https://github.com/KuTuGu>Github</a></li>
+<li><a href=../../about>关于</a></li>
+<li><a href=https://kutugu.github.io/resume>简历</a></li>
+</ul>
+<ul class="menu__inner menu__inner--mobile">
+<li><a href=https://github.com/KuTuGu>Github</a></li>
+<li><a href=../../about>关于</a></li>
+<li><a href=https://kutugu.github.io/resume>简历</a></li>
+</ul>
+</nav>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>
+<a href=../../post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/>一个事件循环引发的Async原理探究</a></h1>
+<div class=post-meta>
+<span class=post-date>
+2020-10-06
+</span>
+<span class=post-author>:: KuTuGu</span>
+</div>
+<span class=post-tags>
+#<a href=../../tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/>前端知识点</a>&nbsp;
+</span>
+<img src=../../images/eventLoop/async.png class=post-cover alt=一个事件循环引发的Async原理探究>
+<div class=post-content><div>
+<h1 id=一个事件循环引发的async原理探究>一个事件循环引发的Async原理探究<a href=#一个事件循环引发的async原理探究 class=hanchor arialabel=Anchor>&#8983;</a> </h1>
+<h2 id=起因>起因<a href=#起因 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>最近在复习前端<code>事件循环</code>机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;testing...&#34;</span>;
 }
 
@@ -27,7 +96,9 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 </span><span style=color:#75715e>test end...
 </span><span style=color:#75715e>promise
 </span><span style=color:#75715e>*/</span>
-</code></pre></div><h2 id=微调----声明async>微调 &ndash; 声明async<a href=#微调----声明async class=hanchor arialabel=Anchor>&#8983;</a></h2><p>现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 只是函数声明微调为async
+</code></pre></div><h2 id=微调----声明async>微调 &ndash; 声明async<a href=#微调----声明async class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 只是函数声明微调为async
 </span><span style=color:#75715e></span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;testing...&#34;</span>;
 }
@@ -53,7 +124,16 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 </span><span style=color:#75715e>test end...
 </span><span style=color:#75715e>promise
 </span><span style=color:#75715e>*/</span>
-</code></pre></div><p><code>async</code>和<code>await</code>的语法糖使得<code>Promise</code>的<code>链式调用</code>转为<code>同步</code>的写法。</p><p>我们常常<code>await</code>一个函数，这里的执行顺序需要注意：</p><ul><li>执行到这个语句会先执行<code>await</code>后面的函数，获得一个返回值，<code>await</code>会将其<code>"修饰"</code>为一个<code>Promise</code>对象，再<code>"中断跳出"</code>；</li><li>执行完<code>后面代码</code>后，再返回函数内，等待<code>Promise</code>状态转为<code>最终态</code>，再次执行<code>函数内代码</code>。</li></ul><p>而<code>async</code>函数会返回一个<code>Promise</code>对象，所以我们常常<code>await</code>一个<code>async</code>函数的返回值。</p><p>综上所述，这个微调合情合理，且无影响。但是当我们再来微调下：</p><h2 id=微调----显式返回promise>微调 &ndash; 显式返回Promise<a href=#微调----显式返回promise class=hanchor arialabel=Anchor>&#8983;</a></h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
+</code></pre></div><p><code>async</code>和<code>await</code>的语法糖使得<code>Promise</code>的<code>链式调用</code>转为<code>同步</code>的写法。</p>
+<p>我们常常<code>await</code>一个函数，这里的执行顺序需要注意：</p>
+<ul>
+<li>执行到这个语句会先执行<code>await</code>后面的函数，获得一个返回值，<code>await</code>会将其<code>"修饰"</code>为一个<code>Promise</code>对象，再<code>"中断跳出"</code>；</li>
+<li>执行完<code>后面代码</code>后，再返回函数内，等待<code>Promise</code>状态转为<code>最终态</code>，再次执行<code>函数内代码</code>。</li>
+</ul>
+<p>而<code>async</code>函数会返回一个<code>Promise</code>对象，所以我们常常<code>await</code>一个<code>async</code>函数的返回值。</p>
+<p>综上所述，这个微调合情合理，且无影响。但是当我们再来微调下：</p>
+<h2 id=微调----显式返回promise>微调 &ndash; 显式返回Promise<a href=#微调----显式返回promise class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#75715e>// 只是函数返回值显式声明为Promise
 </span><span style=color:#75715e></span>	<span style=color:#66d9ef>return</span> Promise.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;testing...&#34;</span>);
 }
@@ -79,7 +159,11 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 </span><span style=color:#75715e>testing...
 </span><span style=color:#75715e>test end...
 </span><span style=color:#75715e>*/</span>
-</code></pre></div><p>细心的童鞋已经发现了，让我们再来看下输出队列，<code>'promise'</code>的输出提前了。</p><p><code>async</code>不是会返回<code>Promise</code>对象吗？现在我们只是<code>显式声明</code>呀，为什么顺序会发生变化？</p><h2 id=定位问题>定位问题<a href=#定位问题 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>我们再简化一下代码：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 隐式返回Promise
+</code></pre></div><p>细心的童鞋已经发现了，让我们再来看下输出队列，<code>'promise'</code>的输出提前了。</p>
+<p><code>async</code>不是会返回<code>Promise</code>对象吗？现在我们只是<code>显式声明</code>呀，为什么顺序会发生变化？</p>
+<h2 id=定位问题>定位问题<a href=#定位问题 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>我们再简化一下代码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 隐式返回Promise
 </span><span style=color:#75715e></span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;testing...&#34;</span>;
 }
@@ -100,7 +184,12 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 <span style=color:#75715e>/* 输出
 </span><span style=color:#75715e>Promise {&lt;resolved&gt;: &#34;testing...&#34;}
 </span><span style=color:#75715e>*/</span>
-</code></pre></div><p>诶，为什么又一致了？难道是<code>await</code>的原因？</p><p>但<code>await</code>是一个黑盒，直接打<code>断点</code>调试，发现底层有很多事件循环的源码。</p><p>尝试<code>编译</code>，但<code>babel</code>官方<code>async</code>编译插件只支持转为<code>generator</code>。emmm，那<code>yield</code>和<code>await</code>有什么区别&mldr;</p><p>看看有没有第三方插件，有两个有bug，第三次输出结果和前两个一样，不符合<code>ES6</code>标准（→_→）</p><p>那只能去找些<a href=https://github.com/lfp1024/promise/blob/master/src/async-await/async-await.js>polyfill</a>看看，让我们修改一下代码：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 隐式返回Promise
+</code></pre></div><p>诶，为什么又一致了？难道是<code>await</code>的原因？</p>
+<p>但<code>await</code>是一个黑盒，直接打<code>断点</code>调试，发现底层有很多事件循环的源码。</p>
+<p>尝试<code>编译</code>，但<code>babel</code>官方<code>async</code>编译插件只支持转为<code>generator</code>。emmm，那<code>yield</code>和<code>await</code>有什么区别&mldr;</p>
+<p>看看有没有第三方插件，有两个有bug，第三次输出结果和前两个一样，不符合<code>ES6</code>标准（→_→）</p>
+<p>那只能去找些<a href=https://github.com/lfp1024/promise/blob/master/src/async-await/async-await.js>polyfill</a>看看，让我们修改一下代码：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 隐式返回Promise
 </span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;testing...&#34;</span>;
 }
@@ -126,7 +215,14 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 </span><span style=color:#75715e>test end...
 </span><span style=color:#75715e>promise
 </span><span style=color:#75715e>*/</span>
-</code></pre></div><p>上面我们曾提到了<code>await</code>的执行顺序，但还有些细节需要我们深究：</p><ul><li><code>await</code>的<code>"中断跳出"</code>实现，只是将函数内下面的代码全部封装到<code>Promise</code>回调中，函数内没有代码执行，自然跳出函数，执行<code>后面代码</code>；</li><li><code>await</code>是怎么<code>"修饰"</code>返回值为<code>Promise</code>的？<code>await</code>内部通过<code>Promise.then</code>来实现（见下文）；</li><li>接下来只需要等待<code>Promise</code>转为<code>最终态</code>，执行后面回调即可；多个<code>await</code>就是多个嵌套的回调函数。</li></ul><p>我们也看到了上面的输出和之前的隐式输出一致，那显式呢？</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 显式声明Promise
+</code></pre></div><p>上面我们曾提到了<code>await</code>的执行顺序，但还有些细节需要我们深究：</p>
+<ul>
+<li><code>await</code>的<code>"中断跳出"</code>实现，只是将函数内下面的代码全部封装到<code>Promise</code>回调中，函数内没有代码执行，自然跳出函数，执行<code>后面代码</code>；</li>
+<li><code>await</code>是怎么<code>"修饰"</code>返回值为<code>Promise</code>的？<code>await</code>内部通过<code>Promise.then</code>来实现（见下文）；</li>
+<li>接下来只需要等待<code>Promise</code>转为<code>最终态</code>，执行后面回调即可；多个<code>await</code>就是多个嵌套的回调函数。</li>
+</ul>
+<p>我们也看到了上面的输出和之前的隐式输出一致，那显式呢？</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 显式声明Promise
 </span><span style=color:#75715e></span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#66d9ef>return</span> Promise.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;testing...&#34;</span>);
 }
@@ -152,7 +248,11 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 </span><span style=color:#75715e>testing...
 </span><span style=color:#75715e>test end...
 </span><span style=color:#75715e>*/</span>
-</code></pre></div><p>输出结果一致！</p><p>但根据代码，显式和隐式的<code>await</code>似乎并无不同，反而是传入<code>async</code>的函数返回值存在差异，看来问题似乎出现在<code>async</code>内部。</p><h2 id=polyfill源码分析>polyfill源码分析<a href=#polyfill源码分析 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>我们下面贴下源码，深入分析：</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
+</code></pre></div><p>输出结果一致！</p>
+<p>但根据代码，显式和隐式的<code>await</code>似乎并无不同，反而是传入<code>async</code>的函数返回值存在差异，看来问题似乎出现在<code>async</code>内部。</p>
+<h2 id=polyfill源码分析>polyfill源码分析<a href=#polyfill源码分析 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>我们下面贴下源码，深入分析：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
 </span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>_async</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>func</span>) =&gt; {
   <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>p</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>, <span style=color:#a6e22e>reject</span>) =&gt; {
     <span style=color:#75715e>// 捕获同步错误
@@ -204,7 +304,81 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
       .<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>onResolved</span>, <span style=color:#a6e22e>onRejected</span>)
   <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>innerPromise</span>
 }
-</code></pre></div><p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：</p><ul><li>为什么会多次调用<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173>Promise.resolve</a></li><li><code>_async</code>是怎么解析<code>thenable</code>对象的</li></ul><p><code>注意</code>：<code>Promise</code>的原型实现有多个规范，虽然现在的标准是<a href=https://promisesaplus.com/>Promises/A+</a>，但<code>ES6</code>的实现和<code>A+</code>仍有出入。</p><blockquote><p>上面源码中<code>Promise.resolve</code>在两个函数都有出现</p><p>对于<code>_async</code>，<code>Promise.resolve</code>将<code>thenable</code>对象<code>递归解析</code>为<code>Promise</code>对象，然后通过另一个<code>then</code>将值<code>递归解析</code>为<code>非thenable</code>类型，赋值给返回的<code>Promise</code>对象。</p><p>对于<code>_await</code>，<code>Promise.resolve</code>是将传入的参数封装为<code>Promise</code>对象，再为其添加传入的回调函数</p><p>我们重点分析<code>_async</code>的<code>Promise.resolve(value).then(resolve, reject)</code>这一行代码：</p><hr><p>首先<code>value</code>是一个<code>thenable</code>对象，即有一个<code>then</code>的函数属性。</p><p>我们跟着代码进入<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173>Promise.resolve</a>：</p><ul><li>如果<code>value</code>是<code>Promise</code>就直接返回</li><li>如果不是则返回一个新的<code>Promise</code>对象<code>result</code>，生成的过程如下：<ul><li>如果<code>value</code>不是<code>thenable</code>对象，直接将<code>result</code>的状态转为<code>最终态</code>，并赋值</li><li>如果<code>value</code>是<code>thenable</code>对象，则将一个回调函数推入<code>微任务队列</code><ul><li>这个回调函数是为了<code>递归解析value</code>，直到获取最终的一个<code>非thenable</code>类型，并赋值</li><li>具体执行顺序（按源码行号）：<ul><li>L181，调用<code>value</code>自身的<code>then</code>函数，传入<code>result</code>的<code>resolve</code>、<code>reject</code></li><li>L68，我们按<code>resolve</code>被调用来处理，判断<code>value</code>类型<ul><li>L74，如果是<code>Promise</code>对象，调用<code>Promise</code>的<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L111>then</a>，传入<code>result</code>的<code>resolve</code>、<code>reject</code></li><li>L82，如果是其他<code>thenable</code>对象，调用<code>thenable</code>对象的<code>then</code>，传入<code>result</code>的<code>resolve</code>、<code>reject</code></li></ul></li><li>自此进入<code>递归解析</code>过程，直到获取最终的一个<code>非thenable</code>类型</li><li>L89，赋值，<code>result</code>的状态转为<code>最终态</code></li></ul></li></ul></li></ul></li></ul><p>终于<code>Promise.resolve</code>执行完成，返回一个新的<code>Promise</code>对象。</p><p>但这个对象的值不一定是<code>非thenable</code>类型，因为<code>Promise.resolve</code>没有对<code>value是Promise</code>做解析</p><p>而这个解析过程通过再次调用<code>then</code>来完成，解析完成后，<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L90>赋值</a>到<code>_async</code>的返回值对象中。</p><h2 id=综上所述promiseresolve的作用就是可以将所有参数类型封装为promise在遇到thenable对象非promise时会调用resolve做递归处理直到解析到一个非thenable类型>综上所述，<code>Promise.resolve</code>的作用就是可以将<code>所有参数类型</code>封装为<code>Promise</code>；在遇到<code>thenable</code>对象（<code>非Promise</code>）时会调用<code>resolve</code>做递归处理，直到解析到一个<code>非thenable</code>类型<a href=#综上所述promiseresolve的作用就是可以将所有参数类型封装为promise在遇到thenable对象非promise时会调用resolve做递归处理直到解析到一个非thenable类型 class=hanchor arialabel=Anchor>&#8983;</a></h2><h2 id=而thenresolve-reject的作用有两个一方面调用resolve做递归处理另一方面将解析到的非thenable类型通过resolve赋值>而<code>then(resolve, reject)</code>的作用有两个，一方面调用<code>resolve</code>做递归处理，另一方面将解析到的<code>非thenable</code>类型通过<code>resolve</code>赋值<a href=#而thenresolve-reject的作用有两个一方面调用resolve做递归处理另一方面将解析到的非thenable类型通过resolve赋值 class=hanchor arialabel=Anchor>&#8983;</a></h2></blockquote><h2 id=解决问题>解决问题<a href=#解决问题 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>终于，我们明白了<code>_async</code>的实现原理，下面我们再分析之前的问题就很简单了，分析下显式调用流程：</p><ul><li><code>_async</code>修饰<code>test</code>函数：<ul><li>输出<code>'test start...'</code></li><li>调用<code>_await</code><ul><li><code>_async</code>修饰<code>testSometing</code>，得到<code>value</code>为<code>Promise {&lt;resolved>: "testing..."}</code></li><li><code>value</code>是<code>thenable</code>对象，<code>Promise.resolve</code>封装会直接返回</li><li><code>value.then(resolve, reject)</code>会被放到<code>微任务</code>队列<code>[1]</code></li><li>返回值<code>Promise {&lt;pending>: undefined}</code></li><li><code>Promise.resolve</code>封装会直接返回，再将<code>then</code>传入的回调函数放入新<code>Promise</code>的队列中</li></ul></li><li>无返回值</li></ul></li><li>输出<code>'suspend!'</code></li><li>实例化<code>Promise</code>，状态转为<code>最终态</code>，并赋值，<code>then</code>回调放入<code>微任务</code>队列<code>[1， 2]</code></li><li>清空<code>微任务</code>队列，执行1会把新<code>Promise</code>的状态转为<code>最终态</code>，并将回调放入<code>微任务</code>队列<code>[2， 3]</code></li><li>继续清空<code>微任务</code>队列，输出<code>'promise'</code>、<code>'testing...'</code>、<code>'test end...'</code></li></ul><p>而隐式调用流程中因为<code>value</code>是<code>非thenable</code>类型，所以会直接返回给<code>_await</code>，从而将<code>_await</code>的回调提前放入<code>微任务</code>队列。</p><h2 id=其他思路>其他思路<a href=#其他思路 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>其实有一个错误不知道大家有没有发现，在我们第一次定位问题的时候，我们简化了代码，只输出<code>async</code>的两种情况，但结果却似乎完全一致。</p><p>其实这是因为我调试失误的原因(￣ε(#￣)，我没有打<code>断点</code>，而是直接在调试台查看最终输出。最终异步队列全部清空，结果肯定是一致的。</p><p>然后我们认为是<code>await</code>的原因，所以直接抛弃了<code>babel</code>转译，其实将<code>async</code>编译为<code>generator</code>也可以解决这个问题(￣▽￣)"，编译代码如下:</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 让我们再次简化一下源代码：
+</code></pre></div><p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：</p>
+<ul>
+<li>为什么会多次调用<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173>Promise.resolve</a></li>
+<li><code>_async</code>是怎么解析<code>thenable</code>对象的</li>
+</ul>
+<p><code>注意</code>：<code>Promise</code>的原型实现有多个规范，虽然现在的标准是<a href=https://promisesaplus.com/>Promises/A+</a>，但<code>ES6</code>的实现和<code>A+</code>仍有出入。</p>
+<blockquote>
+<p>上面源码中<code>Promise.resolve</code>在两个函数都有出现</p>
+<p>对于<code>_async</code>，<code>Promise.resolve</code>将<code>thenable</code>对象<code>递归解析</code>为<code>Promise</code>对象，然后通过另一个<code>then</code>将值<code>递归解析</code>为<code>非thenable</code>类型，赋值给返回的<code>Promise</code>对象。</p>
+<p>对于<code>_await</code>，<code>Promise.resolve</code>是将传入的参数封装为<code>Promise</code>对象，再为其添加传入的回调函数</p>
+<p>我们重点分析<code>_async</code>的<code>Promise.resolve(value).then(resolve, reject)</code>这一行代码：</p>
+<hr>
+<p>首先<code>value</code>是一个<code>thenable</code>对象，即有一个<code>then</code>的函数属性。</p>
+<p>我们跟着代码进入<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173>Promise.resolve</a>：</p>
+<ul>
+<li>如果<code>value</code>是<code>Promise</code>就直接返回</li>
+<li>如果不是则返回一个新的<code>Promise</code>对象<code>result</code>，生成的过程如下：
+<ul>
+<li>如果<code>value</code>不是<code>thenable</code>对象，直接将<code>result</code>的状态转为<code>最终态</code>，并赋值</li>
+<li>如果<code>value</code>是<code>thenable</code>对象，则将一个回调函数推入<code>微任务队列</code>
+<ul>
+<li>这个回调函数是为了<code>递归解析value</code>，直到获取最终的一个<code>非thenable</code>类型，并赋值</li>
+<li>具体执行顺序（按源码行号）：
+<ul>
+<li>L181，调用<code>value</code>自身的<code>then</code>函数，传入<code>result</code>的<code>resolve</code>、<code>reject</code></li>
+<li>L68，我们按<code>resolve</code>被调用来处理，判断<code>value</code>类型
+<ul>
+<li>L74，如果是<code>Promise</code>对象，调用<code>Promise</code>的<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L111>then</a>，传入<code>result</code>的<code>resolve</code>、<code>reject</code></li>
+<li>L82，如果是其他<code>thenable</code>对象，调用<code>thenable</code>对象的<code>then</code>，传入<code>result</code>的<code>resolve</code>、<code>reject</code></li>
+</ul>
+</li>
+<li>自此进入<code>递归解析</code>过程，直到获取最终的一个<code>非thenable</code>类型</li>
+<li>L89，赋值，<code>result</code>的状态转为<code>最终态</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>终于<code>Promise.resolve</code>执行完成，返回一个新的<code>Promise</code>对象。</p>
+<p>但这个对象的值不一定是<code>非thenable</code>类型，因为<code>Promise.resolve</code>没有对<code>value是Promise</code>做解析</p>
+<p>而这个解析过程通过再次调用<code>then</code>来完成，解析完成后，<a href=https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L90>赋值</a>到<code>_async</code>的返回值对象中。</p>
+<h2 id=综上所述promiseresolve的作用就是可以将所有参数类型封装为promise在遇到thenable对象非promise时会调用resolve做递归处理直到解析到一个非thenable类型>综上所述，<code>Promise.resolve</code>的作用就是可以将<code>所有参数类型</code>封装为<code>Promise</code>；在遇到<code>thenable</code>对象（<code>非Promise</code>）时会调用<code>resolve</code>做递归处理，直到解析到一个<code>非thenable</code>类型<a href=#综上所述promiseresolve的作用就是可以将所有参数类型封装为promise在遇到thenable对象非promise时会调用resolve做递归处理直到解析到一个非thenable类型 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<h2 id=而thenresolve-reject的作用有两个一方面调用resolve做递归处理另一方面将解析到的非thenable类型通过resolve赋值>而<code>then(resolve, reject)</code>的作用有两个，一方面调用<code>resolve</code>做递归处理，另一方面将解析到的<code>非thenable</code>类型通过<code>resolve</code>赋值<a href=#而thenresolve-reject的作用有两个一方面调用resolve做递归处理另一方面将解析到的非thenable类型通过resolve赋值 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+</blockquote>
+<h2 id=解决问题>解决问题<a href=#解决问题 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>终于，我们明白了<code>_async</code>的实现原理，下面我们再分析之前的问题就很简单了，分析下显式调用流程：</p>
+<ul>
+<li><code>_async</code>修饰<code>test</code>函数：
+<ul>
+<li>输出<code>'test start...'</code></li>
+<li>调用<code>_await</code>
+<ul>
+<li><code>_async</code>修饰<code>testSometing</code>，得到<code>value</code>为<code>Promise {&lt;resolved>: "testing..."}</code></li>
+<li><code>value</code>是<code>thenable</code>对象，<code>Promise.resolve</code>封装会直接返回</li>
+<li><code>value.then(resolve, reject)</code>会被放到<code>微任务</code>队列<code>[1]</code></li>
+<li>返回值<code>Promise {&lt;pending>: undefined}</code></li>
+<li><code>Promise.resolve</code>封装会直接返回，再将<code>then</code>传入的回调函数放入新<code>Promise</code>的队列中</li>
+</ul>
+</li>
+<li>无返回值</li>
+</ul>
+</li>
+<li>输出<code>'suspend!'</code></li>
+<li>实例化<code>Promise</code>，状态转为<code>最终态</code>，并赋值，<code>then</code>回调放入<code>微任务</code>队列<code>[1， 2]</code></li>
+<li>清空<code>微任务</code>队列，执行1会把新<code>Promise</code>的状态转为<code>最终态</code>，并将回调放入<code>微任务</code>队列<code>[2， 3]</code></li>
+<li>继续清空<code>微任务</code>队列，输出<code>'promise'</code>、<code>'testing...'</code>、<code>'test end...'</code></li>
+</ul>
+<p>而隐式调用流程中因为<code>value</code>是<code>非thenable</code>类型，所以会直接返回给<code>_await</code>，从而将<code>_await</code>的回调提前放入<code>微任务</code>队列。</p>
+<h2 id=其他思路>其他思路<a href=#其他思路 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
+<p>其实有一个错误不知道大家有没有发现，在我们第一次定位问题的时候，我们简化了代码，只输出<code>async</code>的两种情况，但结果却似乎完全一致。</p>
+<p>其实这是因为我调试失误的原因(￣ε(#￣)，我没有打<code>断点</code>，而是直接在调试台查看最终输出。最终异步队列全部清空，结果肯定是一致的。</p>
+<p>然后我们认为是<code>await</code>的原因，所以直接抛弃了<code>babel</code>转译，其实将<code>async</code>编译为<code>generator</code>也可以解决这个问题(￣▽￣)"，编译代码如下:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 让我们再次简化一下源代码：
 </span><span style=color:#75715e></span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>testSometing</span>() {
 	<span style=color:#66d9ef>return</span> Promise.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;testing...&#34;</span>);
 }
@@ -260,6 +434,39 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
     });
   };
 }
-</code></pre></div></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>阅读其它文章</span><hr></div><div class=pagination__buttons><span class="button next"><a href=../../post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/><span class=button__text>前端日志工具小结</span>
-<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2020 Powered by <a href=http://gohugo.io>Hugo</a></span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div></footer><script src=../../assets/main.js></script><script src=../../assets/prism.js></script></div></body></html>
+</code></pre></div>
+</div></div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>阅读其它文章</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=../../post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/>
+<span class=button__text>前端日志工具小结</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+<div id=cryptostamping_v1 data-view=list data-theme=dark></div>
+<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
+<script async src=https://embed.cryptostamping.org/widgets.js></script>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<div class=copyright>
+<span>© 2021 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
+</div>
+</div>
+<div id=cryptostamping_v1 data-view=button data-theme=dark></div>
+</footer>
+<script src=../../assets/main.js></script>
+<script src=../../assets/prism.js></script>
+</div>
+<script async src=https://embed.cryptostamping.org/widgets.js></script>
+</body>
+</html>
