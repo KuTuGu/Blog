@@ -1,6 +1,343 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端知识点 on KuTuGu的博客</title><link>/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/</link><description>Recent content in 前端知识点 on KuTuGu的博客</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 06 Oct 2020 13:17:27 +0800</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/index.xml" rel="self" type="application/rss+xml"/><item><title>一个事件循环引发的Async原理探究</title><link>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</link><pubDate>Tue, 06 Oct 2020 13:17:27 +0800</pubDate><guid>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</guid><description>一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
 function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end...&amp;#34;); } test(); console.log(&amp;#34;suspend!&amp;#34;); new Promise((resolve) =&amp;gt; { resolve(&amp;#34;promise&amp;#34;); }).then(val =&amp;gt; console.log(val)); /* 输出 test start... suspend! testing... test end... promise */ 微调 &amp;ndash; 声明async 现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：
-// 只是函数声明微调为async async function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end.</description></item><item><title>像素的相关知识浅析</title><link>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</link><pubDate>Sat, 12 Jan 2019 12:36:18 +0800</pubDate><guid>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</guid><description>像素的相关知识浅析 像素、分辨率和屏幕像素密度 首先来了解一下这些名词的相关定义：
+// 只是函数声明微调为async async function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end.</description><content>&lt;h1 id="一个事件循环引发的async原理探究">一个事件循环引发的Async原理探究&lt;/h1>
+&lt;h2 id="起因">起因&lt;/h2>
+&lt;p>最近在复习前端&lt;code>事件循环&lt;/code>机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+}
+&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="微调----声明async">微调 &amp;ndash; 声明async&lt;/h2>
+&lt;p>现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 只是函数声明微调为async
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+}
+&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>async&lt;/code>和&lt;code>await&lt;/code>的语法糖使得&lt;code>Promise&lt;/code>的&lt;code>链式调用&lt;/code>转为&lt;code>同步&lt;/code>的写法。&lt;/p>
+&lt;p>我们常常&lt;code>await&lt;/code>一个函数，这里的执行顺序需要注意：&lt;/p>
+&lt;ul>
+&lt;li>执行到这个语句会先执行&lt;code>await&lt;/code>后面的函数，获得一个返回值，&lt;code>await&lt;/code>会将其&lt;code>&amp;quot;修饰&amp;quot;&lt;/code>为一个&lt;code>Promise&lt;/code>对象，再&lt;code>&amp;quot;中断跳出&amp;quot;&lt;/code>；&lt;/li>
+&lt;li>执行完&lt;code>后面代码&lt;/code>后，再返回函数内，等待&lt;code>Promise&lt;/code>状态转为&lt;code>最终态&lt;/code>，再次执行&lt;code>函数内代码&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>而&lt;code>async&lt;/code>函数会返回一个&lt;code>Promise&lt;/code>对象，所以我们常常&lt;code>await&lt;/code>一个&lt;code>async&lt;/code>函数的返回值。&lt;/p>
+&lt;p>综上所述，这个微调合情合理，且无影响。但是当我们再来微调下：&lt;/p>
+&lt;h2 id="微调----显式返回promise">微调 &amp;ndash; 显式返回Promise&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#75715e">// 只是函数返回值显式声明为Promise
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>细心的童鞋已经发现了，让我们再来看下输出队列，&lt;code>'promise'&lt;/code>的输出提前了。&lt;/p>
+&lt;p>&lt;code>async&lt;/code>不是会返回&lt;code>Promise&lt;/code>对象吗？现在我们只是&lt;code>显式声明&lt;/code>呀，为什么顺序会发生变化？&lt;/p>
+&lt;h2 id="定位问题">定位问题&lt;/h2>
+&lt;p>我们再简化一下代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 隐式返回Promise
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+}
+&lt;span style="color:#a6e22e">testSometing&lt;/span>()
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;span style="color:#75715e">// 显式声明Promise
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#a6e22e">testSometing&lt;/span>()
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>诶，为什么又一致了？难道是&lt;code>await&lt;/code>的原因？&lt;/p>
+&lt;p>但&lt;code>await&lt;/code>是一个黑盒，直接打&lt;code>断点&lt;/code>调试，发现底层有很多事件循环的源码。&lt;/p>
+&lt;p>尝试&lt;code>编译&lt;/code>，但&lt;code>babel&lt;/code>官方&lt;code>async&lt;/code>编译插件只支持转为&lt;code>generator&lt;/code>。emmm，那&lt;code>yield&lt;/code>和&lt;code>await&lt;/code>有什么区别&amp;hellip;&lt;/p>
+&lt;p>看看有没有第三方插件，有两个有bug，第三次输出结果和前两个一样，不符合&lt;code>ES6&lt;/code>标准（→_→）&lt;/p>
+&lt;p>那只能去找些&lt;a href="https://github.com/lfp1024/promise/blob/master/src/async-await/async-await.js">polyfill&lt;/a>看看，让我们修改一下代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 隐式返回Promise
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+}
+&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
+})
+})
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面我们曾提到了&lt;code>await&lt;/code>的执行顺序，但还有些细节需要我们深究：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>await&lt;/code>的&lt;code>&amp;quot;中断跳出&amp;quot;&lt;/code>实现，只是将函数内下面的代码全部封装到&lt;code>Promise&lt;/code>回调中，函数内没有代码执行，自然跳出函数，执行&lt;code>后面代码&lt;/code>；&lt;/li>
+&lt;li>&lt;code>await&lt;/code>是怎么&lt;code>&amp;quot;修饰&amp;quot;&lt;/code>返回值为&lt;code>Promise&lt;/code>的？&lt;code>await&lt;/code>内部通过&lt;code>Promise.then&lt;/code>来实现（见下文）；&lt;/li>
+&lt;li>接下来只需要等待&lt;code>Promise&lt;/code>转为&lt;code>最终态&lt;/code>，执行后面回调即可；多个&lt;code>await&lt;/code>就是多个嵌套的回调函数。&lt;/li>
+&lt;/ul>
+&lt;p>我们也看到了上面的输出和之前的隐式输出一致，那显式呢？&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 显式声明Promise
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
+})
+})
+&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出结果一致！&lt;/p>
+&lt;p>但根据代码，显式和隐式的&lt;code>await&lt;/code>似乎并无不同，反而是传入&lt;code>async&lt;/code>的函数返回值存在差异，看来问题似乎出现在&lt;code>async&lt;/code>内部。&lt;/p>
+&lt;h2 id="polyfill源码分析">polyfill源码分析&lt;/h2>
+&lt;p>我们下面贴下源码，深入分析：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_async&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">func&lt;/span>) =&amp;gt; {
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) =&amp;gt; {
+&lt;span style="color:#75715e">// 捕获同步错误
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;span style="color:#75715e">// 返回值
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>()
+&lt;span style="color:#75715e">// 检查返回值是否是 对象 | 函数，它们可能是thenable对象
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (
+(
+(&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;object&amp;#39;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>) &lt;span style="color:#f92672">||&lt;/span>
+&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
+) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>
+&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>.&lt;span style="color:#a6e22e">then&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
+) {
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 如果是thenable对象
+&lt;/span>&lt;span style="color:#75715e"> * 将其解析封装为Promise对象，并递归调用then函数
+&lt;/span>&lt;span style="color:#75715e"> * 最终解析为非thenable值返回
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>)
+} &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;span style="color:#75715e">// 如果不是直接将其状态转为最终态
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>)
+}
+} &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
+&lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>)
+}
+})
+&lt;span style="color:#75715e">// 返回Promise对象
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span>
+}
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 接受一个任意参数，返回一个高阶函数
+&lt;/span>&lt;span style="color:#75715e"> * 这个高阶函数接收两个参数，分别代表await后，应该执行的正常回调函数和发生错误的回调函数
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_await&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">arg&lt;/span>) =&amp;gt; (&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) =&amp;gt; {
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 将参数解析为Promise对象，再为其添加回调函数
+&lt;/span>&lt;span style="color:#75715e"> * 如果有onRejected回调函数参数
+&lt;/span>&lt;span style="color:#75715e"> * 先通过catch解析期间可能产生的错误
+&lt;/span>&lt;span style="color:#75715e"> * 再执行onResolved回调函数
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">onRejected&lt;/span> &lt;span style="color:#f92672">?&lt;/span>
+Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
+.&lt;span style="color:#66d9ef">catch&lt;/span>(&lt;span style="color:#a6e22e">onRejected&lt;/span>)
+.&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) &lt;span style="color:#f92672">:&lt;/span>
+Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
+.&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>)
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span>
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：&lt;/p>
+&lt;ul>
+&lt;li>为什么会多次调用&lt;a href="https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173">Promise.resolve&lt;/a>&lt;/li>
+&lt;li>&lt;code>_async&lt;/code>是怎么解析&lt;code>thenable&lt;/code>对象的&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>注意&lt;/code>：&lt;code>Promise&lt;/code>的原型实现有多个规范，虽然现在的标准是&lt;a href="https://promisesaplus.com/">Promises/A+&lt;/a>，但&lt;code>ES6&lt;/code>的实现和&lt;code>A+&lt;/code>仍有出入。&lt;/p>
+&lt;blockquote>
+&lt;p>上面源码中&lt;code>Promise.resolve&lt;/code>在两个函数都有出现&lt;/p>
+&lt;p>对于&lt;code>_async&lt;/code>，&lt;code>Promise.resolve&lt;/code>将&lt;code>thenable&lt;/code>对象&lt;code>递归解析&lt;/code>为&lt;code>Promise&lt;/code>对象，然后通过另一个&lt;code>then&lt;/code>将值&lt;code>递归解析&lt;/code>为&lt;code>非thenable&lt;/code>类型，赋值给返回的&lt;code>Promise&lt;/code>对象。&lt;/p>
+&lt;p>对于&lt;code>_await&lt;/code>，&lt;code>Promise.resolve&lt;/code>是将传入的参数封装为&lt;code>Promise&lt;/code>对象，再为其添加传入的回调函数&lt;/p>
+&lt;p>我们重点分析&lt;code>_async&lt;/code>的&lt;code>Promise.resolve(value).then(resolve, reject)&lt;/code>这一行代码：&lt;/p>
+&lt;hr>
+&lt;p>首先&lt;code>value&lt;/code>是一个&lt;code>thenable&lt;/code>对象，即有一个&lt;code>then&lt;/code>的函数属性。&lt;/p>
+&lt;p>我们跟着代码进入&lt;a href="https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173">Promise.resolve&lt;/a>：&lt;/p>
+&lt;ul>
+&lt;li>如果&lt;code>value&lt;/code>是&lt;code>Promise&lt;/code>就直接返回&lt;/li>
+&lt;li>如果不是则返回一个新的&lt;code>Promise&lt;/code>对象&lt;code>result&lt;/code>，生成的过程如下：
+&lt;ul>
+&lt;li>如果&lt;code>value&lt;/code>不是&lt;code>thenable&lt;/code>对象，直接将&lt;code>result&lt;/code>的状态转为&lt;code>最终态&lt;/code>，并赋值&lt;/li>
+&lt;li>如果&lt;code>value&lt;/code>是&lt;code>thenable&lt;/code>对象，则将一个回调函数推入&lt;code>微任务队列&lt;/code>
+&lt;ul>
+&lt;li>这个回调函数是为了&lt;code>递归解析value&lt;/code>，直到获取最终的一个&lt;code>非thenable&lt;/code>类型，并赋值&lt;/li>
+&lt;li>具体执行顺序（按源码行号）：
+&lt;ul>
+&lt;li>L181，调用&lt;code>value&lt;/code>自身的&lt;code>then&lt;/code>函数，传入&lt;code>result&lt;/code>的&lt;code>resolve&lt;/code>、&lt;code>reject&lt;/code>&lt;/li>
+&lt;li>L68，我们按&lt;code>resolve&lt;/code>被调用来处理，判断&lt;code>value&lt;/code>类型
+&lt;ul>
+&lt;li>L74，如果是&lt;code>Promise&lt;/code>对象，调用&lt;code>Promise&lt;/code>的&lt;a href="https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L111">then&lt;/a>，传入&lt;code>result&lt;/code>的&lt;code>resolve&lt;/code>、&lt;code>reject&lt;/code>&lt;/li>
+&lt;li>L82，如果是其他&lt;code>thenable&lt;/code>对象，调用&lt;code>thenable&lt;/code>对象的&lt;code>then&lt;/code>，传入&lt;code>result&lt;/code>的&lt;code>resolve&lt;/code>、&lt;code>reject&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>自此进入&lt;code>递归解析&lt;/code>过程，直到获取最终的一个&lt;code>非thenable&lt;/code>类型&lt;/li>
+&lt;li>L89，赋值，&lt;code>result&lt;/code>的状态转为&lt;code>最终态&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>终于&lt;code>Promise.resolve&lt;/code>执行完成，返回一个新的&lt;code>Promise&lt;/code>对象。&lt;/p>
+&lt;p>但这个对象的值不一定是&lt;code>非thenable&lt;/code>类型，因为&lt;code>Promise.resolve&lt;/code>没有对&lt;code>value是Promise&lt;/code>做解析&lt;/p>
+&lt;p>而这个解析过程通过再次调用&lt;code>then&lt;/code>来完成，解析完成后，&lt;a href="https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L90">赋值&lt;/a>到&lt;code>_async&lt;/code>的返回值对象中。&lt;/p>
+&lt;h2 id="综上所述promiseresolve的作用就是可以将所有参数类型封装为promise在遇到thenable对象非promise时会调用resolve做递归处理直到解析到一个非thenable类型">综上所述，&lt;code>Promise.resolve&lt;/code>的作用就是可以将&lt;code>所有参数类型&lt;/code>封装为&lt;code>Promise&lt;/code>；在遇到&lt;code>thenable&lt;/code>对象（&lt;code>非Promise&lt;/code>）时会调用&lt;code>resolve&lt;/code>做递归处理，直到解析到一个&lt;code>非thenable&lt;/code>类型&lt;/h2>
+&lt;h2 id="而thenresolve-reject的作用有两个一方面调用resolve做递归处理另一方面将解析到的非thenable类型通过resolve赋值">而&lt;code>then(resolve, reject)&lt;/code>的作用有两个，一方面调用&lt;code>resolve&lt;/code>做递归处理，另一方面将解析到的&lt;code>非thenable&lt;/code>类型通过&lt;code>resolve&lt;/code>赋值&lt;/h2>
+&lt;/blockquote>
+&lt;h2 id="解决问题">解决问题&lt;/h2>
+&lt;p>终于，我们明白了&lt;code>_async&lt;/code>的实现原理，下面我们再分析之前的问题就很简单了，分析下显式调用流程：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>_async&lt;/code>修饰&lt;code>test&lt;/code>函数：
+&lt;ul>
+&lt;li>输出&lt;code>'test start...'&lt;/code>&lt;/li>
+&lt;li>调用&lt;code>_await&lt;/code>
+&lt;ul>
+&lt;li>&lt;code>_async&lt;/code>修饰&lt;code>testSometing&lt;/code>，得到&lt;code>value&lt;/code>为&lt;code>Promise {&amp;lt;resolved&amp;gt;: &amp;quot;testing...&amp;quot;}&lt;/code>&lt;/li>
+&lt;li>&lt;code>value&lt;/code>是&lt;code>thenable&lt;/code>对象，&lt;code>Promise.resolve&lt;/code>封装会直接返回&lt;/li>
+&lt;li>&lt;code>value.then(resolve, reject)&lt;/code>会被放到&lt;code>微任务&lt;/code>队列&lt;code>[1]&lt;/code>&lt;/li>
+&lt;li>返回值&lt;code>Promise {&amp;lt;pending&amp;gt;: undefined}&lt;/code>&lt;/li>
+&lt;li>&lt;code>Promise.resolve&lt;/code>封装会直接返回，再将&lt;code>then&lt;/code>传入的回调函数放入新&lt;code>Promise&lt;/code>的队列中&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>无返回值&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>输出&lt;code>'suspend!'&lt;/code>&lt;/li>
+&lt;li>实例化&lt;code>Promise&lt;/code>，状态转为&lt;code>最终态&lt;/code>，并赋值，&lt;code>then&lt;/code>回调放入&lt;code>微任务&lt;/code>队列&lt;code>[1， 2]&lt;/code>&lt;/li>
+&lt;li>清空&lt;code>微任务&lt;/code>队列，执行1会把新&lt;code>Promise&lt;/code>的状态转为&lt;code>最终态&lt;/code>，并将回调放入&lt;code>微任务&lt;/code>队列&lt;code>[2， 3]&lt;/code>&lt;/li>
+&lt;li>继续清空&lt;code>微任务&lt;/code>队列，输出&lt;code>'promise'&lt;/code>、&lt;code>'testing...'&lt;/code>、&lt;code>'test end...'&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>而隐式调用流程中因为&lt;code>value&lt;/code>是&lt;code>非thenable&lt;/code>类型，所以会直接返回给&lt;code>_await&lt;/code>，从而将&lt;code>_await&lt;/code>的回调提前放入&lt;code>微任务&lt;/code>队列。&lt;/p>
+&lt;h2 id="其他思路">其他思路&lt;/h2>
+&lt;p>其实有一个错误不知道大家有没有发现，在我们第一次定位问题的时候，我们简化了代码，只输出&lt;code>async&lt;/code>的两种情况，但结果却似乎完全一致。&lt;/p>
+&lt;p>其实这是因为我调试失误的原因(￣ε(#￣)，我没有打&lt;code>断点&lt;/code>，而是直接在调试台查看最终输出。最终异步队列全部清空，结果肯定是一致的。&lt;/p>
+&lt;p>然后我们认为是&lt;code>await&lt;/code>的原因，所以直接抛弃了&lt;code>babel&lt;/code>转译，其实将&lt;code>async&lt;/code>编译为&lt;code>generator&lt;/code>也可以解决这个问题(￣▽￣)&amp;quot;，编译代码如下:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 让我们再次简化一下源代码：
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+}
+&lt;span style="color:#75715e">// 编译后：
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (() =&amp;gt; {
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span>&lt;span style="color:#f92672">*&lt;/span> () {
+&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+});
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
+};
+})();
+&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#a6e22e">fn&lt;/span>) {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;span style="color:#75715e">// fn执行完后，生成gen指针引用
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">fn&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) {
+&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#a6e22e">key&lt;/span>, &lt;span style="color:#a6e22e">arg&lt;/span>) {
+&lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 调用next方法后
+&lt;/span>&lt;span style="color:#75715e"> * done变为true
+&lt;/span>&lt;span style="color:#75715e"> * value即返回的Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span>[&lt;span style="color:#a6e22e">key&lt;/span>](&lt;span style="color:#a6e22e">arg&lt;/span>);
+&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>;
+} &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
+&lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>);
+&lt;span style="color:#66d9ef">return&lt;/span>;
+}
+&lt;span style="color:#75715e">// 进入if，执行传入的resolve
+&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">done&lt;/span>) {
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 进入resolve源码
+&lt;/span>&lt;span style="color:#75715e"> * 由于value是Promise，所以会将value.then推入微任务队列
+&lt;/span>&lt;span style="color:#75715e"> * 然后去执行其他代码，比如实例化一个Promise
+&lt;/span>&lt;span style="color:#75715e"> * 然后清空微任务队列，执行value.then
+&lt;/span>&lt;span style="color:#75715e"> * 此时才会执行resolve的赋值语句，将其他回调函数推入微任务队列
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>);
+} &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">value&lt;/span>) {
+&lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">value&lt;/span>);
+}, &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">err&lt;/span>) {
+&lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;throw&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>);
+});
+}
+}
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>);
+});
+};
+}
+&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>像素的相关知识浅析</title><link>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</link><pubDate>Sat, 12 Jan 2019 12:36:18 +0800</pubDate><guid>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</guid><description>像素的相关知识浅析 像素、分辨率和屏幕像素密度 首先来了解一下这些名词的相关定义：
 在由一个数字序列表示的图像中的一个最小单位，称为像素，是一个单一颜色的小格存在。 从像素的思想派生出几个其它类型的概念，如体素、纹素等，是组成三维、纹理的最小单位。
 屏幕分辨率是水平像素数目 * 垂直像素数目的表示。
 屏幕像素密度是显示设备包含的像素密度，一般称为PPI（Pixels Per Inch， 常用于图像）。 与之相近的一个概念是DPI（Dots Per Inch，常用于印刷行业），且DPI表示水平方向或垂直方向，PPI表示对角线方向。 公式：PPI = 根号下(水平像素的平方 + 垂直像素的平方) / 对角线的英寸长度
@@ -13,4 +350,172 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 为了使CSS像素能够在不同的设备上显示尺寸一致，规范对于CSS像素有一些规定：
 对于高分辨率设备（打印机等），1px就等于96分之一英寸，约等于0.2646mm。 对于低分辨率设备（绝大部分显示器，手机屏幕），建议CSS像素参考最接近参考像素的整数个的物理像素。 这里我们先来了解下参考像素（reference pixel）的概念：
 根据规范，一个参考像素即为从一臂之遥看解析度为96DPI的设备输出（即1英寸96点）时，1点（即1/96英寸）的视角（visual angle）。
-通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.</description></item></channel></rss>
+通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.</description><content>&lt;h1 id="像素的相关知识浅析">像素的相关知识浅析&lt;/h1>
+&lt;h2 id="像素分辨率和屏幕像素密度">像素、分辨率和屏幕像素密度&lt;/h2>
+&lt;p>首先来了解一下这些名词的相关定义：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>在由一个数字序列表示的图像中的一个&lt;code>最小单位&lt;/code>，称为&lt;code>像素&lt;/code>，是一个&lt;code>单一颜色&lt;/code>的小格存在。 &lt;br>
+从&lt;code>像素&lt;/code>的思想派生出几个其它类型的概念，如&lt;code>体素&lt;/code>、&lt;code>纹素&lt;/code>等，是组成&lt;code>三维&lt;/code>、&lt;code>纹理&lt;/code>的&lt;code>最小单位&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>屏幕分辨率&lt;/code>是&lt;code>水平像素数目&lt;/code> * &lt;code>垂直像素数目&lt;/code>的表示。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>屏幕像素密度&lt;/code>是显示设备包含的像素密度，一般称为&lt;code>PPI&lt;/code>（Pixels Per Inch， 常用于图像）。 &lt;br>
+与之相近的一个概念是&lt;code>DPI&lt;/code>（Dots Per Inch，常用于印刷行业），且&lt;code>DPI&lt;/code>表示水平方向或垂直方向，&lt;code>PPI&lt;/code>表示对角线方向。 &lt;br>
+公式：&lt;code>PPI = 根号下(水平像素的平方 + 垂直像素的平方) / 对角线的英寸长度&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>根据这些定义，我们来深入思考一些问题：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>像素&lt;/code>的&lt;code>尺寸&lt;/code>是多大？ &lt;br>
+由定义我们可知，&lt;code>像素&lt;/code>即是一个&lt;code>单一颜色&lt;/code>的小格，所以&lt;code>像素&lt;/code>的大小并没有统一标准，厂商可以自行设置。 &lt;br>
+当然，对于&lt;code>同一块&lt;/code>屏幕尺寸，&lt;code>像素&lt;/code>越多，&lt;code>屏幕分辨率&lt;/code>越高，&lt;code>屏幕像素密度&lt;/code>越密集，可以表现的细节越丰富，显示越精细。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>屏幕分辨率&lt;/code>的调整原理？ &lt;br>
+&lt;code>屏幕&lt;/code>本来是一个&lt;code>物理设备&lt;/code>，从厂商制作出厂后，其&lt;code>像素大小&lt;/code>、&lt;code>屏幕分辨率&lt;/code>理应是&lt;code>固定不变&lt;/code>的。 &lt;br>
+但我们在电脑设置中往往可以看到一个&lt;code>调整分辨率&lt;/code>的功能，这其实是因为我们操作的是一个&lt;code>操作系统&lt;/code>，它充当着一个中间层的角色：&lt;/p>
+&lt;ul>
+&lt;li>向下通过操作系统控制显卡输出的内容尺寸，从而控制显示器的显示尺寸。物理的&lt;code>屏幕分辨率&lt;/code>是不变的，显示的&lt;code>分辨率&lt;/code>是动态调整的。&lt;/li>
+&lt;li>向上暴露相关参数给用户，使其方便地动态调整&lt;code>屏幕分辨率&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>所以我们在下面提到的&lt;code>物理像素&lt;/code>实际上也并不是真正的&lt;code>物理像素点&lt;/code>，也是经过&lt;code>操作系统&lt;/code>封装后的&lt;code>逻辑像素&lt;/code>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="css像素和dpr">CSS像素和DPR&lt;/h2>
+&lt;p>在前端CSS代码中，我们也常常用&lt;code>像素&lt;/code>来控制页面UI的尺寸大小（单位px）。这里的&lt;code>像素&lt;/code>又和上面提及的&lt;code>物理像素&lt;/code>不同：&lt;/p>
+&lt;p>如上所述，&lt;code>物理像素&lt;/code>的大小是任意的，并没有一个统一标准。如果CSS直接采用&lt;code>物理像素&lt;/code>，则页面在不同设备之间的显示尺寸可能存在差异。&lt;/p>
+&lt;p>为了使&lt;code>CSS像素&lt;/code>能够在不同的设备上&lt;code>显示尺寸一致&lt;/code>，规范对于&lt;code>CSS像素&lt;/code>有一些规定：&lt;/p>
+&lt;ul>
+&lt;li>对于&lt;code>高分辨率&lt;/code>设备（打印机等），&lt;code>1px&lt;/code>就等于&lt;code>96分之一英寸&lt;/code>，约等于&lt;code>0.2646mm&lt;/code>。&lt;/li>
+&lt;li>对于&lt;code>低分辨率&lt;/code>设备（绝大部分显示器，手机屏幕），建议&lt;code>CSS像素&lt;/code>参考最接近&lt;code>参考像素&lt;/code>的&lt;code>整数个&lt;/code>的&lt;code>物理像素&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>这里我们先来了解下&lt;code>参考像素&lt;/code>（reference pixel）的概念：&lt;/p>
+&lt;p>&lt;img src="../../images/pixel/reference-pixel.jpg" alt="参考像素">&lt;/p>
+&lt;p>根据规范，一个&lt;code>参考像素&lt;/code>即为从&lt;code>一臂之遥&lt;/code>看解析度为&lt;code>96DPI&lt;/code>的设备输出（即1英寸96点）时，1点（即1/96英寸）的&lt;code>视角&lt;/code>（visual angle）。&lt;/p>
+&lt;p>通常认为常人臂长为&lt;code>28英寸&lt;/code>，所以&lt;code>参考像素&lt;/code>为: &lt;code>(1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度&lt;/code>。&lt;/p>
+&lt;h3 id="参考像素的原理">参考像素的原理&lt;/h3>
+&lt;p>这个规范的原理是什么呢？&lt;/p>
+&lt;p>&lt;code>近小远大&lt;/code>：近处的物体显示的小一点，远处的物体显示的大一点，从而使两者看起来大致保持一致，而这一特点通过&lt;code>视角&lt;/code>来实现。&lt;/p>
+&lt;p>从上图也可以看出，&lt;code>参考像素&lt;/code>对应的这个&lt;code>视角&lt;/code>，映射到具体屏幕上：&lt;/p>
+&lt;ul>
+&lt;li>对于&lt;code>28英寸&lt;/code>远的屏幕来说，一个&lt;code>参考像素&lt;/code>大致为&lt;code>0.26mm&lt;/code>；&lt;/li>
+&lt;li>对于&lt;code>140英寸&lt;/code>远的屏幕来说，一个&lt;code>参考像素&lt;/code>大致为&lt;code>1.3mm&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>这个距离又是什么呢？&lt;/p>
+&lt;p>一般是由设备的&lt;code>典型视距&lt;/code>决定的，在出厂时已经确定。比如视距：电视 &amp;gt; 电脑 &amp;gt; 手机。&lt;/p>
+&lt;p>而&lt;code>CSS像素&lt;/code>在&lt;code>低分辨率&lt;/code>设备就基于这个&lt;code>参考像素&lt;/code>，从而实现&lt;code>1个CSS像素&lt;/code>在&lt;code>不同视距&lt;/code>的屏幕上，显示的尺寸大致相同。&lt;/p>
+&lt;p>而且&lt;code>最接近参考像素的整数个的物理像素&lt;/code>，也被称为&lt;code>DPR&lt;/code>（= &lt;code>物理像素分辨率&lt;/code> / &lt;code>CSS像素分辨率&lt;/code>）。一般在js中可以通过&lt;code>window.devicePixelRatio&lt;/code>获取。&lt;/p>
+&lt;h3 id="dpr的变化">DPR的变化&lt;/h3>
+&lt;p>这里又有一个问题：我调整&lt;code>屏幕分辨率&lt;/code>会不会影响到&lt;code>DPR&lt;/code>的大小？&lt;/p>
+&lt;p>推导如下：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>屏幕分辨率&lt;/code>调低会使得&lt;code>物理像素分辨率&lt;/code>降低&lt;/li>
+&lt;li>&lt;code>像素点&lt;/code>变大，因为这里的&lt;code>像素点&lt;/code>是被操作系统封装的&lt;code>逻辑像素&lt;/code>（1个&lt;code>逻辑像素&lt;/code>对应的多个&lt;code>真实物理像素&lt;/code>变多）&lt;/li>
+&lt;li>而&lt;code>参考像素&lt;/code>是一定的，所以&lt;code>1个CSS像素&lt;/code>对应的&lt;code>整数个&lt;/code>的&lt;code>物理像素&lt;/code>会减少，&lt;code>DPR&lt;/code>也会降低&lt;/li>
+&lt;/ul>
+&lt;p>但实际上经过测试：无论&lt;code>屏幕分辨率&lt;/code>怎么变更，&lt;code>DPR&lt;/code>都保持不变。&lt;/p>
+&lt;p>具体原因未知，不过&lt;a href="https://www.w3.org/TR/CSS2/syndata.html#length-units">规范&lt;/a>上有这样一句话，应该指的就是这个：&lt;/p>
+&lt;blockquote>
+&lt;p>Note that this definition of the pixel unit and the physical units differs from previous versions of CSS. In particular, in previous versions of CSS the pixel unit and the physical units were not related by a fixed ratio: the physical units were always tied to their physical measurements while the pixel unit would vary to most closely match the reference pixel. (This change was made because too much existing content relies on the assumption of 96dpi, and breaking that assumption breaks the content.)&lt;/p>
+&lt;p>注意，这里&lt;code>像素单位&lt;/code>和&lt;code>物理单位&lt;/code>的定义与CSS之前版本不同。特别地，在CSS之前版本中，&lt;code>像素单位&lt;/code>和&lt;code>物理单位&lt;/code>与&lt;code>固定比例&lt;/code>（fixed ratio）无关：&lt;code>物理单位&lt;/code>总是与它们的物理测量紧密相关，而&lt;code>像素单位&lt;/code>会变得最接近&lt;code>参考像素&lt;/code>（出现这种变化是因为太多现有内容依赖96dpi的假设，而打破这个假设就会破坏这些内容）&lt;/p>
+&lt;/blockquote>
+&lt;p>与调整&lt;code>屏幕分辨率&lt;/code>相似的一个概念是&lt;code>内容缩放&lt;/code>，在&lt;code>windows10&lt;/code>系统中同时提供了这两个功能。 &lt;br>
+而&lt;code>内容缩放&lt;/code>（系统缩放，对网页进行缩放也可）会同时影响&lt;code>DPR&lt;/code>的大小。&lt;/p>
+&lt;p>其实这个比较好理解，&lt;code>内容缩放&lt;/code>相当于直接缩放&lt;code>CSS像素&lt;/code>，所以&lt;code>1个CSS像素&lt;/code>对应的&lt;code>物理像素&lt;/code>会相应变化。&lt;/p>
+&lt;p>这里还有个细节：&lt;code>缩放&lt;/code>导致&lt;code>window.devicePixelRatio&lt;/code>可能出现小数。&lt;/p>
+&lt;p>这说明&lt;code>window.devicePixelRatio&lt;/code>并不是真正严格地表示&lt;code>1个CSS像素&lt;/code>对应几个&lt;code>物理像素&lt;/code>。 &lt;br>
+它代表着&lt;code>内容缩放&lt;/code>的一个平均比率，具体的对应关系由系统通过相应算法实现。&lt;/p>
+&lt;h2 id="canvas在视网膜屏下绘制图片的失真问题">Canvas在视网膜屏下绘制图片的失真问题&lt;/h2>
+&lt;p>在视网膜屏下，1个CSS像素对应多个&lt;code>物理像素&lt;/code>。
+对于一个&lt;code>2倍屏&lt;/code>，&lt;code>500 * 300&lt;/code>屏幕想要绘制一个高清图片，图片分辨率至少要大一倍，因为屏幕实际对应的是&lt;code>1000 * 600&lt;/code>个&lt;code>物理像素&lt;/code>。&lt;/p>
+&lt;p>和多倍图类似，在Canvas绘制图片进行&lt;code>缩放处理&lt;/code>，否则会导致&lt;code>失真&lt;/code>问题：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 对于一个300 * 150画布：
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">canvas&lt;/span> &lt;span style="color:#a6e22e">width&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;300&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;150&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/canvas&amp;gt;&lt;/span>
+&lt;span style="color:#75715e">// 如果直接绘制：
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span>, &lt;span style="color:#ae81ff">150&lt;/span>);
+&lt;span style="color:#75715e">// 浏览器会计算出Canvas绘制缓冲区大小
+&lt;/span>&lt;span style="color:#75715e">// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
+&lt;/span>&lt;span style="color:#75715e">&lt;/span>
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * backingStorePixelRatio是Canvas的缓冲像素比
+&lt;/span>&lt;span style="color:#75715e"> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
+&lt;/span>&lt;span style="color:#75715e"> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
+&lt;/span>&lt;span style="color:#75715e"> *
+&lt;/span>&lt;span style="color:#75715e"> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span> , &lt;span style="color:#ae81ff">150&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 但是直接这样绘制，图片也会被放大显示；
+&lt;/span>&lt;span style="color:#75715e"> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> , &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>);
+&lt;span style="color:#75715e">/*
+&lt;/span>&lt;span style="color:#75715e"> * 如果canvas只有图片，那这样没有什么问题；
+&lt;/span>&lt;span style="color:#75715e"> * 如果有其他元素，如文字、图形时，它们也会被缩小
+&lt;/span>&lt;span style="color:#75715e"> * 我们利用scale来调整
+&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">scale&lt;/span>(window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>, window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
+&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>) , parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>))
+&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="viewport">viewport&lt;/h2>
+&lt;p>相对于电脑来说，手机屏幕是很&amp;quot;窄的&amp;quot;，而随着智能手机的发展，其&lt;code>屏幕分辨率&lt;/code>也在不断提高。&lt;br>
+上面我们已经了解了：&lt;/p>
+&lt;ul>
+&lt;li>随着手机&lt;code>屏幕分辨率&lt;/code>的提高，屏幕面积基本不变，&lt;code>物理像素&lt;/code>变小，&lt;code>PPI&lt;/code>增加&lt;/li>
+&lt;li>对于手机来说其&lt;code>视距&lt;/code>一定，&lt;code>参考像素&lt;/code>是一定的，&lt;code>CSS像素&lt;/code>也是一定的&lt;/li>
+&lt;li>变化的只是一个&lt;code>CSS像素&lt;/code>对应几个&lt;code>物理像素&lt;/code>，&lt;code>屏幕分辨率&lt;/code>的提高也只是降低&lt;code>颗粒感&lt;/code>，提高&lt;code>清晰度&lt;/code>。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="../../images/pixel/retina.jpg" alt="retina对比图">&lt;/p>
+&lt;p>所以移动端&lt;code>全屏宽度&lt;/code>对于&lt;code>CSS像素&lt;/code>来说也就是&lt;code>300px&lt;/code>左右。&lt;/p>
+&lt;p>接下来，我们来了解一下&lt;code>viewport&lt;/code>：&lt;/p>
+&lt;p>&lt;code>viewport&lt;/code>其实就是浏览器页面内容显示的那一块区域，注意它和&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>的关系：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>viewport&lt;/code>的宽度通过&lt;code>document.documentElement.clientWidth&lt;/code>来获取&lt;/li>
+&lt;li>&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>的宽度通过&lt;code>document.documentElement.offsetWidth&lt;/code>来获取&lt;/li>
+&lt;li>默认情况下，&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>继承自&lt;code>viewport&lt;/code>，但也可以自定义&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>的宽高&lt;/li>
+&lt;/ul>
+&lt;h3 id="layout-viewport">layout viewport&lt;/h3>
+&lt;p>对于PC端，&lt;code>viewport&lt;/code>就是浏览器的内容区域；但对于移动端我们不能这样直接指定：&lt;/p>
+&lt;ul>
+&lt;li>移动端&lt;code>全屏宽度&lt;/code>才&lt;code>300px&lt;/code>左右，如果&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>是默认的（如&lt;code>100%&lt;/code>），即&lt;code>300px&lt;/code>左右；&lt;/li>
+&lt;li>用这个宽度来显示本该是&lt;code>1000px&lt;/code>宽度的PC端页面，可能导致整个页面挤作一团。&lt;/li>
+&lt;/ul>
+&lt;p>为了能使移动设备上的浏览器正常显示PC端页面，我们引入了第一个&lt;code>默认&lt;/code>的&lt;code>viewport&lt;/code>：&lt;code>layout viewport&lt;/code>。&lt;/p>
+&lt;p>默认情况，&lt;code>viewport&lt;/code>即为&lt;code>layout viewport&lt;/code>，一般在&lt;code>1000px&lt;/code>左右，根据设备不同而有所差异。&lt;/p>
+&lt;p>这也是为什么我们用手机看PC端页面时，如果没有相应的适配处理，页面会出现很长的滚动条。&lt;/p>
+&lt;p>&lt;img src="../../images/pixel/layout-viewport.png" alt="layout viewport">&lt;/p>
+&lt;h3 id="visual-viewport">visual viewport&lt;/h3>
+&lt;p>如果不想获取整个内容区域的宽度，而只是获取当前可视区域的宽度。&lt;/p>
+&lt;p>可以通过&lt;code>window.innerWidth&lt;/code>来获取，这个当前可视区域也被称为&lt;code>visual viewport&lt;/code>。&lt;/p>
+&lt;p>&lt;img src="../../images/pixel/visual-viewport.png" alt="visual viewport">&lt;/p>
+&lt;h3 id="ideal-viewport">ideal viewport&lt;/h3>
+&lt;p>上面的两个&lt;code>viewport&lt;/code>是针对PC端页面显示的情况，移动端页面显示应该怎么处理？&lt;/p>
+&lt;p>既然移动端的&lt;code>全屏宽度&lt;/code>为&lt;code>300px&lt;/code>左右，那我们直接将&lt;code>viewport&lt;/code>设为这个宽度。 &lt;br>
+这样一来&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>的&lt;code>100%&lt;/code>也就是设备的&lt;code>全屏宽度&lt;/code>，这个&lt;code>viewport&lt;/code>被成为&lt;code>ideal viewport&lt;/code>。&lt;/p>
+&lt;p>当然不同的移动设备的&lt;code>全屏宽度&lt;/code>是不尽相同的，如&lt;code>320px&lt;/code>、&lt;code>360px&lt;/code>等。但它们是很接近的。&lt;/p>
+&lt;p>为了充分利用这两点情况，对于移动端的页面设计：&lt;/p>
+&lt;ul>
+&lt;li>设置&lt;code>ideal viewport&lt;/code>：&lt;code>&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width&amp;quot; /&amp;gt;&lt;/code> &lt;br>
+&lt;code>device-width&lt;/code>即移动设备的&lt;code>全屏宽度&lt;/code>。&lt;/li>
+&lt;li>而设计师只需要出一份&lt;code>320px&lt;/code>左右的设计稿，就可以适配大部分移动设备。&lt;/li>
+&lt;/ul>
+&lt;h2 id="参考">参考&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://juejin.im/post/5b95a8186fb9a05cd7772455">你真的了解css像素嘛？&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://www.cnblogs.com/2050/p/3877280.html">移动前端开发之viewport的深入理解&lt;/a>&lt;/li>
+&lt;li>&lt;a href="http://qingbob.com/RWD-things-about-pixel/">移动开发那些事&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://zhuanlan.zhihu.com/p/23405435">前端如何适配手机屏幕之viewport&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.jianshu.com/p/2cd5143cf9aa">High DPI Canvas 高分辨率Canvas（译）&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.css88.com/archives/9297">解决 canvas 在高清屏中绘制模糊的问题&lt;/a>&lt;/li>
+&lt;/ul></content></item></channel></rss>

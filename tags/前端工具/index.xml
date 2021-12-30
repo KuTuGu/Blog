@@ -25,4 +25,182 @@ babel插件在打包时会忽略掉ts检查，如果要进行ts检查需要CLI�
 内部实现高耦合，不易扩展 日志数据固定、取均值或随机采样，无法获取精准、自定义数据 不支持各类型日志数据的不同处理 前后端高耦合，不易拆分 另一方面，这些工具大都提供一站式服务，对于希望使用多种不同工具的项目来说又显得过于臃肿。
 所以这个库的目的不只是为了重复造轮子，除了具体功能外，还想要提供一种轻量级地前端日志上报的通用化解决方案。
 为了实现上述需求，一个大体的思路如下：
-内部功能模块采用插件化设计模式，支持自定义、自由替换 将日志生命周期划分为收集、处理、存储、上报等阶段，生命周期具体实现可以插件化替换 生命周期通过参数式策略模式组合为一个完整的日志流； 生命周期之间做低耦合处理，统一在日志流类中做观察者模式的注册，这样实现生命周期的链式注册、链式调用 对不同类型日志如客户端指纹、首屏加载、用户交互、资源请求等提供内置功能模块，其他类型扩展提供内部暴露的抽象类、虚函数来继承覆写 日志上报 第四部分是处理日志上报：</description></item></channel></rss>
+内部功能模块采用插件化设计模式，支持自定义、自由替换 将日志生命周期划分为收集、处理、存储、上报等阶段，生命周期具体实现可以插件化替换 生命周期通过参数式策略模式组合为一个完整的日志流； 生命周期之间做低耦合处理，统一在日志流类中做观察者模式的注册，这样实现生命周期的链式注册、链式调用 对不同类型日志如客户端指纹、首屏加载、用户交互、资源请求等提供内置功能模块，其他类型扩展提供内部暴露的抽象类、虚函数来继承覆写 日志上报 第四部分是处理日志上报：</description><content>&lt;h1 id="前端日志工具小结">前端日志工具小结&lt;/h1>
+&lt;p>在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构&lt;/p>
+&lt;h2 id="项目内容">项目内容&lt;/h2>
+&lt;h3 id="feflow">Feflow&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/Tencent/feflow">https://github.com/Tencent/feflow&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://feflowjs.com/">https://feflowjs.com/&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Feflow是腾讯开发的一款基于模板进行快速开发的开源脚手架工具，主要目的是为了提升工程效率和保障工作流的规范性。&lt;/p>
+&lt;p>Feflow提供了基础的init、dev、build、test和deploy等命令，同时在模板的基础上，利用扩展的插件模块实现零配置快速上手、自定义命令等目的，具体文档可参考上文链接。&lt;/p>
+&lt;h4 id="feflow底层插件">Feflow底层插件&lt;/h4>
+&lt;p>第一个接触的项目是feflow的一个底层插件模块， 这个库主要用于支持纯JS库代码打包(&lt;code>rollup&lt;/code>)的各种script命令。&lt;/p>
+&lt;p>我的工作是为该插件提供&lt;code>ts检查&lt;/code>、&lt;code>lint&lt;/code>和&lt;code>unit test&lt;/code>等功能，具体的代码实现并无太大问题，只是由平时常用的&lt;code>CLI命令&lt;/code>改为编写相应的&lt;code>script脚本&lt;/code>，通过API的方式来调用。&lt;/p>
+&lt;p>只遇到了一个配置文件路径的坑:&lt;/p>
+&lt;h5 id="配置文件路径问题">配置文件路径问题&lt;/h5>
+&lt;p>首先来看一下项目文件路径的设计：&lt;/p>
+&lt;blockquote>
+&lt;p>npm包依赖被安装在&lt;code>node_modules&lt;/code>文件夹中，feflow插件自然也不例外，其中存放着我们已经写好的ts、lint等配置文件，保证使用到这个模块的各个上层项目都能保持一致的代码规范。&lt;/p>
+&lt;p>但在一些特殊情况下也需要开发者可以在外层项目通过配置文件来覆盖内层规则。&lt;/p>
+&lt;p>所以具体的配置文件规则需要我们由外至内做判断。&lt;/p>
+&lt;/blockquote>
+&lt;p>基本原理如上所述，但在具体实现时出现了一些问题：&lt;/p>
+&lt;p>ts编译，通过脚本调用API读取配置文件进行编译。但ts配置文件只支持&lt;code>tsconfig.json&lt;/code>。 &lt;br>
+我们需要的是通过js来动态获取具体的配置文件路径，json文件格式显然无法满足。&lt;/p>
+&lt;p>既然无法直接配置，那我们只能考虑在编译前做些“手脚”：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>我们可以通过node脚本在编译前即时编写出一个&lt;code>tsconfig.json&lt;/code>供ts读取检查&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>采用一些第三方插件，有两个方向：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>babel（&lt;code>@babel/preset-typescript&lt;/code>）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>rollup（&lt;code>rollup-plugin-typescript2&lt;/code> / &lt;code>@rollup/plugin-typescript&lt;/code> ）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>babel插件在打包时会忽略掉ts检查，如果要进行ts检查需要CLI手动调用tsc命令；&lt;/p>
+&lt;p>故采用rollup插件，通过此插件API的include参数传入配置文件路径。&lt;/p>
+&lt;h3 id="日志工具函数">日志工具函数&lt;/h3>
+&lt;p>第二个项目是工具函数库，下层采用feflow插件进行项目规范化，上层为日志库提供常用工具集，如&lt;code>AOP&lt;/code>、&lt;code>Event&lt;/code>等。除了功能代码，还基于上个项目为其编写ts、unit test等。&lt;/p>
+&lt;h3 id="日志库">日志库&lt;/h3>
+&lt;p>第三个项目是日志库，主要对于前端页面进行监听，采集加载数据、请求和用户行为用于优化页面，支持全监听和手动埋点。&lt;/p>
+&lt;p>其实前端日志包括开源产品已经有很多成熟方案了，但在具体项目使用中总有一些不如意的地方，比如：&lt;/p>
+&lt;ul>
+&lt;li>内部实现&lt;code>高耦合&lt;/code>，不易扩展&lt;/li>
+&lt;li>日志数据固定、取&lt;code>均值&lt;/code>或&lt;code>随机采样&lt;/code>，无法获取精准、自定义数据&lt;/li>
+&lt;li>不支持各类型日志数据的不同处理&lt;/li>
+&lt;li>前后端高耦合，不易拆分&lt;/li>
+&lt;/ul>
+&lt;p>另一方面，这些工具大都提供一站式服务，对于希望使用多种不同工具的项目来说又显得过于臃肿。&lt;/p>
+&lt;p>所以这个库的目的不只是为了重复造轮子，除了具体功能外，还想要提供一种轻量级地前端日志上报的&lt;code>通用化解决方案&lt;/code>。&lt;/p>
+&lt;p>为了实现上述需求，一个大体的思路如下：&lt;/p>
+&lt;ul>
+&lt;li>内部功能模块采用&lt;code>插件化&lt;/code>设计模式，支持自定义、自由替换&lt;/li>
+&lt;li>将日志生命周期划分为&lt;code>收集&lt;/code>、&lt;code>处理&lt;/code>、&lt;code>存储&lt;/code>、&lt;code>上报&lt;/code>等阶段，生命周期具体实现可以插件化替换&lt;/li>
+&lt;li>生命周期通过参数式&lt;code>策略模式&lt;/code>组合为一个完整的日志流；&lt;/li>
+&lt;li>生命周期之间做&lt;code>低耦合&lt;/code>处理，统一在日志流类中做&lt;code>观察者模式&lt;/code>的注册，这样实现生命周期的链式注册、链式调用&lt;/li>
+&lt;li>对不同类型日志如&lt;code>客户端指纹&lt;/code>、&lt;code>首屏加载&lt;/code>、&lt;code>用户交互&lt;/code>、&lt;code>资源请求&lt;/code>等提供内置功能模块，其他类型扩展提供内部暴露的&lt;code>抽象类&lt;/code>、&lt;code>虚函数&lt;/code>来继承覆写&lt;/li>
+&lt;/ul>
+&lt;h3 id="日志上报">日志上报&lt;/h3>
+&lt;p>第四部分是处理日志上报：&lt;/p>
+&lt;ul>
+&lt;li>通过编写腾讯云&lt;code>SCF函数&lt;/code>，将日志上报到私有网络，SCF相当于一个&lt;code>网关&lt;/code>，避免后端服务直接暴露到公网中&lt;/li>
+&lt;li>后端日志存储和可视化采用&lt;code>Elastic&lt;/code>产品栈：&lt;code>Elasticsearch Service&lt;/code>存储日志，&lt;code>Kibana&lt;/code>用作可视化页面展示&lt;/li>
+&lt;li>为保护后端服务和数据，&lt;code>Elasticsearch Service&lt;/code>只开放&lt;code>内网接口&lt;/code>，由SCF进行远程并行调用，只支持上报操作&lt;/li>
+&lt;/ul>
+&lt;h2 id="前端日志上报原理">前端日志上报原理&lt;/h2>
+&lt;h3 id="数据采集">数据采集&lt;/h3>
+&lt;p>根据不同的数据类型，采取不同的采集方式，一般来讲比较通用的数据如下：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>用户身份、设备、网络环境、PV等环境因素，直接采集上报&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>页面首屏加载性能：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>传统多页面首屏性能可以直接由&lt;code>performance API&lt;/code>采集数据，加工后上报&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>SPA单页面比较麻烦，因为前端请求完成后得到的只是一个js文件，组件加载时可能还要请求具体数据，所以我们说的首屏是指&lt;code>首次有效绘制&lt;/code>：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>如果支持&lt;code>ssr&lt;/code>，类似多页面直接由&lt;code>performance API&lt;/code>采集数据即可&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>否则只能去&lt;code>侵入式地&lt;/code>在生命周期钩子埋点或监听首屏的图片加载等较慢请求，或者手动埋点&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>既然是&lt;code>首次有效绘制&lt;/code>，应该和&lt;code>页面视图（DOM）&lt;/code>紧密相关，那可不可以通过这个来判断呢？ &lt;br>
+Chrome力推的&lt;code>以用户为中心&lt;/code>的性能指标就基于此，详见&lt;a href="https://zhuanlan.zhihu.com/p/81774869">捕获FMP的原理&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>页面请求，采用&lt;code>AOP&lt;/code>方式，在不修改原API的前提下对请求接口进行封装，可在before、after钩子做日志埋点。 &lt;br>
+如果要记录参数和返回结果，注意对数据的&lt;code>去敏&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>页面事件监听：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>全监听&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>根元素冒泡监听，如有必要还可对&lt;code>stopPropagation&lt;/code>进行&lt;code>AOP&lt;/code>，以免遗漏数据；缺点：&lt;/p>
+&lt;ul>
+&lt;li>杂乱信息太多需要过滤，也可根据&lt;code>选择器&lt;/code>、&lt;code>dataset&lt;/code>等准确定位&lt;/li>
+&lt;li>一些事件如&lt;code>focus&lt;/code>不会冒泡需要特殊处理&lt;/li>
+&lt;li>事件发生后，若&lt;code>原dom被删除&lt;/code>，便无法对元素进行定位&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>对&lt;code>Element.prototype.addEventListener&lt;/code>进行&lt;code>AOP&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>手动埋点&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>页面关闭事件需注意&lt;a href="http://www.ruanyifeng.com/blog/2018/10/page_visibility_api.html">移动端的兼容问题&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>页面错误&lt;/p>
+&lt;ul>
+&lt;li>全监听可监听&lt;code>error&lt;/code>、&lt;code>unhandledrejection&lt;/code>等事件&lt;/li>
+&lt;li>手动埋点需手动进行catch捕获&lt;/li>
+&lt;li>请求错误在请求函数部分进行处理&lt;/li>
+&lt;li>除此之外还可能有&lt;code>跨域脚本&lt;/code>、&lt;code>代码压缩&lt;/code>等问题，不再一一赘述&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据规范化">数据规范化&lt;/h3>
+&lt;p>在查找资料时翻到这句话：&lt;code>WHO&lt;/code> did &lt;code>WHAT&lt;/code> and get &lt;code>WHICH&lt;/code> exception in &lt;code>WHICH&lt;/code> environment? &lt;br>
+即要对日志数据做规范化处理，详细记录每条事件发生的具体时间、环境、人员等，方便后期的查询、定位。&lt;/p>
+&lt;p>可以定义不同类型的&lt;code>元数据&lt;/code>，一方面对整个页面全监听很容易产生大量无用的&lt;code>脏数据&lt;/code>，要对其进行过滤；另一方面对数据进行&lt;code>规范化&lt;/code>，检测数据是否存在、数据值是否规范等。&lt;/p>
+&lt;h3 id="数据上报">数据上报&lt;/h3>
+&lt;p>上报函数有&lt;code>Fetch&lt;/code>、&lt;code>XHR&lt;/code>、&lt;code>sendBeacon&lt;/code>等方式&lt;/p>
+&lt;p>上报周期如下：&lt;/p>
+&lt;ul>
+&lt;li>实时上报，网络IO占用多、性能差&lt;/li>
+&lt;li>本地离线存储，自定义上报周期，数据可能不太即时&lt;/li>
+&lt;li>考虑上述情况，可以采用实时 + 本地存储，核心是&lt;code>节流函数&lt;/code>：
+&lt;ul>
+&lt;li>新日志生成直接上报，设置上报周期&lt;/li>
+&lt;li>上报周期内再次生成新日志，存储到本地，等上报周期结束后，上报所有本地日志&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据检测中间层">数据检测中间层&lt;/h3>
+&lt;p>如果有需要可在&lt;code>后端&lt;/code>再次进行日志数据检测，一方面避免无效数据，另一方面由于日志上报并无身份认证，可能会导致恶意人员利用接口发送大量恶意数据。&lt;/p>
+&lt;h3 id="报警--预警">报警 / 预警&lt;/h3>
+&lt;p>告警也可分为两部分：&lt;/p>
+&lt;ul>
+&lt;li>硬件等工作环境的监控告警，可通过调控CPU、内存、磁盘读写、带宽等数值的阈值进行监控&lt;/li>
+&lt;li>具体业务数据的监控告警，可自行实现通知代码，业界也有比较成熟的报警工具。 &lt;br>
+在&lt;code>Elastic&lt;/code>产品栈中，可以选择使用&lt;code>ElastAlert&lt;/code>，简单易上手，支持邮件、钉钉、微信、自定义等多种告警方式，且能灵活从&lt;code>Elasticsearch Service&lt;/code>中查询业务数据。&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据可视化">数据可视化&lt;/h3>
+&lt;p>一般成熟的日志服务会自带相应的可视化界面，不再赘述&lt;/p>
+&lt;h2 id="参考">参考&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://tech.youzan.com/track-1/">有赞埋点实践&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://juejin.im/post/5b5dcfb46fb9a04f8f37afbb">前端性能与异常上报&lt;/a>&lt;/li>
+&lt;/ul></content></item></channel></rss>

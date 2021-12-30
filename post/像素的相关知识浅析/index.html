@@ -1,23 +1,10 @@
 <!doctype html><html lang=en>
 <head>
-<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
 <title>像素的相关知识浅析 :: KuTuGu的博客</title>
+<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="像素的相关知识浅析 像素、分辨率和屏幕像素密度 首先来了解一下这些名词的相关定义：
-  在由一个数字序列表示的图像中的一个最小单位，称为像素，是一个单一颜色的小格存在。 从像素的思想派生出几个其它类型的概念，如体素、纹素等，是组成三维、纹理的最小单位。
-  屏幕分辨率是水平像素数目 * 垂直像素数目的表示。
-  屏幕像素密度是显示设备包含的像素密度，一般称为PPI（Pixels Per Inch， 常用于图像）。 与之相近的一个概念是DPI（Dots Per Inch，常用于印刷行业），且DPI表示水平方向或垂直方向，PPI表示对角线方向。 公式：PPI = 根号下(水平像素的平方 + 垂直像素的平方) / 对角线的英寸长度
-  根据这些定义，我们来深入思考一些问题：
-  像素的尺寸是多大？ 由定义我们可知，像素即是一个单一颜色的小格，所以像素的大小并没有统一标准，厂商可以自行设置。 当然，对于同一块屏幕尺寸，像素越多，屏幕分辨率越高，屏幕像素密度越密集，可以表现的细节越丰富，显示越精细。
-  屏幕分辨率的调整原理？ 屏幕本来是一个物理设备，从厂商制作出厂后，其像素大小、屏幕分辨率理应是固定不变的。 但我们在电脑设置中往往可以看到一个调整分辨率的功能，这其实是因为我们操作的是一个操作系统，它充当着一个中间层的角色：
- 向下通过操作系统控制显卡输出的内容尺寸，从而控制显示器的显示尺寸。物理的屏幕分辨率是不变的，显示的分辨率是动态调整的。 向上暴露相关参数给用户，使其方便地动态调整屏幕分辨率。  所以我们在下面提到的物理像素实际上也并不是真正的物理像素点，也是经过操作系统封装后的逻辑像素。
-  CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面UI的尺寸大小（单位px）。这里的像素又和上面提及的物理像素不同：
-如上所述，物理像素的大小是任意的，并没有一个统一标准。如果CSS直接采用物理像素，则页面在不同设备之间的显示尺寸可能存在差异。
-为了使CSS像素能够在不同的设备上显示尺寸一致，规范对于CSS像素有一些规定：
- 对于高分辨率设备（打印机等），1px就等于96分之一英寸，约等于0.2646mm。 对于低分辨率设备（绝大部分显示器，手机屏幕），建议CSS像素参考最接近参考像素的整数个的物理像素。  这里我们先来了解下参考像素（reference pixel）的概念：
-根据规范，一个参考像素即为从一臂之遥看解析度为96DPI的设备输出（即1英寸96点）时，1点（即1/96英寸）的视角（visual angle）。
-通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.">
+<meta name=description content="前端涉及到的像素相关知识浅析">
 <meta name=keywords content="像素,Canvas,Viewport">
 <meta name=robots content="noodp">
 <link rel=canonical href=../../post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/>
@@ -32,7 +19,7 @@
 <meta property="og:description" content="前端涉及到的像素相关知识浅析">
 <meta property="og:url" content="/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/">
 <meta property="og:site_name" content="KuTuGu的博客">
-<meta property="og:image" content="/images/pixel/pixel.png">
+<meta property="og:image" content="/img/pixel/pixel.png">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 <meta property="article:published_time" content="2019-01-12 12:36:18 +0800 +0800">
@@ -40,12 +27,11 @@
 <body class=colorful>
 <div class="container center headings--one-size">
 <header class=header>
-<div id=cryptostamping_v1 data-view=banner data-them=dark></div>
 <div class=header__inner>
 <div class=header__logo>
 <a href=../../>
 <div class=logo>
-主页
+Main
 </div>
 </a>
 </div>
@@ -53,14 +39,18 @@
 </div>
 <nav class=menu>
 <ul class="menu__inner menu__inner--desktop">
+<li><a href=../../about>About</a></li>
 <li><a href=https://github.com/KuTuGu>Github</a></li>
-<li><a href=../../about>关于</a></li>
-<li><a href=https://kutugu.github.io/resume>简历</a></li>
+<li><a href=https://kutugu.github.io/resume>Resume</a></li>
+<li><a href=https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA>Revery</a></li>
+<li><a href=https://twitter.com/kutugu1>Twitter</a></li>
 </ul>
 <ul class="menu__inner menu__inner--mobile">
+<li><a href=../../about>About</a></li>
 <li><a href=https://github.com/KuTuGu>Github</a></li>
-<li><a href=../../about>关于</a></li>
-<li><a href=https://kutugu.github.io/resume>简历</a></li>
+<li><a href=https://kutugu.github.io/resume>Resume</a></li>
+<li><a href=https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA>Revery</a></li>
+<li><a href=https://twitter.com/kutugu1>Twitter</a></li>
 </ul>
 </nav>
 </header>
@@ -77,7 +67,7 @@
 <span class=post-tags>
 #<a href=../../tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/>前端知识点</a>&nbsp;
 </span>
-<img src=../../images/pixel/pixel.png class=post-cover alt=像素的相关知识浅析>
+<img src=../../img/pixel/pixel.png class=post-cover alt=像素的相关知识浅析 title="Cover Image">
 <div class=post-content><div>
 <h1 id=像素的相关知识浅析>像素的相关知识浅析<a href=#像素的相关知识浅析 class=hanchor arialabel=Anchor>&#8983;</a> </h1>
 <h2 id=像素分辨率和屏幕像素密度>像素、分辨率和屏幕像素密度<a href=#像素分辨率和屏幕像素密度 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
@@ -270,8 +260,6 @@
 </div>
 </div>
 <div id=cryptostamping_v1 data-view=list data-theme=dark></div>
-<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
-<script async src=https://embed.cryptostamping.org/widgets.js></script>
 </div>
 </div>
 <footer class=footer>

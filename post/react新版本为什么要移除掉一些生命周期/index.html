@@ -1,24 +1,10 @@
 <!doctype html><html lang=en>
 <head>
-<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
 <title>React新版本为什么要移除掉一些生命周期 :: KuTuGu的博客</title>
+<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="React新版本为什么要移除掉一些生命周期？ 从上图新版本React的生命周期来看，React废弃了以下三种生命周期钩子：
- componentWillMount componentWillReceiveProps componentWillUpdate  下面我们来逐一分析它们被废弃的原因：
-componentWillReceiveProps 此方法将会被getDerivedStateFromProps这一静态方法取代，通过返回一个对象来表示新的state。
-看似并无区别，但使用getDerivedStateFromProps的原因在于对API的进一步解耦。 此方法是静态的，所以无法获取或者执行实例上的其他副作用函数，只专注于根据当前的nextProps来更新组件的state。
-原来的componentWillReceiveProps函数内，this上的其余副作用函数可以在componentDidUpdate中进行。
-一方面，React通过API规范来约束开发者，强调代码书写的规范性。 另一方面，通过将状态变化和副作用分离到Fiber架构的Reconciliation和Commit两个阶段，优化性能（详情见下文）。
-componentWillMount 很多开发者喜欢在componentWillMount中获取异步数据，希望可以提早进行异步请求，尽量避免白屏。首先，这一想法不无道理，分两种情况考虑：
- 立即获取数据，在第一次render之前处理完成，避免白屏 异步获取数据，第二次render进行有效绘制，与componentDidMount相比白屏时间缩短  当然，官方对于这一解释是：componentWillMount、render 和 componentDidMount 方法虽然存在调用先后顺序。 但在大多数情况下，几乎都是在很短的时间内先后执行完毕，几乎不会对用户体验产生影响。
-看样子在componentWillMount似乎并无不妥之处，反而还可能会优化效率，为什么会被废除呢？主要原因有以下几点：
- 对于服务器渲染（ssr），在componentWillMount内获取数据可以保证返回的页面是最终页面，但存在一个问题：客户端渲染时会再次请求，会浪费IO资源。 对于服务器渲染（ssr），在componentWillMount中绑定事件，但由于并没有后续的生命周期，导致资源无法释放，可能产生内存泄露。 客户端渲染也有可能产生上面两个问题，在Fiber架构中，componentWillMount所在的Reconciliation阶段可能被多次打断，可能产生多次网络请求或多次事件监听（详情见下文）。  componentWillUpdate componentWillUpdate也是如此：
- componentWillUpdate可能被多次打断，在这个钩子获取更新前的视图情况或执行副作用都不妥 getSnapshotBeforeUpdate是真正在视图变更前调用的，获取到组件状态信息更加可靠； 另一方面getSnapshotBeforeUpdate的返回结果可直接作为参数传入componentDidUpdate中。  Fiber核心架构 从上面三个生命周期的移除都可以看到Fiber架构的身影，下面我们就来深入了解下：
-React新版本的到来，与之相应的是核心架构的替换和异步渲染概念的引入。
-React框架的视图更新取决于virtual dom和diff算法，找到变化之后再将新的virtual dom渲染到不同视图(如android、pc)，这一通用的过程称为Reconciler。
-旧版本的React使用的是Stack Reconciler，新版本采用的是Fiber Reconciler，因为其中任务调度处理的最小单元为Fiber数据结构：
-// Fiber 基于链表结构，拥有一个个指针，指向它的父节点子节点和兄弟节点。 // 在 diff 的过程中，依照节点的链接关系进行遍历 Fiber = { &amp;#39;tag&amp;#39; // 标记任务节点类型  &amp;#39;return&amp;#39; // 父节点  &amp;#39;child&amp;#39; // 子节点  &amp;#39;sibling&amp;#39; // 兄弟节点  &amp;#39;alternate&amp;#39; // 变化记录  // .">
+<meta name=description content="从React移除一些生命周期的角度来看React新版本架构的迭代调整">
 <meta name=keywords content="React,生命周期,Fiber架构">
 <meta name=robots content="noodp">
 <link rel=canonical href=../../post/react%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%A7%BB%E9%99%A4%E6%8E%89%E4%B8%80%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/>
@@ -33,7 +19,7 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 <meta property="og:description" content="从React移除一些生命周期的角度来看React新版本架构的迭代调整">
 <meta property="og:url" content="/post/react%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%A7%BB%E9%99%A4%E6%8E%89%E4%B8%80%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
 <meta property="og:site_name" content="KuTuGu的博客">
-<meta property="og:image" content="/images/react/react-lifeCycle.png">
+<meta property="og:image" content="/img/react/react-lifeCycle.png">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 <meta property="article:published_time" content="2020-08-26 23:26:03 +0800 +0800">
@@ -41,12 +27,11 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 <body class=colorful>
 <div class="container center headings--one-size">
 <header class=header>
-<div id=cryptostamping_v1 data-view=banner data-them=dark></div>
 <div class=header__inner>
 <div class=header__logo>
 <a href=../../>
 <div class=logo>
-主页
+Main
 </div>
 </a>
 </div>
@@ -54,14 +39,18 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 </div>
 <nav class=menu>
 <ul class="menu__inner menu__inner--desktop">
+<li><a href=../../about>About</a></li>
 <li><a href=https://github.com/KuTuGu>Github</a></li>
-<li><a href=../../about>关于</a></li>
-<li><a href=https://kutugu.github.io/resume>简历</a></li>
+<li><a href=https://kutugu.github.io/resume>Resume</a></li>
+<li><a href=https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA>Revery</a></li>
+<li><a href=https://twitter.com/kutugu1>Twitter</a></li>
 </ul>
 <ul class="menu__inner menu__inner--mobile">
+<li><a href=../../about>About</a></li>
 <li><a href=https://github.com/KuTuGu>Github</a></li>
-<li><a href=../../about>关于</a></li>
-<li><a href=https://kutugu.github.io/resume>简历</a></li>
+<li><a href=https://kutugu.github.io/resume>Resume</a></li>
+<li><a href=https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA>Revery</a></li>
+<li><a href=https://twitter.com/kutugu1>Twitter</a></li>
 </ul>
 </nav>
 </header>
@@ -78,7 +67,7 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 <span class=post-tags>
 #<a href=../../tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/>前端框架</a>&nbsp;
 </span>
-<img src=../../images/react/react-lifeCycle.png class=post-cover alt=React新版本为什么要移除掉一些生命周期>
+<img src=../../img/react/react-lifeCycle.png class=post-cover alt=React新版本为什么要移除掉一些生命周期 title="Cover Image">
 <div class=post-content><div>
 <h1 id=react新版本为什么要移除掉一些生命周期>React新版本为什么要移除掉一些生命周期？<a href=#react新版本为什么要移除掉一些生命周期 class=hanchor arialabel=Anchor>&#8983;</a> </h1>
 <p>从上图新版本React的生命周期来看，React废弃了以下三种生命周期钩子：</p>
@@ -273,8 +262,6 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 </div>
 </div>
 <div id=cryptostamping_v1 data-view=list data-theme=dark></div>
-<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
-<script async src=https://embed.cryptostamping.org/widgets.js></script>
 </div>
 </div>
 <footer class=footer>
