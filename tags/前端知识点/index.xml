@@ -394,7 +394,7 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;li>对于&lt;code>低分辨率&lt;/code>设备（绝大部分显示器，手机屏幕），建议&lt;code>CSS像素&lt;/code>参考最接近&lt;code>参考像素&lt;/code>的&lt;code>整数个&lt;/code>的&lt;code>物理像素&lt;/code>。&lt;/li>
 &lt;/ul>
 &lt;p>这里我们先来了解下&lt;code>参考像素&lt;/code>（reference pixel）的概念：&lt;/p>
-&lt;p>&lt;img src="../../images/pixel/reference-pixel.jpg" alt="参考像素">&lt;/p>
+&lt;p>&lt;img src="../../img/pixel/reference-pixel.jpg" alt="参考像素">&lt;/p>
 &lt;p>根据规范，一个&lt;code>参考像素&lt;/code>即为从&lt;code>一臂之遥&lt;/code>看解析度为&lt;code>96DPI&lt;/code>的设备输出（即1英寸96点）时，1点（即1/96英寸）的&lt;code>视角&lt;/code>（visual angle）。&lt;/p>
 &lt;p>通常认为常人臂长为&lt;code>28英寸&lt;/code>，所以&lt;code>参考像素&lt;/code>为: &lt;code>(1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度&lt;/code>。&lt;/p>
 &lt;h3 id="参考像素的原理">参考像素的原理&lt;/h3>
@@ -476,7 +476,7 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;li>对于手机来说其&lt;code>视距&lt;/code>一定，&lt;code>参考像素&lt;/code>是一定的，&lt;code>CSS像素&lt;/code>也是一定的&lt;/li>
 &lt;li>变化的只是一个&lt;code>CSS像素&lt;/code>对应几个&lt;code>物理像素&lt;/code>，&lt;code>屏幕分辨率&lt;/code>的提高也只是降低&lt;code>颗粒感&lt;/code>，提高&lt;code>清晰度&lt;/code>。&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="../../images/pixel/retina.jpg" alt="retina对比图">&lt;/p>
+&lt;p>&lt;img src="../../img/pixel/retina.jpg" alt="retina对比图">&lt;/p>
 &lt;p>所以移动端&lt;code>全屏宽度&lt;/code>对于&lt;code>CSS像素&lt;/code>来说也就是&lt;code>300px&lt;/code>左右。&lt;/p>
 &lt;p>接下来，我们来了解一下&lt;code>viewport&lt;/code>：&lt;/p>
 &lt;p>&lt;code>viewport&lt;/code>其实就是浏览器页面内容显示的那一块区域，注意它和&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>的关系：&lt;/p>
@@ -494,11 +494,11 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;p>为了能使移动设备上的浏览器正常显示PC端页面，我们引入了第一个&lt;code>默认&lt;/code>的&lt;code>viewport&lt;/code>：&lt;code>layout viewport&lt;/code>。&lt;/p>
 &lt;p>默认情况，&lt;code>viewport&lt;/code>即为&lt;code>layout viewport&lt;/code>，一般在&lt;code>1000px&lt;/code>左右，根据设备不同而有所差异。&lt;/p>
 &lt;p>这也是为什么我们用手机看PC端页面时，如果没有相应的适配处理，页面会出现很长的滚动条。&lt;/p>
-&lt;p>&lt;img src="../../images/pixel/layout-viewport.png" alt="layout viewport">&lt;/p>
+&lt;p>&lt;img src="../../img/pixel/layout-viewport.png" alt="layout viewport">&lt;/p>
 &lt;h3 id="visual-viewport">visual viewport&lt;/h3>
 &lt;p>如果不想获取整个内容区域的宽度，而只是获取当前可视区域的宽度。&lt;/p>
 &lt;p>可以通过&lt;code>window.innerWidth&lt;/code>来获取，这个当前可视区域也被称为&lt;code>visual viewport&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="../../images/pixel/visual-viewport.png" alt="visual viewport">&lt;/p>
+&lt;p>&lt;img src="../../img/pixel/visual-viewport.png" alt="visual viewport">&lt;/p>
 &lt;h3 id="ideal-viewport">ideal viewport&lt;/h3>
 &lt;p>上面的两个&lt;code>viewport&lt;/code>是针对PC端页面显示的情况，移动端页面显示应该怎么处理？&lt;/p>
 &lt;p>既然移动端的&lt;code>全屏宽度&lt;/code>为&lt;code>300px&lt;/code>左右，那我们直接将&lt;code>viewport&lt;/code>设为这个宽度。 &lt;br>

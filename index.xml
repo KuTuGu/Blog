@@ -638,7 +638,7 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 &lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Offscreen&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">6&lt;/span>, &lt;span style="color:#75715e">// 当前屏幕外的更新，优先级最低
 &lt;/span>&lt;span style="color:#75715e">&lt;/span>}
 &lt;/code>&lt;/pre>&lt;/div>&lt;/blockquote>
-&lt;p>&lt;img src="./images/react/fiber-phase.png" alt="Fiber阶段">&lt;/p>
+&lt;p>&lt;img src="./img/react/fiber-phase.png" alt="Fiber阶段">&lt;/p>
 &lt;p>前面说了&lt;code>Fiber&lt;/code>算法中更新是分阶段的，首先是&lt;code>Reconciliation&lt;/code>阶段，这个阶段在diff前后&lt;code>virtual dom&lt;/code>树的差异，耗时过长，可以打断；然后是&lt;code>Commit&lt;/code>的阶段，这个阶段将一直把更新渲染到页面上。&lt;/p>
 &lt;p>&lt;code>Reconciliation&lt;/code>阶段有那些生命周期呢？没错，废除的三个生命周期赫然在列：&lt;/p>
 &lt;ul>
@@ -663,7 +663,7 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 &lt;li>另一方面固定的间隔在&lt;code>不同刷新率&lt;/code>设备的适配上也有一定问题。&lt;/li>
 &lt;/ul>
 &lt;p>于是浏览器暴露了一些接口来细粒化地控制事件循环的绘制：&lt;code>requestAnimationFrame&lt;/code>、&lt;code>requestIdleCallback&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="./images/eventLoop/frame.jpg" alt="frame">&lt;/p>
+&lt;p>&lt;img src="./img/eventLoop/frame.jpg" alt="frame">&lt;/p>
 &lt;h3 id="requestanimationframe">requestAnimationFrame&lt;/h3>
 &lt;p>简单来说，&lt;code>requestAnimationFrame&lt;/code>内的回调函数会在浏览器下一次重绘之前执行，完美地解决了上述&lt;code>setTimeInterval&lt;/code>的问题，而且如果标签页被隐藏，回调也会被暂停调用以提升性能和电池寿命。&lt;/p>
 &lt;p>具体应用时需要注意两点：&lt;/p>
@@ -679,12 +679,12 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 摘自&lt;a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback">MDN&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>&lt;code>注意&lt;/code>：当页面无其他任务时，&lt;code>requestIdleCallback&lt;/code>执行的周期会被适当拉长，但最长只能为&lt;code>50ms&lt;/code>，以防出现&lt;code>不可预测的任务&lt;/code>（如用户输入）来临时无法及时响应可能会引起用户感知到的&lt;code>延迟&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="./images/eventLoop/requestIdleCallback.png" alt="requestIdleCallback">&lt;/p>
+&lt;p>&lt;img src="./img/eventLoop/requestIdleCallback.png" alt="requestIdleCallback">&lt;/p>
 &lt;h4 id="推荐阅读-1">推荐阅读&lt;/h4>
 &lt;p>&lt;a href="https://www.cnblogs.com/coco1s/p/8029582.html">Web 动画帧率（FPS）计算&lt;/a> &lt;br>
 &lt;a href="https://juejin.im/post/5c9c66075188251dab07413d">浏览器帧原理剖析&lt;/a>&lt;/p>
 &lt;h3 id="fiber-架构渲染流程">Fiber 架构渲染流程&lt;/h3>
-&lt;p>&lt;img src="./images/react/reconciler.png" alt="reconciler">&lt;/p>
+&lt;p>&lt;img src="./img/react/reconciler.png" alt="reconciler">&lt;/p>
 &lt;p>由此我们可以推断&lt;code>Fiber Reconciler&lt;/code>大致的工作原理：&lt;/p>
 &lt;ul>
 &lt;li>首次渲染执行，维护一个&lt;code>virtual dom&lt;/code>，节点为&lt;code>Fiber&lt;/code>数据结构，指向其他节点。&lt;/li>
@@ -793,7 +793,7 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;li>对于&lt;code>低分辨率&lt;/code>设备（绝大部分显示器，手机屏幕），建议&lt;code>CSS像素&lt;/code>参考最接近&lt;code>参考像素&lt;/code>的&lt;code>整数个&lt;/code>的&lt;code>物理像素&lt;/code>。&lt;/li>
 &lt;/ul>
 &lt;p>这里我们先来了解下&lt;code>参考像素&lt;/code>（reference pixel）的概念：&lt;/p>
-&lt;p>&lt;img src="./images/pixel/reference-pixel.jpg" alt="参考像素">&lt;/p>
+&lt;p>&lt;img src="./img/pixel/reference-pixel.jpg" alt="参考像素">&lt;/p>
 &lt;p>根据规范，一个&lt;code>参考像素&lt;/code>即为从&lt;code>一臂之遥&lt;/code>看解析度为&lt;code>96DPI&lt;/code>的设备输出（即1英寸96点）时，1点（即1/96英寸）的&lt;code>视角&lt;/code>（visual angle）。&lt;/p>
 &lt;p>通常认为常人臂长为&lt;code>28英寸&lt;/code>，所以&lt;code>参考像素&lt;/code>为: &lt;code>(1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度&lt;/code>。&lt;/p>
 &lt;h3 id="参考像素的原理">参考像素的原理&lt;/h3>
@@ -875,7 +875,7 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;li>对于手机来说其&lt;code>视距&lt;/code>一定，&lt;code>参考像素&lt;/code>是一定的，&lt;code>CSS像素&lt;/code>也是一定的&lt;/li>
 &lt;li>变化的只是一个&lt;code>CSS像素&lt;/code>对应几个&lt;code>物理像素&lt;/code>，&lt;code>屏幕分辨率&lt;/code>的提高也只是降低&lt;code>颗粒感&lt;/code>，提高&lt;code>清晰度&lt;/code>。&lt;/li>
 &lt;/ul>
-&lt;p>&lt;img src="./images/pixel/retina.jpg" alt="retina对比图">&lt;/p>
+&lt;p>&lt;img src="./img/pixel/retina.jpg" alt="retina对比图">&lt;/p>
 &lt;p>所以移动端&lt;code>全屏宽度&lt;/code>对于&lt;code>CSS像素&lt;/code>来说也就是&lt;code>300px&lt;/code>左右。&lt;/p>
 &lt;p>接下来，我们来了解一下&lt;code>viewport&lt;/code>：&lt;/p>
 &lt;p>&lt;code>viewport&lt;/code>其实就是浏览器页面内容显示的那一块区域，注意它和&lt;code>&amp;lt;HTML&amp;gt;&lt;/code>的关系：&lt;/p>
@@ -893,11 +893,11 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;p>为了能使移动设备上的浏览器正常显示PC端页面，我们引入了第一个&lt;code>默认&lt;/code>的&lt;code>viewport&lt;/code>：&lt;code>layout viewport&lt;/code>。&lt;/p>
 &lt;p>默认情况，&lt;code>viewport&lt;/code>即为&lt;code>layout viewport&lt;/code>，一般在&lt;code>1000px&lt;/code>左右，根据设备不同而有所差异。&lt;/p>
 &lt;p>这也是为什么我们用手机看PC端页面时，如果没有相应的适配处理，页面会出现很长的滚动条。&lt;/p>
-&lt;p>&lt;img src="./images/pixel/layout-viewport.png" alt="layout viewport">&lt;/p>
+&lt;p>&lt;img src="./img/pixel/layout-viewport.png" alt="layout viewport">&lt;/p>
 &lt;h3 id="visual-viewport">visual viewport&lt;/h3>
 &lt;p>如果不想获取整个内容区域的宽度，而只是获取当前可视区域的宽度。&lt;/p>
 &lt;p>可以通过&lt;code>window.innerWidth&lt;/code>来获取，这个当前可视区域也被称为&lt;code>visual viewport&lt;/code>。&lt;/p>
-&lt;p>&lt;img src="./images/pixel/visual-viewport.png" alt="visual viewport">&lt;/p>
+&lt;p>&lt;img src="./img/pixel/visual-viewport.png" alt="visual viewport">&lt;/p>
 &lt;h3 id="ideal-viewport">ideal viewport&lt;/h3>
 &lt;p>上面的两个&lt;code>viewport&lt;/code>是针对PC端页面显示的情况，移动端页面显示应该怎么处理？&lt;/p>
 &lt;p>既然移动端的&lt;code>全屏宽度&lt;/code>为&lt;code>300px&lt;/code>左右，那我们直接将&lt;code>viewport&lt;/code>设为这个宽度。 &lt;br>
