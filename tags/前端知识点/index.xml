@@ -1,54 +1,62 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端知识点 on KuTuGu的博客</title><link>/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/</link><description>Recent content in 前端知识点 on KuTuGu的博客</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 06 Oct 2020 13:17:27 +0800</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/index.xml" rel="self" type="application/rss+xml"/><item><title>一个事件循环引发的Async原理探究</title><link>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</link><pubDate>Tue, 06 Oct 2020 13:17:27 +0800</pubDate><guid>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</guid><description>一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端知识点 on KuTuGu's Blog</title><link>/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/</link><description>Recent content in 前端知识点 on KuTuGu's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 06 Oct 2020 13:17:27 +0800</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/index.xml" rel="self" type="application/rss+xml"/><item><title>一个事件循环引发的Async原理探究</title><link>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</link><pubDate>Tue, 06 Oct 2020 13:17:27 +0800</pubDate><guid>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</guid><description>一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
 function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end...&amp;#34;); } test(); console.log(&amp;#34;suspend!&amp;#34;); new Promise((resolve) =&amp;gt; { resolve(&amp;#34;promise&amp;#34;); }).then(val =&amp;gt; console.log(val)); /* 输出 test start... suspend! testing... test end... promise */ 微调 &amp;ndash; 声明async 现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：
 // 只是函数声明微调为async async function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end.</description><content>&lt;h1 id="一个事件循环引发的async原理探究">一个事件循环引发的Async原理探究&lt;/h1>
 &lt;h2 id="起因">起因&lt;/h2>
 &lt;p>最近在复习前端&lt;code>事件循环&lt;/code>机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">test&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="微调----声明async">微调 &amp;ndash; 声明async&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="微调----声明async">微调 &amp;ndash; 声明async&lt;/h2>
 &lt;p>现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 只是函数声明微调为async
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">test&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>async&lt;/code>和&lt;code>await&lt;/code>的语法糖使得&lt;code>Promise&lt;/code>的&lt;code>链式调用&lt;/code>转为&lt;code>同步&lt;/code>的写法。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 只是函数声明微调为async
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>async&lt;/code>和&lt;code>await&lt;/code>的语法糖使得&lt;code>Promise&lt;/code>的&lt;code>链式调用&lt;/code>转为&lt;code>同步&lt;/code>的写法。&lt;/p>
 &lt;p>我们常常&lt;code>await&lt;/code>一个函数，这里的执行顺序需要注意：&lt;/p>
 &lt;ul>
 &lt;li>执行到这个语句会先执行&lt;code>await&lt;/code>后面的函数，获得一个返回值，&lt;code>await&lt;/code>会将其&lt;code>&amp;quot;修饰&amp;quot;&lt;/code>为一个&lt;code>Promise&lt;/code>对象，再&lt;code>&amp;quot;中断跳出&amp;quot;&lt;/code>；&lt;/li>
@@ -57,160 +65,178 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 &lt;p>而&lt;code>async&lt;/code>函数会返回一个&lt;code>Promise&lt;/code>对象，所以我们常常&lt;code>await&lt;/code>一个&lt;code>async&lt;/code>函数的返回值。&lt;/p>
 &lt;p>综上所述，这个微调合情合理，且无影响。但是当我们再来微调下：&lt;/p>
 &lt;h2 id="微调----显式返回promise">微调 &amp;ndash; 显式返回Promise&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#75715e">// 只是函数返回值显式声明为Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">test&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>细心的童鞋已经发现了，让我们再来看下输出队列，&lt;code>'promise'&lt;/code>的输出提前了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 只是函数返回值显式声明为Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>细心的童鞋已经发现了，让我们再来看下输出队列，&lt;code>'promise'&lt;/code>的输出提前了。&lt;/p>
 &lt;p>&lt;code>async&lt;/code>不是会返回&lt;code>Promise&lt;/code>对象吗？现在我们只是&lt;code>显式声明&lt;/code>呀，为什么顺序会发生变化？&lt;/p>
 &lt;h2 id="定位问题">定位问题&lt;/h2>
 &lt;p>我们再简化一下代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 隐式返回Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#a6e22e">testSometing&lt;/span>()
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;span style="color:#75715e">// 显式声明Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">testSometing&lt;/span>()
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>诶，为什么又一致了？难道是&lt;code>await&lt;/code>的原因？&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 隐式返回Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">testSometing&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 显式声明Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">testSometing&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>诶，为什么又一致了？难道是&lt;code>await&lt;/code>的原因？&lt;/p>
 &lt;p>但&lt;code>await&lt;/code>是一个黑盒，直接打&lt;code>断点&lt;/code>调试，发现底层有很多事件循环的源码。&lt;/p>
 &lt;p>尝试&lt;code>编译&lt;/code>，但&lt;code>babel&lt;/code>官方&lt;code>async&lt;/code>编译插件只支持转为&lt;code>generator&lt;/code>。emmm，那&lt;code>yield&lt;/code>和&lt;code>await&lt;/code>有什么区别&amp;hellip;&lt;/p>
 &lt;p>看看有没有第三方插件，有两个有bug，第三次输出结果和前两个一样，不符合&lt;code>ES6&lt;/code>标准（→_→）&lt;/p>
 &lt;p>那只能去找些&lt;a href="https://github.com/lfp1024/promise/blob/master/src/async-await/async-await.js">polyfill&lt;/a>看看，让我们修改一下代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 隐式返回Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
-})
-})
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面我们曾提到了&lt;code>await&lt;/code>的执行顺序，但还有些细节需要我们深究：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 隐式返回Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面我们曾提到了&lt;code>await&lt;/code>的执行顺序，但还有些细节需要我们深究：&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>await&lt;/code>的&lt;code>&amp;quot;中断跳出&amp;quot;&lt;/code>实现，只是将函数内下面的代码全部封装到&lt;code>Promise&lt;/code>回调中，函数内没有代码执行，自然跳出函数，执行&lt;code>后面代码&lt;/code>；&lt;/li>
 &lt;li>&lt;code>await&lt;/code>是怎么&lt;code>&amp;quot;修饰&amp;quot;&lt;/code>返回值为&lt;code>Promise&lt;/code>的？&lt;code>await&lt;/code>内部通过&lt;code>Promise.then&lt;/code>来实现（见下文）；&lt;/li>
 &lt;li>接下来只需要等待&lt;code>Promise&lt;/code>转为&lt;code>最终态&lt;/code>，执行后面回调即可；多个&lt;code>await&lt;/code>就是多个嵌套的回调函数。&lt;/li>
 &lt;/ul>
 &lt;p>我们也看到了上面的输出和之前的隐式输出一致，那显式呢？&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 显式声明Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
-})
-})
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出结果一致！&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 显式声明Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出结果一致！&lt;/p>
 &lt;p>但根据代码，显式和隐式的&lt;code>await&lt;/code>似乎并无不同，反而是传入&lt;code>async&lt;/code>的函数返回值存在差异，看来问题似乎出现在&lt;code>async&lt;/code>内部。&lt;/p>
 &lt;h2 id="polyfill源码分析">polyfill源码分析&lt;/h2>
 &lt;p>我们下面贴下源码，深入分析：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_async&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">func&lt;/span>) =&amp;gt; {
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) =&amp;gt; {
-&lt;span style="color:#75715e">// 捕获同步错误
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">try&lt;/span> {
-&lt;span style="color:#75715e">// 返回值
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>()
-&lt;span style="color:#75715e">// 检查返回值是否是 对象 | 函数，它们可能是thenable对象
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (
-(
-(&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;object&amp;#39;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>) &lt;span style="color:#f92672">||&lt;/span>
-&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
-) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>
-&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>.&lt;span style="color:#a6e22e">then&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
-) {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 如果是thenable对象
-&lt;/span>&lt;span style="color:#75715e"> * 将其解析封装为Promise对象，并递归调用then函数
-&lt;/span>&lt;span style="color:#75715e"> * 最终解析为非thenable值返回
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>)
-} &lt;span style="color:#66d9ef">else&lt;/span> {
-&lt;span style="color:#75715e">// 如果不是直接将其状态转为最终态
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>)
-}
-} &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
-&lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>)
-}
-})
-&lt;span style="color:#75715e">// 返回Promise对象
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span>
-}
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 接受一个任意参数，返回一个高阶函数
-&lt;/span>&lt;span style="color:#75715e"> * 这个高阶函数接收两个参数，分别代表await后，应该执行的正常回调函数和发生错误的回调函数
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_await&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">arg&lt;/span>) =&amp;gt; (&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) =&amp;gt; {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 将参数解析为Promise对象，再为其添加回调函数
-&lt;/span>&lt;span style="color:#75715e"> * 如果有onRejected回调函数参数
-&lt;/span>&lt;span style="color:#75715e"> * 先通过catch解析期间可能产生的错误
-&lt;/span>&lt;span style="color:#75715e"> * 再执行onResolved回调函数
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">onRejected&lt;/span> &lt;span style="color:#f92672">?&lt;/span>
-Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
-.&lt;span style="color:#66d9ef">catch&lt;/span>(&lt;span style="color:#a6e22e">onRejected&lt;/span>)
-.&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) &lt;span style="color:#f92672">:&lt;/span>
-Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
-.&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>)
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span>
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_async&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">func&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 捕获同步错误
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 返回值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 检查返回值是否是 对象 | 函数，它们可能是thenable对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;object&amp;#39;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>) &lt;span style="color:#f92672">||&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>.&lt;span style="color:#a6e22e">then&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果是thenable对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 将其解析封装为Promise对象，并递归调用then函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 最终解析为非thenable值返回
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 如果不是直接将其状态转为最终态
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 返回Promise对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 接受一个任意参数，返回一个高阶函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 这个高阶函数接收两个参数，分别代表await后，应该执行的正常回调函数和发生错误的回调函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_await&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">arg&lt;/span>) =&amp;gt; (&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 将参数解析为Promise对象，再为其添加回调函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果有onRejected回调函数参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 先通过catch解析期间可能产生的错误
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 再执行onResolved回调函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">onRejected&lt;/span> &lt;span style="color:#f92672">?&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#66d9ef">catch&lt;/span>(&lt;span style="color:#a6e22e">onRejected&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) &lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：&lt;/p>
 &lt;ul>
 &lt;li>为什么会多次调用&lt;a href="https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173">Promise.resolve&lt;/a>&lt;/li>
 &lt;li>&lt;code>_async&lt;/code>是怎么解析&lt;code>thenable&lt;/code>对象的&lt;/li>
@@ -284,60 +310,63 @@ Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#
 &lt;p>其实有一个错误不知道大家有没有发现，在我们第一次定位问题的时候，我们简化了代码，只输出&lt;code>async&lt;/code>的两种情况，但结果却似乎完全一致。&lt;/p>
 &lt;p>其实这是因为我调试失误的原因(￣ε(#￣)，我没有打&lt;code>断点&lt;/code>，而是直接在调试台查看最终输出。最终异步队列全部清空，结果肯定是一致的。&lt;/p>
 &lt;p>然后我们认为是&lt;code>await&lt;/code>的原因，所以直接抛弃了&lt;code>babel&lt;/code>转译，其实将&lt;code>async&lt;/code>编译为&lt;code>generator&lt;/code>也可以解决这个问题(￣▽￣)&amp;quot;，编译代码如下:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 让我们再次简化一下源代码：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#75715e">// 编译后：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (() =&amp;gt; {
-&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span>&lt;span style="color:#f92672">*&lt;/span> () {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-});
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
-};
-})();
-&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#a6e22e">fn&lt;/span>) {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
-&lt;span style="color:#75715e">// fn执行完后，生成gen指针引用
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">fn&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) {
-&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#a6e22e">key&lt;/span>, &lt;span style="color:#a6e22e">arg&lt;/span>) {
-&lt;span style="color:#66d9ef">try&lt;/span> {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 调用next方法后
-&lt;/span>&lt;span style="color:#75715e"> * done变为true
-&lt;/span>&lt;span style="color:#75715e"> * value即返回的Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span>[&lt;span style="color:#a6e22e">key&lt;/span>](&lt;span style="color:#a6e22e">arg&lt;/span>);
-&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>;
-} &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
-&lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>);
-&lt;span style="color:#66d9ef">return&lt;/span>;
-}
-&lt;span style="color:#75715e">// 进入if，执行传入的resolve
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">done&lt;/span>) {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 进入resolve源码
-&lt;/span>&lt;span style="color:#75715e"> * 由于value是Promise，所以会将value.then推入微任务队列
-&lt;/span>&lt;span style="color:#75715e"> * 然后去执行其他代码，比如实例化一个Promise
-&lt;/span>&lt;span style="color:#75715e"> * 然后清空微任务队列，执行value.then
-&lt;/span>&lt;span style="color:#75715e"> * 此时才会执行resolve的赋值语句，将其他回调函数推入微任务队列
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>);
-} &lt;span style="color:#66d9ef">else&lt;/span> {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">value&lt;/span>) {
-&lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">value&lt;/span>);
-}, &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">err&lt;/span>) {
-&lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;throw&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>);
-});
-}
-}
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>);
-});
-};
-}
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>像素的相关知识浅析</title><link>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</link><pubDate>Sat, 12 Jan 2019 12:36:18 +0800</pubDate><guid>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</guid><description>像素的相关知识浅析 像素、分辨率和屏幕像素密度 首先来了解一下这些名词的相关定义：
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 让我们再次简化一下源代码：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 编译后：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (() =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span>&lt;span style="color:#f92672">*&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#a6e22e">fn&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// fn执行完后，生成gen指针引用
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">fn&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#a6e22e">key&lt;/span>, &lt;span style="color:#a6e22e">arg&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 调用next方法后
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * done变为true
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * value即返回的Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span>[&lt;span style="color:#a6e22e">key&lt;/span>](&lt;span style="color:#a6e22e">arg&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 进入if，执行传入的resolve
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">done&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 进入resolve源码
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 由于value是Promise，所以会将value.then推入微任务队列
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 然后去执行其他代码，比如实例化一个Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 然后清空微任务队列，执行value.then
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 此时才会执行resolve的赋值语句，将其他回调函数推入微任务队列
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">value&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">value&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">err&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;throw&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>像素的相关知识浅析</title><link>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</link><pubDate>Sat, 12 Jan 2019 12:36:18 +0800</pubDate><guid>/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/</guid><description>像素的相关知识浅析 像素、分辨率和屏幕像素密度 首先来了解一下这些名词的相关定义：
 在由一个数字序列表示的图像中的一个最小单位，称为像素，是一个单一颜色的小格存在。 从像素的思想派生出几个其它类型的概念，如体素、纹素等，是组成三维、纹理的最小单位。
 屏幕分辨率是水平像素数目 * 垂直像素数目的表示。
 屏幕像素密度是显示设备包含的像素密度，一般称为PPI（Pixels Per Inch， 常用于图像）。 与之相近的一个概念是DPI（Dots Per Inch，常用于印刷行业），且DPI表示水平方向或垂直方向，PPI表示对角线方向。 公式：PPI = 根号下(水平像素的平方 + 垂直像素的平方) / 对角线的英寸长度
@@ -350,7 +379,14 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 为了使CSS像素能够在不同的设备上显示尺寸一致，规范对于CSS像素有一些规定：
 对于高分辨率设备（打印机等），1px就等于96分之一英寸，约等于0.2646mm。 对于低分辨率设备（绝大部分显示器，手机屏幕），建议CSS像素参考最接近参考像素的整数个的物理像素。 这里我们先来了解下参考像素（reference pixel）的概念：
 根据规范，一个参考像素即为从一臂之遥看解析度为96DPI的设备输出（即1英寸96点）时，1点（即1/96英寸）的视角（visual angle）。
-通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.</description><content>&lt;h1 id="像素的相关知识浅析">像素的相关知识浅析&lt;/h1>
+通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度。
+参考像素的原理 这个规范的原理是什么呢？
+近小远大：近处的物体显示的小一点，远处的物体显示的大一点，从而使两者看起来大致保持一致，而这一特点通过视角来实现。
+从上图也可以看出，参考像素对应的这个视角，映射到具体屏幕上：
+对于28英寸远的屏幕来说，一个参考像素大致为0.26mm； 对于140英寸远的屏幕来说，一个参考像素大致为1.3mm。 这个距离又是什么呢？
+一般是由设备的典型视距决定的，在出厂时已经确定。比如视距：电视 &amp;gt; 电脑 &amp;gt; 手机。
+而CSS像素在低分辨率设备就基于这个参考像素，从而实现1个CSS像素在不同视距的屏幕上，显示的尺寸大致相同。
+而且最接近参考像素的整数个的物理像素，也被称为DPR（= 物理像素分辨率 / CSS像素分辨率）。一般在js中可以通过window.</description><content>&lt;h1 id="像素的相关知识浅析">像素的相关知识浅析&lt;/h1>
 &lt;h2 id="像素分辨率和屏幕像素密度">像素、分辨率和屏幕像素密度&lt;/h2>
 &lt;p>首先来了解一下这些名词的相关定义：&lt;/p>
 &lt;ul>
@@ -433,42 +469,48 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;p>在视网膜屏下，1个CSS像素对应多个&lt;code>物理像素&lt;/code>。
 对于一个&lt;code>2倍屏&lt;/code>，&lt;code>500 * 300&lt;/code>屏幕想要绘制一个高清图片，图片分辨率至少要大一倍，因为屏幕实际对应的是&lt;code>1000 * 600&lt;/code>个&lt;code>物理像素&lt;/code>。&lt;/p>
 &lt;p>和多倍图类似，在Canvas绘制图片进行&lt;code>缩放处理&lt;/code>，否则会导致&lt;code>失真&lt;/code>问题：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 对于一个300 * 150画布：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">canvas&lt;/span> &lt;span style="color:#a6e22e">width&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;300&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;150&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/canvas&amp;gt;&lt;/span>
-&lt;span style="color:#75715e">// 如果直接绘制：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span>, &lt;span style="color:#ae81ff">150&lt;/span>);
-&lt;span style="color:#75715e">// 浏览器会计算出Canvas绘制缓冲区大小
-&lt;/span>&lt;span style="color:#75715e">// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * backingStorePixelRatio是Canvas的缓冲像素比
-&lt;/span>&lt;span style="color:#75715e"> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
-&lt;/span>&lt;span style="color:#75715e"> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
-&lt;/span>&lt;span style="color:#75715e"> *
-&lt;/span>&lt;span style="color:#75715e"> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span> , &lt;span style="color:#ae81ff">150&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 但是直接这样绘制，图片也会被放大显示；
-&lt;/span>&lt;span style="color:#75715e"> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> , &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>);
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 如果canvas只有图片，那这样没有什么问题；
-&lt;/span>&lt;span style="color:#75715e"> * 如果有其他元素，如文字、图形时，它们也会被缩小
-&lt;/span>&lt;span style="color:#75715e"> * 我们利用scale来调整
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">scale&lt;/span>(window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>, window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>) , parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>))
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="viewport">viewport&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 对于一个300 * 150画布：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">canvas&lt;/span> &lt;span style="color:#a6e22e">width&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;300&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;150&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/canvas&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 如果直接绘制：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span>, &lt;span style="color:#ae81ff">150&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 浏览器会计算出Canvas绘制缓冲区大小
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * backingStorePixelRatio是Canvas的缓冲像素比
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> *
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span> , &lt;span style="color:#ae81ff">150&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 但是直接这样绘制，图片也会被放大显示；
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> , &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果canvas只有图片，那这样没有什么问题；
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果有其他元素，如文字、图形时，它们也会被缩小
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 我们利用scale来调整
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">scale&lt;/span>(window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>, window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>) , parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="viewport">viewport&lt;/h2>
 &lt;p>相对于电脑来说，手机屏幕是很&amp;quot;窄的&amp;quot;，而随着智能手机的发展，其&lt;code>屏幕分辨率&lt;/code>也在不断提高。&lt;br>
 上面我们已经了解了：&lt;/p>
 &lt;ul>

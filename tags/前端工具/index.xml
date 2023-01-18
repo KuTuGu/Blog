@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端工具 on KuTuGu的博客</title><link>/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/</link><description>Recent content in 前端工具 on KuTuGu的博客</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Thu, 03 Sep 2020 08:57:49 +0800</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml"/><item><title>前端日志工具小结</title><link>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</link><pubDate>Thu, 03 Sep 2020 08:57:49 +0800</pubDate><guid>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</guid><description>前端日志工具小结 在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端工具 on KuTuGu's Blog</title><link>/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/</link><description>Recent content in 前端工具 on KuTuGu's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Thu, 03 Sep 2020 08:57:49 +0800</lastBuildDate><atom:link href="/tags/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml"/><item><title>前端日志工具小结</title><link>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</link><pubDate>Thu, 03 Sep 2020 08:57:49 +0800</pubDate><guid>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</guid><description>前端日志工具小结 在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构
 项目内容 Feflow https://github.com/Tencent/feflow
 https://feflowjs.com/
 Feflow是腾讯开发的一款基于模板进行快速开发的开源脚手架工具，主要目的是为了提升工程效率和保障工作流的规范性。
@@ -25,7 +25,15 @@ babel插件在打包时会忽略掉ts检查，如果要进行ts检查需要CLI�
 内部实现高耦合，不易扩展 日志数据固定、取均值或随机采样，无法获取精准、自定义数据 不支持各类型日志数据的不同处理 前后端高耦合，不易拆分 另一方面，这些工具大都提供一站式服务，对于希望使用多种不同工具的项目来说又显得过于臃肿。
 所以这个库的目的不只是为了重复造轮子，除了具体功能外，还想要提供一种轻量级地前端日志上报的通用化解决方案。
 为了实现上述需求，一个大体的思路如下：
-内部功能模块采用插件化设计模式，支持自定义、自由替换 将日志生命周期划分为收集、处理、存储、上报等阶段，生命周期具体实现可以插件化替换 生命周期通过参数式策略模式组合为一个完整的日志流； 生命周期之间做低耦合处理，统一在日志流类中做观察者模式的注册，这样实现生命周期的链式注册、链式调用 对不同类型日志如客户端指纹、首屏加载、用户交互、资源请求等提供内置功能模块，其他类型扩展提供内部暴露的抽象类、虚函数来继承覆写 日志上报 第四部分是处理日志上报：</description><content>&lt;h1 id="前端日志工具小结">前端日志工具小结&lt;/h1>
+内部功能模块采用插件化设计模式，支持自定义、自由替换 将日志生命周期划分为收集、处理、存储、上报等阶段，生命周期具体实现可以插件化替换 生命周期通过参数式策略模式组合为一个完整的日志流； 生命周期之间做低耦合处理，统一在日志流类中做观察者模式的注册，这样实现生命周期的链式注册、链式调用 对不同类型日志如客户端指纹、首屏加载、用户交互、资源请求等提供内置功能模块，其他类型扩展提供内部暴露的抽象类、虚函数来继承覆写 日志上报 第四部分是处理日志上报：
+通过编写腾讯云SCF函数，将日志上报到私有网络，SCF相当于一个网关，避免后端服务直接暴露到公网中 后端日志存储和可视化采用Elastic产品栈：Elasticsearch Service存储日志，Kibana用作可视化页面展示 为保护后端服务和数据，Elasticsearch Service只开放内网接口，由SCF进行远程并行调用，只支持上报操作 前端日志上报原理 数据采集 根据不同的数据类型，采取不同的采集方式，一般来讲比较通用的数据如下：
+用户身份、设备、网络环境、PV等环境因素，直接采集上报
+页面首屏加载性能：
+传统多页面首屏性能可以直接由performance API采集数据，加工后上报
+SPA单页面比较麻烦，因为前端请求完成后得到的只是一个js文件，组件加载时可能还要请求具体数据，所以我们说的首屏是指首次有效绘制：
+如果支持ssr，类似多页面直接由performance API采集数据即可
+否则只能去侵入式地在生命周期钩子埋点或监听首屏的图片加载等较慢请求，或者手动埋点
+既然是首次有效绘制，应该和页面视图（DOM）紧密相关，那可不可以通过这个来判断呢？ Chrome力推的以用户为中心的性能指标就基于此，详见捕获FMP的原理</description><content>&lt;h1 id="前端日志工具小结">前端日志工具小结&lt;/h1>
 &lt;p>在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构&lt;/p>
 &lt;h2 id="项目内容">项目内容&lt;/h2>
 &lt;h3 id="feflow">Feflow&lt;/h3>

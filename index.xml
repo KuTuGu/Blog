@@ -1,64 +1,1303 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KuTuGu的博客</title><link>/</link><description>Recent content on KuTuGu的博客</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Tue, 06 Oct 2020 13:17:27 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>介绍</title><link>/about/</link><pubDate>Tue, 03 Nov 2020 16:45:32 +0800</pubDate><guid>/about/</guid><description>你好啊 我叫王玉飞，前端小白一枚，正在前端的道路不断探索。这个博客用于记录一些项目经验总结和知识点分享，欢迎前来交流。
-除前端之外，个人感兴趣的方向有：
-网络安全 游戏开发 图形学 希望今后可以不断深入这些领域，积极产出，与君共勉！</description><content>&lt;h1 id="你好啊">你好啊&lt;/h1>
-&lt;p>我叫王玉飞，&lt;code>前端&lt;/code>小白一枚，正在前端的道路不断探索。这个博客用于记录一些项目经验总结和知识点分享，欢迎前来交流。&lt;/p>
-&lt;p>除前端之外，个人感兴趣的方向有：&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KuTuGu's Blog</title><link>/</link><description>Recent content on KuTuGu's Blog</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Sun, 03 Oct 2021 08:57:49 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml"/><item><title>Resume</title><link>/resume_en/</link><pubDate>Tue, 17 Jan 2023 15:45:38 +0800</pubDate><guid>/resume_en/</guid><description>Introduce YuFei Wang Career Objective: RD Engineer
+Gender: Male
+Age: 23
+Phone: +86 17610603152
+Email: zhongliwang48@gmail.com
+Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, FE Tencent 2020.7 - 2020.10 Cloud and Smart Industries Group, FE intern Google Summer of Code 2019.7 - 2019.10 OpenWISP, Contributor Central China Normal University 2017.9 - 2021.7 Digital Media Technology, Undergraduate Professional skills Skilled in Javascript, learning Solidity, Golang and Rust.
+5 years of FE learning and project development experience.</description><content>&lt;h2 id="introduce">Introduce&lt;/h2>
+&lt;h4 id="yufei-wang">YuFei Wang&lt;/h4>
 &lt;ul>
-&lt;li>&lt;code>网络安全&lt;/code>&lt;/li>
-&lt;li>&lt;code>游戏开发&lt;/code>&lt;/li>
-&lt;li>&lt;code>图形学&lt;/code>&lt;/li>
+&lt;li>
+&lt;p>Career Objective: &lt;code>RD Engineer&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Gender: &lt;code>Male&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Age: &lt;code>23&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Phone: &lt;code>+86 17610603152&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Email: &lt;code>zhongliwang48@gmail.com&lt;/code>&lt;/p>
+&lt;/li>
 &lt;/ul>
-&lt;p>希望今后可以不断深入这些领域，积极产出，与君共勉！&lt;/p></content></item><item><title>一个事件循环引发的Async原理探究</title><link>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</link><pubDate>Tue, 06 Oct 2020 13:17:27 +0800</pubDate><guid>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</guid><description>一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
+&lt;hr>
+&lt;h2 id="education-and-work-experience">Education and work experience&lt;/h2>
+&lt;h4 id="bytedance-20169---present-rd-ies-content-safety-fe">Bytedance &lt;code>2016.9 - Present&lt;/code> &lt;code>RD-IES Content-Safety, FE&lt;/code>&lt;/h4>
+&lt;h4 id="tencent-20207---202010-cloud-and-smart-industries-group-fe-intern">Tencent &lt;code>2020.7 - 2020.10&lt;/code> &lt;code>Cloud and Smart Industries Group, FE intern&lt;/code>&lt;/h4>
+&lt;h4 id="google-summer-of-code-20197---201910-openwisp-contributor">Google Summer of Code &lt;code>2019.7 - 2019.10&lt;/code> &lt;code>OpenWISP, Contributor&lt;/code>&lt;/h4>
+&lt;h4 id="central-china-normal-university-20179---20217-digital-media-technology-undergraduate">Central China Normal University &lt;code>2017.9 - 2021.7&lt;/code> &lt;code>Digital Media Technology, Undergraduate&lt;/code>&lt;/h4>
+&lt;hr>
+&lt;h2 id="professional-skills">Professional skills&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>Skilled in &lt;code>Javascript&lt;/code>, learning &lt;code>Solidity&lt;/code>, &lt;code>Golang&lt;/code> and &lt;code>Rust&lt;/code>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>5&lt;/code> years of FE learning and project development experience.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Familiar with FE technology stacks, technical solution design and project development process.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Familiar with &lt;code>NodeJS&lt;/code>, have experience in maintaining &lt;code>BFF&lt;/code> service.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Familiar with &lt;code>blockchain&lt;/code>, &lt;code>contract security&lt;/code>, &lt;code>reverse engineering&lt;/code>, &lt;code>DeFi&lt;/code> primitives, and grasp of &lt;code>symbol analysis&lt;/code>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Passionate about open-source and programming, with a wide range of interests including &lt;code>network security&lt;/code>, &lt;code>game development&lt;/code>, &lt;code>computer graphics&lt;/code> and currently exploring &lt;code>blockchain&lt;/code> rabbit hole.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="project-experience">Project experience&lt;/h2>
+&lt;h4 id="blockchain-security-try-digging-down-various-rabbit-holes">Blockchain security &lt;code>Try digging down various rabbit holes&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>Write &lt;code>front-run&lt;/code> / &lt;code>back-run&lt;/code> bot&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Use &lt;code>Foundry&lt;/code> framework to reproduce the POC of various DeFi attacks&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Use &lt;code>Mythril&lt;/code> tool, &lt;code>symbolic analyze&lt;/code> contract vulnerabilities and find &lt;code>executable paths&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Try digging &lt;code>mev bot&lt;/code> exploits&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="bytedance-responsible-for-maintaining-all-manual-moderation-platforms">ByteDance &lt;code>Responsible for maintaining all Manual Moderation platforms&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>The ToB business is mostly in the form scene, and the logic of maintaining the internal state of each component separately is messy, the data flow is not clear&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Refactoring with &lt;code>MVC&lt;/code> mode, decoupling the state and logic, and realizing direct and &lt;code>two-way mapping&lt;/code> from URL to component value;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Model&lt;/code>: URL is used as the main global state storage; URL Search natively supports &lt;code>scene snapshots&lt;/code>, which is convenient for scene reproduction and &lt;code>integration testing&lt;/code>;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Controller&lt;/code>: As the middle layer, responsible for reading and changing logic, and through &lt;code>state machine&lt;/code> maintenance, it can visually observe all changing branches, which is convenient for management and monitoring;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>View&lt;/code>: only responsible for rendering related logic and styles, and only communicates with Control;&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>Historical problems, such as before the business split at home and abroad, there were different conditional branch scenarios in the code, the logic was messy, and it was not easy to maintain&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Through the BFF layer integration and delivery of &lt;code>feature switches&lt;/code>, to better manage the branches, and to roll back in time when an accident occurs, reducing the impact of the accident;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Build a visual management platform for feature switches, responsible for platform-related maintenance&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>Responsible for the integrated construction of all Manual Moderation platforms, and promote the migration of &lt;code>Monorepo&lt;/code> codebase and the transformation of &lt;code>micro fe&lt;/code> platforms&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="tencent-responsible-for-the-requirements-of-the-tob-customer-service-system">Tencent &lt;code>Responsible for the requirements of the ToB customer service system&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>Log tool development, using technologies such as &lt;code>AOP&lt;/code> and &lt;code>event monitoring&lt;/code>, to realize &lt;code>black-box&lt;/code> embedding points for performance indicator monitoring&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Use the &lt;code>strategy mode&lt;/code> and &lt;code>observer mode&lt;/code> to abstract and reconstruct the tool library, make the module &lt;code>plug-in&lt;/code>, and support custom buried point strategy;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Store log data offline, and use &lt;code>throttling mode&lt;/code> to periodically report buried points;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>BE service uses &lt;code>SCF + Elastic&lt;/code> to realize complete log stream storage and visualization services;&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>Based on Tencent&amp;rsquo;s open source &lt;code>FeFlow&lt;/code> framework, develop corresponding extension plug-ins for project packaging, deployment, ts, testing, eslint and other functions to ensure the consistency of project structure and specification configuration&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Use &lt;code>Vue + HighCharts&lt;/code> to build a data visualization panel to visualize the work order data; add log buried points to monitor and analyze the value of the usage of the panel&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="google-summer-of-code-responsible-for-the-construction-and-optimization-of-the-visualization-platform">Google Summer of Code &lt;code>Responsible for the construction and optimization of the visualization platform&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>Participate in open source activity and rewrite a visualization tool library for organization, which is used to arrange network device node data and draw network device topology diagrams
+&lt;ol>
+&lt;li>
+&lt;p>Use &lt;code>WebWorker&lt;/code> parallel computing to optimize orchestration performance;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>ECharts + Leaflet&lt;/code> rendering, stepped on the compatibility of the two frameworks, and also raised some PRs for third-party plug-in;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Participated in &lt;code>Google Code-in&lt;/code> as a Mentor at the end of the year to help college students get in touch with open source projects to improve their programming skills, and work with them to improve the project;&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;hr></content></item><item><title>简历</title><link>/resume_zh/</link><pubDate>Tue, 17 Jan 2023 15:45:38 +0800</pubDate><guid>/resume_zh/</guid><description>自我介绍 王玉飞 求职意向：研发工程师
+性别：男
+年龄：23
+手机：+86 17610603152
+邮箱：zhongliwang48@gmail.com
+座右铭：荼靡易逝，苦蛊甘饴​
+教育及工作经历 字节跳动 2021.7 - 至今 互娱研发内容安全 前端工程师 腾讯 2020.7 - 2020.10 云与智慧产业事业群 前端实习生 Google Summer of Code 2019.7 - 2019.10 OpenWISP Contributor 华中师范大学 2017.9 - 2021.7 数字媒体技术 本科 专业技能 Javascript 熟练工，Solidity、Golang、Rust 学习中
+近 5 年的前端学习、项目开发经验，熟悉主流的前端技术栈、技术方案设计及项目开发流程
+熟练掌握前端框架、工程化、CI / CT / CD，熟悉 NodeJS，维护过 BFF 服务
+熟悉区块链技术、合约安全，了解 反编译、DeFi 原语，掌握 符号分析 合约
+热爱开源和编程，涉猎广泛：网络安全、游戏开发、图形学，目前在 区块链 兔子洞探索中
+项目经历 区块链安全 尝试挖掘各种兔子洞 编写 front-run / back-run bot
+用 Foundry 框架，复现各种 DeFi 攻击的 POC</description><content>&lt;h2 id="自我介绍">自我介绍&lt;/h2>
+&lt;h4 id="王玉飞">王玉飞&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>求职意向：&lt;code>研发工程师&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>性别：&lt;code>男&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>年龄：&lt;code>23&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>手机：&lt;code>+86 17610603152&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>邮箱：&lt;code>zhongliwang48@gmail.com&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>座右铭：&lt;code>荼靡易逝，苦蛊甘饴​&lt;/code>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="教育及工作经历">教育及工作经历&lt;/h2>
+&lt;h4 id="字节跳动-20217---至今-互娱研发内容安全-前端工程师">字节跳动 &lt;code>2021.7 - 至今&lt;/code> &lt;code>互娱研发内容安全 前端工程师&lt;/code>&lt;/h4>
+&lt;h4 id="腾讯-20207---202010-云与智慧产业事业群-前端实习生">腾讯 &lt;code>2020.7 - 2020.10&lt;/code> &lt;code>云与智慧产业事业群 前端实习生&lt;/code>&lt;/h4>
+&lt;h4 id="google-summer-of-code-20197---201910-openwisp-contributor">Google Summer of Code &lt;code>2019.7 - 2019.10&lt;/code> &lt;code>OpenWISP Contributor&lt;/code>&lt;/h4>
+&lt;h4 id="华中师范大学-20179---20217-数字媒体技术-本科">华中师范大学 &lt;code>2017.9 - 2021.7&lt;/code> &lt;code>数字媒体技术 本科&lt;/code>&lt;/h4>
+&lt;hr>
+&lt;h2 id="专业技能">专业技能&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>Javascript&lt;/code> 熟练工，&lt;code>Solidity&lt;/code>、&lt;code>Golang&lt;/code>、&lt;code>Rust&lt;/code> 学习中&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>近 &lt;code>5&lt;/code> 年的前端学习、项目开发经验，熟悉主流的前端技术栈、技术方案设计及项目开发流程&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>熟练掌握前端框架、工程化、CI / CT / CD，熟悉 &lt;code>NodeJS&lt;/code>，维护过 &lt;code>BFF&lt;/code> 服务&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>熟悉&lt;code>区块链技术&lt;/code>、&lt;code>合约安全&lt;/code>，了解 &lt;code>反编译&lt;/code>、&lt;code>DeFi&lt;/code> 原语，掌握 &lt;code>符号分析&lt;/code> 合约&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>热爱开源和编程，涉猎广泛：&lt;code>网络安全&lt;/code>、&lt;code>游戏开发&lt;/code>、&lt;code>图形学&lt;/code>，目前在 &lt;code>区块链&lt;/code> 兔子洞探索中&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="项目经历">项目经历&lt;/h2>
+&lt;h4 id="区块链安全-尝试挖掘各种兔子洞">区块链安全 &lt;code>尝试挖掘各种兔子洞&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>编写 &lt;code>front-run&lt;/code> / &lt;code>back-run&lt;/code> bot&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>用 &lt;code>Foundry&lt;/code> 框架，复现各种 &lt;code>DeFi&lt;/code> 攻击的 &lt;code>POC&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>用 &lt;code>Mythril&lt;/code> 工具，&lt;code>符号分析&lt;/code>合约漏洞、寻找&lt;code>可执行路径&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>尝试挖掘 &lt;code>mev bot&lt;/code> 漏洞&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="字节跳动-负责维护-人审质量各平台">字节跳动 &lt;code>负责维护 人审质量各平台&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>中台业务以表单场景居多，单独维护各组件内部状态逻辑杂乱，数据流向不清晰&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>以 &lt;code>MVC&lt;/code> 模式重构，将状态、逻辑解耦，实现 URL 到 组件value 的直接、&lt;code>双向映射&lt;/code>；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Model&lt;/code>：URL作为全局主要状态存储；同时 URL Search 原生支持&lt;code>场景快照&lt;/code>，方便场景复现、&lt;code>集成测试&lt;/code>；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>Controller&lt;/code>：作为中间层负责读取、变更逻辑，通过&lt;code>状态机&lt;/code>维护，直观观察所有变更分支，方便打点、监测；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>View&lt;/code>：只负责渲染相关逻辑、样式，只与 Controller 通信；&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>历史问题如海内外业务拆分前，代码中存在不同条件分支场景，逻辑杂乱、不易维护&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>通过BFF层集成下发&lt;code>功能开关&lt;/code>，来更好地管理功能分支，发生事故时也能及时回退，降低事故影响面；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>搭建功能开关可视化管理平台，负责平台相关维护&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>负责人审质量各平台一体化建设，推进&lt;code>Monorepo仓库迁移&lt;/code>和&lt;code>微前端平台&lt;/code>改造&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="腾讯-负责-中台客服系统-的业务和技术需求">腾讯 &lt;code>负责 中台客服系统 的业务和技术需求&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>前端日志工具开发，利用 &lt;code>AOP&lt;/code> 和&lt;code>事件监听&lt;/code>等技术，实现性能指标监控的&lt;code>黑盒埋点&lt;/code>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>利用&lt;code>策略模式&lt;/code>、&lt;code>观察者模式&lt;/code>等对工具库进行抽象和重构，使模块&lt;code>插件化&lt;/code>，支持自定义埋点策略；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>离线化存储日志数据，利用&lt;code>节流模式&lt;/code>周期性上报埋点；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>后端服务采用 &lt;code>SCF + Elastic&lt;/code>，实现完整的日志流存储、可视化服务；&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>基于腾讯开源的 &lt;code>FeFlow&lt;/code> 框架，开发相应的扩展插件，用于项目的打包、部署、ts、测试、eslint等功能，保证各项目结构和规范配置的一致性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>利用 &lt;code>Vue + HighCharts&lt;/code> 搭建数据可视化面板，对工单数据进行可视化展示；添加日志埋点，对面板的使用情况进行日志监控与价值分析&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="google-summer-of-code-负责-节点可视化平台-的搭建和优化">Google Summer of Code &lt;code>负责 节点可视化平台 的搭建和优化&lt;/code>&lt;/h4>
+&lt;ul>
+&lt;li>参加开源活动，为开源组织重写一个可视化工具库，用于编排网络设备节点数据，绘制网络设备拓扑图
+&lt;ol>
+&lt;li>
+&lt;p>利用 &lt;code>WebWorker&lt;/code> 并行计算优化编排性能；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>ECharts + Leaflet&lt;/code> 渲染，踩坑了两个框架的兼容性问题，也给第三方插件提了一些&lt;code>PR&lt;/code>；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>年底以 Mentor 身份，参与了 &lt;code>Google Code-in&lt;/code>，帮助高校学生接触开源项目提升编程技能，与他们一同完善这个项目；&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;hr></content></item><item><title>漫谈加密隐私</title><link>/post/%E6%BC%AB%E8%B0%88%E5%8A%A0%E5%AF%86%E9%9A%90%E7%A7%81/</link><pubDate>Sun, 03 Oct 2021 08:57:49 +0800</pubDate><guid>/post/%E6%BC%AB%E8%B0%88%E5%8A%A0%E5%AF%86%E9%9A%90%E7%A7%81/</guid><description>漫谈加密隐私 概述 加密，即将明文信息改变为难以理解的密文内容，使之不可读。只有拥有解密方法的对象，才能将密文还原为明文。
+从古至今，密码学已有数千年的历史。从早期的古典密码，到近现代密码，再到未来的量子密码。加密手段也由早期简单的代替和置换，进化到现代数学方法，再到未来的量子性质。
+本篇文章无意讲述整个密码学的发展史，而是聚焦于现代计算机应用中所涉及的加密方法和原理，漫谈 Web2 和 区块链 涉猎的加密内容。
+个人能力所限，如有缺漏错误之处，望指正。
+PS：
+https://en.wikipedia.org/wiki/The_Code_Book 现代密码学 原理 近现代以来，随着数学方法和的计算机科学蓬勃发展，为加密技术提供了新的概念和工具。一个重要的标志是香农的《保密系统通信理论》，将传统密码学推向了基于信息论的科学轨道。
+近现代加密技术经历了无数次迭代，大体上可分为两类：对称密钥算法和非对称密钥算法。
+对称密钥，即发送方和接收方采用相同密钥对明文进行加解密；非对称密钥则相反，它有两个公钥和私钥，分别用于加密、解密。
+对称密钥可以任意选取，只要足够安全；而非对称密钥则是通过一系列NP问题生成的。如RSA利用大质数性质，ECC（椭圆曲线）利用离散对数问题。
+简单来讲，P问题是在多项式时间内可以解出的；NP问题是在多项式时间内可以验证一个解的；P = NP意味着NP问题也是在多项式时间内可以解出的，而非对称密钥就建立在P != NP的基础上。
+以RSA为例，一个大致流程可以理解如下：
+NP问题 &amp;ndash; RSA算法大质数分解； 一个特解 &amp;ndash; 两个因子和大质数，利用因子生成公钥、私钥； 两个精致算法 &amp;ndash; 可以利用公钥加密、私钥解密 或 私钥签名、公钥认证； 黑客攻击 &amp;ndash; 暴力分解大质数，拿到因子和私钥 弊端 对于对称密钥加密来说，缺点在于密钥的分发，如何保证安全地分发到发送方和接收方手上； 对于非对称密钥加密来说，缺点在于加解密的速度，如RSA算法每次加解密需要进行指数和取模运算，而对称密钥只需要做按位运算。 所以常见应用场景是结合两种方式，利用非对称密钥加密分发对称密钥，解决上述痛点问题。
+Web2 HTTPS 在传统的Web2服务中，一个最常见的加密就是TLS加密，HTTPS = HTTP + TLS。
+HTTP是明文传输的，这意味着在网络中所有中间节点都可以看到传输信息。为了保护敏感信息，我们采用TLS加密，使明文内容只对服务端可见。
+TLS的一个大致流程如下：
+1. 完成TCP握手后，客户端发起TLS请求，携带公开随机数、支持的对称加密方法、TLS版本、域名等信息； 2. 服务端返回证书、公开随机数、支持的对称加密方法； 3. 客户端验证证书有效性，解出服务端公钥，发送一个加密随机数； 4. 通过三个随机数生成对称密钥，加密之后的通信内容 还有面对银行等安全场景的双向验证，服务器端还需验证客户端证书，大致流程也类似。
+整个过程有一个问题：要如何信任服务端返回的证书（公钥），而不是中间人攻击替换后的？
+在网络的黑暗丛林中，我们需要一个权威机构（CA）来认证，这里就涉及到非对称密钥的另一个用途：私钥签名、公钥认证。
+CA通过它的私钥来证明证书的有效性，那我们如何确保正确拿到CA的公钥来认证呢？答案是它内置在操作系统或浏览器中，我们也可以手动增删。
+最后为了保护这些CA的私钥不泄漏和降低泄漏后的影响面，我们把这些CA按层级划分，形成一个CA证书的信任链。
+Signal 在C2C的场景中，我们也需要端到端加密，不过是服务端变成了另一个客户端，但我们不希望中间服务器有能力窃听通信内容。
+你可能会有疑问：既然是C2C，那为什么我们还需要服务器？原因有很多：
+公钥的分发，中间服务器在这里相当于CA权威机构的角色，预防中间人攻击 NAT穿透，由于IPv4的局限性，我们大部分的地址是动态的内网地址，它是无法作为公网IP进行通信的 信息缓存，历史信息保存 或 一方离线时也需要由服务器缓存相关信息，等该端上线时再进行分发 信息转发，群组聊天中，需要中间服务器转发给其他成员，发送端只需发送一次到服务端 垃圾信息过滤，中间服务器采用好友关系等机制限制垃圾信息洪流 PS：</description><content>&lt;h1 id="漫谈加密隐私">漫谈加密隐私&lt;/h1>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;p>&lt;strong>加密&lt;/strong>，即将明文信息改变为难以理解的密文内容，使之不可读。只有拥有解密方法的对象，才能将密文还原为明文。&lt;/p>
+&lt;p>从古至今，密码学已有数千年的历史。从早期的古典密码，到近现代密码，再到未来的量子密码。加密手段也由早期简单的代替和置换，进化到现代数学方法，再到未来的量子性质。&lt;/p>
+&lt;p>本篇文章无意讲述整个密码学的发展史，而是聚焦于现代计算机应用中所涉及的加密方法和原理，漫谈 &lt;strong>Web2&lt;/strong> 和 &lt;strong>区块链&lt;/strong> 涉猎的加密内容。&lt;/p>
+&lt;p>个人能力所限，如有缺漏错误之处，望指正。&lt;/p>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://en.wikipedia.org/wiki/The_Code_Book">https://en.wikipedia.org/wiki/The_Code_Book&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="现代密码学">现代密码学&lt;/h2>
+&lt;h3 id="原理">原理&lt;/h3>
+&lt;p>近现代以来，随着数学方法和的计算机科学蓬勃发展，为加密技术提供了新的概念和工具。一个重要的标志是香农的&lt;a href="https://en.wikipedia.org/wiki/Communication_Theory_of_Secrecy_Systems">《保密系统通信理论》&lt;/a>，将传统密码学推向了基于信息论的科学轨道。&lt;/p>
+&lt;p>近现代加密技术经历了无数次迭代，大体上可分为两类：&lt;strong>对称密钥算法&lt;/strong>和&lt;strong>非对称密钥算法&lt;/strong>。&lt;/p>
+&lt;p>对称密钥，即发送方和接收方采用&lt;strong>相同密钥&lt;/strong>对明文进行加解密；非对称密钥则相反，它有两个公钥和私钥，分别用于加密、解密。&lt;/p>
+&lt;p>对称密钥可以任意选取，只要足够安全；而非对称密钥则是通过一系列&lt;a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">NP问题&lt;/a>生成的。如RSA利用大质数性质，ECC（椭圆曲线）利用离散对数问题。&lt;/p>
+&lt;p>简单来讲，P问题是在多项式时间内可以解出的；NP问题是在多项式时间内可以验证一个解的；P = NP意味着NP问题也是在多项式时间内可以解出的，而非对称密钥就建立在P != NP的基础上。&lt;/p>
+&lt;p>以RSA为例，一个大致流程可以理解如下：&lt;/p>
+&lt;ul>
+&lt;li>NP问题 &amp;ndash; RSA算法大质数分解；&lt;/li>
+&lt;li>一个特解 &amp;ndash; 两个因子和大质数，利用因子生成公钥、私钥；&lt;/li>
+&lt;li>两个精致算法 &amp;ndash; 可以利用&lt;strong>公钥加密、私钥解密&lt;/strong> 或 &lt;strong>私钥签名、公钥认证&lt;/strong>；&lt;/li>
+&lt;li>黑客攻击 &amp;ndash; 暴力分解大质数，拿到因子和私钥&lt;/li>
+&lt;/ul>
+&lt;h3 id="弊端">弊端&lt;/h3>
+&lt;ul>
+&lt;li>对于对称密钥加密来说，缺点在于密钥的分发，如何保证安全地分发到发送方和接收方手上；&lt;/li>
+&lt;li>对于非对称密钥加密来说，缺点在于加解密的速度，如RSA算法每次加解密需要进行指数和取模运算，而对称密钥只需要做按位运算。&lt;/li>
+&lt;/ul>
+&lt;p>所以常见应用场景是结合两种方式，利用非对称密钥加密分发对称密钥，解决上述痛点问题。&lt;/p>
+&lt;h2 id="web2">Web2&lt;/h2>
+&lt;h3 id="https">HTTPS&lt;/h3>
+&lt;p>在传统的Web2服务中，一个最常见的加密就是TLS加密，HTTPS = HTTP + TLS。&lt;/p>
+&lt;p>HTTP是明文传输的，这意味着在网络中所有中间节点都可以看到传输信息。为了保护敏感信息，我们采用TLS加密，使明文内容只对服务端可见。&lt;/p>
+&lt;p>TLS的一个大致流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 完成TCP握手后，客户端发起TLS请求，携带公开随机数、支持的对称加密方法、TLS版本、域名等信息；
+2. 服务端返回证书、公开随机数、支持的对称加密方法；
+3. 客户端验证证书有效性，解出服务端公钥，发送一个加密随机数；
+4. 通过三个随机数生成对称密钥，加密之后的通信内容
+&lt;/code>&lt;/pre>&lt;p>还有面对银行等安全场景的双向验证，服务器端还需验证客户端证书，大致流程也类似。&lt;/p>
+&lt;p>整个过程有一个问题：要如何信任服务端返回的证书（公钥），而不是中间人攻击替换后的？&lt;/p>
+&lt;p>在网络的黑暗丛林中，我们需要一个权威机构（CA）来认证，这里就涉及到非对称密钥的另一个用途：&lt;strong>私钥签名、公钥认证&lt;/strong>。&lt;/p>
+&lt;p>CA通过它的私钥来证明证书的有效性，那我们如何确保正确拿到CA的公钥来认证呢？答案是它内置在操作系统或浏览器中，我们也可以手动增删。&lt;/p>
+&lt;p>最后为了保护这些CA的私钥不泄漏和降低泄漏后的影响面，我们把这些CA按层级划分，形成一个CA证书的信任链。&lt;/p>
+&lt;h3 id="signal">Signal&lt;/h3>
+&lt;p>在C2C的场景中，我们也需要端到端加密，不过是服务端变成了另一个客户端，但我们不希望中间服务器有能力窃听通信内容。&lt;/p>
+&lt;p>你可能会有疑问：既然是C2C，那为什么我们还需要服务器？原因有很多：&lt;/p>
+&lt;ul>
+&lt;li>公钥的分发，中间服务器在这里相当于CA权威机构的角色，预防中间人攻击&lt;/li>
+&lt;li>NAT穿透，由于IPv4的局限性，我们大部分的地址是动态的内网地址，它是无法作为公网IP进行通信的&lt;/li>
+&lt;li>信息缓存，历史信息保存 或 一方离线时也需要由服务器缓存相关信息，等该端上线时再进行分发&lt;/li>
+&lt;li>信息转发，群组聊天中，需要中间服务器转发给其他成员，发送端只需发送一次到服务端&lt;/li>
+&lt;li>垃圾信息过滤，中间服务器采用好友关系等机制限制垃圾信息洪流&lt;/li>
+&lt;/ul>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://iangeli.com/2019/04/25/%E7%AB%AF%E5%AF%B9%E7%AB%AF%E5%8A%A0%E5%AF%86%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AESignal-protocol-%E5%AD%A6%E4%B9%A0.html">https://iangeli.com/2019/04/25/%E7%AB%AF%E5%AF%B9%E7%AB%AF%E5%8A%A0%E5%AF%86%E9%80%9A%E8%AE%AF%E5%8D%8F%E8%AE%AESignal-protocol-%E5%AD%A6%E4%B9%A0.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="区块链">区块链&lt;/h2>
+&lt;h3 id="加密货币">加密货币&lt;/h3>
+&lt;p>区块链上的虚拟货币也被称为 &lt;strong>加密货币&lt;/strong>。加密属性从何而来？&lt;/p>
+&lt;p>个人所认为的加密不只是所谓的&lt;strong>地址代替实名&lt;/strong>，而是更有意义的&lt;strong>隐匿&lt;/strong>：&lt;strong>隐匿资产&lt;/strong>、&lt;strong>隐匿地址关系&lt;/strong>、&lt;strong>隐匿交易细节&lt;/strong>。&lt;/p>
+&lt;p>很遗憾，目前主流的区块链本身并没有这一功能，它也不算是必需品，因此后面在区块链协议之上繁衍出了各种应用级产品：&lt;strong>隐私币&lt;/strong>、&lt;strong>隐私合约&lt;/strong>，最后甚至是专门面向隐私功能的&lt;strong>隐私链&lt;/strong>。&lt;/p>
+&lt;p>在了解这些产品前，我们先来学习下区块链本身的隐匿性。如&lt;a href="https://zhuanlan.zhihu.com/p/57272282">比特币和以太坊的帐户模型&lt;/a>&lt;/p>
+&lt;p>小结下就是：区块链本身的隐匿性聊胜于无，基于UTXO模型的&lt;a href="https://happypeter.github.io/binfo/p2sh">P2SH类型&lt;/a>交易，有一定的隐匿性，可以暂时 &lt;strong>隐匿接收者（地址关系）&lt;/strong>，当花费这笔代币时，接收者还是会暴露。&lt;/p>
+&lt;h3 id="零知识证明">零知识证明&lt;/h3>
+&lt;p>在学习下面的加密原理之前，先要理解一个不可或缺的知识点 &amp;ndash; &lt;strong>零知识证明&lt;/strong>。理论概念可以参考我之前的一篇&lt;a href="https://kutugu.eth.limo/D19E5932-4374-48C2-87F7-CC053FB1FBB2">小结&lt;/a>，具体执行流程推荐阅读&lt;a href="https://github.com/iden3/snarkjs#guide">官方文档&lt;/a>。&lt;/p>
+&lt;p>有了上面的预备知识，接下来我将带大家简单剖析各个具体的隐私应用，来了解其中的加密原理。&lt;/p>
+&lt;h3 id="隐私币">隐私币&lt;/h3>
+&lt;p>隐私币一般指基于比特链协议的硬分叉的区块链，一条链即一个币，也基于比特币的UTXO模型。比特链生态是没有智能合约应用概念的，我将这些功能链也视为一个个应用级的产品。&lt;/p>
+&lt;p>&lt;strong>Dash&lt;/strong>&lt;/p>
+&lt;p>Dash采用&lt;strong>混币系统&lt;/strong>来实现一定程度的隐私。它在比特链的基础上进行了扩展，建立了一个由主节点和矿工组成的双层网络：&lt;/p>
+&lt;ul>
+&lt;li>第一层网络中，矿工节点通过POW共识来计帐和保护网络安全;&lt;/li>
+&lt;li>第二层网络实现混币相关的功能，主节点用于执行隐私交易、即时交易和网络管理。 节点将多方交易混合在一起再对外发送，打乱地址关系的映射。&lt;/li>
+&lt;/ul>
+&lt;p>该方法只能实现对地址关系的隐匿，甚至在参与方较少、金额数目特殊的情况下，地址关系也无所遁形。&lt;/p>
+&lt;p>&lt;strong>Monero&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://learnblockchain.cn/index.php/article/1123">https://learnblockchain.cn/index.php/article/1123&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Zcash&lt;/strong>&lt;/p>
+&lt;p>Zcash的隐藏原理基于&lt;strong>单向哈希&lt;/strong>和&lt;strong>零知识证明&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>要隐藏一个信息很简单，一开始我们就提到了各种加密方法；&lt;/li>
+&lt;li>要隐藏一个不需要恢复的信息更简单，一个单向的哈希就可以做到。&lt;/li>
+&lt;/ul>
+&lt;p>既然我们不想让任何人查看交易细节，那我们就将这些全部做哈希处理再存储到共识节点，不就可以了？&lt;/p>
+&lt;p>当然共识节点也不傻，你提交一条哈希给我，我如何知道哈希所代表的内容是否准确？这时便需要零知识证明发挥作用了。另外为了防止重放攻击，还需要对证明进行签名。&lt;/p>
+&lt;p>具体细节推荐阅读：https://www.8btc.com/article/526391&lt;/p>
+&lt;p>下面我们梳理下整个Zcash的交易流程，与UTXO模型大体类似（UTXO模型的交易流程由于有&lt;strong>P2PKH&lt;/strong>、&lt;strong>P2SH&lt;/strong>等各种类型，就不再赘述）。&lt;/p>
+&lt;p>首先Zcash中，UTXO模型（note）结构体如下：&lt;/p>
+&lt;ul>
+&lt;li>持有者的公钥: a_pk；&lt;/li>
+&lt;li>数额: value，简称 v；&lt;/li>
+&lt;li>随机数: r；&lt;/li>
+&lt;li>随机数hash：rho，即HASH（r）&lt;/li>
+&lt;/ul>
+&lt;pre tabindex="0">&lt;code>1. A -→ B 转账，多个input note -→ 多个output note（可能有剩余返还给A）
+2. A解析并发布这些input note（hash）的废弃声明，共识节点在nullifier列表中验证，防止双花；
+3. 同时发送新生成的output note（hash）声明；还要发送零知识证明和签名，证明A发送的这些hash声明对应的交易内容是完全正确的；
+4. A将属于B的output note（detail）发送给B
+&lt;/code>&lt;/pre>&lt;p>注意第三步，由于链上存储的都是hash，B是不知道note细节的，但是在花费这些note时，B需要发布基于rho的废弃声明，所以A需要发送具体内容给B。&lt;/p>
+&lt;p>那么怎么在不安全的网络安全地发送明文内容呢？&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://learnblockchain.cn/2019/07/28/zcash-sprout">https://learnblockchain.cn/2019/07/28/zcash-sprout&lt;/a>（Zcash的具体加密方案）&lt;/li>
+&lt;li>&lt;a href="https://github.com/zcash/zips/blob/main/protocol/protocol.pdf">https://github.com/zcash/zips/blob/main/protocol/protocol.pdf&lt;/a>（Zcash白皮书）&lt;/li>
+&lt;/ul>
+&lt;h3 id="隐私合约">隐私合约&lt;/h3>
+&lt;p>&lt;strong>Tornado Cash&lt;/strong>&lt;/p>
+&lt;p>Tornado是基于以太坊的混币应用，也是只能打乱地址的映射关系。&lt;/p>
+&lt;p>不过它有意思的地方在于利用零知识证明，实现了验证逻辑。整体流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 存款前生成随机数secret和nullifier，nullifier -→ nullifierHash，secret + nullifier -→ commitment，tornado note = nullifier + secret；
+2. 存款时，提交commitment，没有冲突就会将commitment插入到合约地址维护的Merkle树中；
+3. 取款前，输入凭证note，解析出nullifierHash和commitment，并从Merkle树中获取commitment的链路；
+4. 取款时，输入取款地址，与secret、nullifier和其他证明一起生成零知识证明，以供验证
+&lt;/code>&lt;/pre>&lt;p>PS：Tornado的中继服务解决了支付困境问题，提款时交易费由中继者支付，同时扣除提款总额的一部分作为服务费。&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.tornado.cash/general/readme">https://docs.tornado.cash/general/readme&lt;/a>（官方文档）&lt;/li>
+&lt;li>&lt;a href="https://github.com/tornadocash/tornado-core">https://github.com/tornadocash/tornado-core&lt;/a>（源码地址）&lt;/li>
+&lt;li>&lt;a href="https://zhuanlan.zhihu.com/p/94979076">https://zhuanlan.zhihu.com/p/94979076&lt;/a>（源码解读）&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Automata Network&lt;/strong>&lt;/p>
+&lt;p>Automata Network的定位是应用中间件，支持多链协议，它的隐私功能致力于提供一套安全可信的运行环境。&lt;/p>
+&lt;p>不过个人理解，像预言机一样，它提供的只是链下隐私，进行相关的证明验证，得到结果后再通知链上DAPP。&lt;/p>
+&lt;p>具体实现原理是通过 &lt;strong>TEE可信执行环境&lt;/strong> 与 &lt;strong>Oblivious RAM&lt;/strong> 算法，创建一个本地数据无法被第三方（甚至本地进程）访问的安全空间。&lt;/p>
+&lt;p>TEE的具体实现通过Intel的SGX，它保证了&lt;strong>数据隐私&lt;/strong>和&lt;strong>远程证明&lt;/strong>。保证数据隐私很好理解，远程证明是指向其他第三方提供相关远程安全证明：&lt;/p>
+&lt;ul>
+&lt;li>硬件检查：硬件制造商会有相关私钥签名，可以通过公钥进行验证；&lt;/li>
+&lt;li>软件检查：生成软件代码哈希，进行校验&lt;/li>
+&lt;/ul>
+&lt;p>那TEE有什么作用呢？前面我们提到过完全加密很好处理，一个单向哈希即可，但难的是我们需要同时让矿工节点知道交易内容的准确性。&lt;/p>
+&lt;p>一种解决方案是零知识证明，但它的生成很复杂；另一种就是TEE。TEE提供了一个可信环境，除了特定的一组接口，无法通过其他方法读写数据。&lt;/p>
+&lt;p>通过这个特点，我们可以在其中进行任何隐私验证。如通过编写TA程序（Trusted Application），我们可以把矿工验证逻辑放到TEE中，矿工只需要知道一个验证结果。同时在不同节点远程校验，从而形成共识。&lt;/p>
+&lt;p>当然TEE和零知识证明也不是互斥的，我们甚至可以在TEE之上使用零知识证明。&lt;/p>
+&lt;p>只是对数据加密还不够，通过侧信道攻击（side channel attack）也可能被盗取敏感信息：由于&lt;a href="https://en.wikipedia.org/wiki/Memory_access_pattern">数据访问模式&lt;/a>，当频繁读写某些数据时，攻击者可以定位到数据储存位置，甚至推测出敏感信息。这时便需要 &lt;strong>Oblivious RAM&lt;/strong> 算法来隐藏真实访问。&lt;/p>
+&lt;p>算法原理也很好理解，每次读写数据时，不仅仅读写所需的数据，同时读写其他数据进行混淆&lt;/p>
+&lt;h3 id="隐私链">隐私链&lt;/h3>
+&lt;p>&lt;strong>Secret Network&lt;/strong>&lt;/p>
+&lt;p>Secret Network是基于Cosmos的一条支持智能合约的异构链，它利用TEE实现了对隐私的支持。&lt;/p>
+&lt;p>一个大致流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 开发人员编写智能合约并部署，合约加密发送到矿工节点TEE中；
+2. 节点在TEE中解密验证交易内容，提出一个包含加密输出和更新加密状态的区块；
+3. 2/3 的验证者就加密输出和状态达成共识，存储合约代码到TEE中；
+4. 用户向智能合约发起交易，包括加密的数据输入，流程同上；
+&lt;/code>&lt;/pre>&lt;p>学习 Secret Network 合约，首先要了解Rust语言，这里推荐 &lt;a href="https://course.rs/">Rust中文圣经&lt;/a>。&lt;/p>
+&lt;p>学习 Secret Network 前，需要了解 CosmWasm，前者建立在后者的基础上。CosmWasm 和 Solidity 也有很多不同需要了解：https://docs.cosmwasm.com/docs/1.0/&lt;/p>
+&lt;p>对 Secret Network 的学习，推荐先阅读&lt;a href="https://build.scrt.network/">官方文档&lt;/a>，其提供了许多学习资源。&lt;/p>
+&lt;p>&lt;a href="https://github.com/scrtlabs/testnet/blob/master/pulsar-2/details.md">测试网络&lt;/a>&lt;/p>
+&lt;p>开发入门，推荐&lt;a href="https://learn.figment.io/protocols/secret">figment教程&lt;/a>。&lt;/p>
+&lt;p>里面有很多细节，如：&lt;/p>
+&lt;ul>
+&lt;li>编译不成功，利用docker编译：&lt;a href="https://learn.figment.io/tutorials/deploy-your-own-secret-nft#compile-the-contract">https://learn.figment.io/tutorials/deploy-your-own-secret-nft#compile-the-contract&lt;/a>&lt;/li>
+&lt;li>调用传参，uint128类型对应js的string类型：&lt;a href="https://learn.figment.io/tutorials/creating-a-secret-contract-from-scratch#a-note-about-data-types-between-the-client-and-contract">https://learn.figment.io/tutorials/creating-a-secret-contract-from-scratch#a-note-about-data-types-between-the-client-and-contract&lt;/a>&lt;/li>
+&lt;li>Query和Handle的花费和安全如何取舍：&lt;a href="https://learn.figment.io/tutorials/create-your-first-secret-nft#querying-the-contract">https://learn.figment.io/tutorials/create-your-first-secret-nft#querying-the-contract&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>最后提下ERC20、ERC721规范的兼容实现：&lt;/p>
+&lt;p>&lt;a href="https://build.scrt.network/dev/tutorials.html#references-for-secret-contracts">https://build.scrt.network/dev/tutorials.html#references-for-secret-contracts&lt;/a>&lt;/p>
+&lt;p>PS：这个只是对规范的兼容，没有实现支付、白名单等功能。下面这个库增加了这些功能：&lt;/p>
+&lt;p>&lt;a href="https://github.com/luminaryphi/secret-random-minting-snip721-impl">https://github.com/luminaryphi/secret-random-minting-snip721-impl&lt;/a>&lt;/p>
+&lt;p>&lt;strong>Oasis Network&lt;/strong>&lt;/p>
+&lt;p>Oasis Network是一条支持智能合约的区块链。它采用&lt;strong>模块化&lt;/strong>设计，提供了对&lt;strong>隐私&lt;/strong>、&lt;strong>私有链&lt;/strong>的支持。&lt;/p>
+&lt;p>Oasis 由两层网络构成：共识层和ParaTime层。你可以将其理解为二层的架构设计，类似于以太坊L2的多链，在ParaTime层中执行智能合约的计算。整体架构图如下所示：&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/AmJWtxgXfYWQH3dnI7btU.png?height=1004&amp;amp;width=1256" alt="Oasis网络架构">&lt;/p>
+&lt;p>前面提到的模块化就是指ParaTime的实现非常灵活，支持自由组合：&lt;/p>
+&lt;ul>
+&lt;li>在代码规范方面可以支持 EVM 或 WASM；&lt;/li>
+&lt;li>在加密隐私方面可以直接裸奔，或选择TEE、零知识证明等加密；&lt;/li>
+&lt;li>在公私链方面可以设计为有无许可系统&lt;/li>
+&lt;/ul>
+&lt;p>推荐阅读：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.chaincatcher.com/article/2072039">https://www.chaincatcher.com/article/2072039&lt;/a>（项目介绍）&lt;/li>
+&lt;li>&lt;a href="https://docsend.com/view/6sui2cag4p45ea45">https://docsend.com/view/6sui2cag4p45ea45&lt;/a>（白皮书）&lt;/li>
+&lt;/ul>
+&lt;h3 id="隐私项目">隐私项目&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://www.chaincatcher.com/article/2070927">https://www.chaincatcher.com/article/2070927&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>跨链 -- 链接信息孤岛的桥梁</title><link>/post/%E8%B7%A8%E9%93%BE--%E9%93%BE%E6%8E%A5%E4%BF%A1%E6%81%AF%E5%AD%A4%E5%B2%9B%E7%9A%84%E6%A1%A5%E6%A2%81/</link><pubDate>Fri, 03 Sep 2021 08:57:49 +0800</pubDate><guid>/post/%E8%B7%A8%E9%93%BE--%E9%93%BE%E6%8E%A5%E4%BF%A1%E6%81%AF%E5%AD%A4%E5%B2%9B%E7%9A%84%E6%A1%A5%E6%A2%81/</guid><description>跨链 &amp;ndash; 链接信息孤岛的桥梁 背景 区块链的发展 区块链借由密码学、共识等机制创建了一个存储庞大交易资料的点对点网络系统。
+公链自2008年中本聪在《比特币白皮书》中提出区块链概念伊始，经过了十余年的发展，整个区块链架构也在不断升级迭代着，大致可以分为三个阶段：
+第一阶段即区块链技术的源头 &amp;ndash; 比特链时期。当时区块链技术主要应用是作为数字货币的基础建设，例如比特链就是比特币的基础建设，比特币是比特链的原生代币也是唯一代币，想要发行一种新代币，只能部署新链； 第二阶段是以太坊时期，它为区块链引入了智能合约的概念，并将可编程能力抽象、完善，形成一套图灵完备的编程语言（Solidity）和 近乎（Gas）图灵完备的虚拟机（EVM）。此时区块链的能力不再局限于单一货币，图灵完备保障了各种代币合约、DAPP的构建，以太坊也逐渐成为最大的去中心化应用公链。 第三阶段是多链时期，随着以太坊的大火，整个网络逐渐变得拥挤，而且代币价格攀升，每次的交互成本让人难以接受；另一方面以太坊也不能满足所有需求，于是一众区块链如雨后春笋般冒出，有的是为了满足低交互成本的需求，有的是为了探索新技术如隐私、共识、多链网络等。 区块链的百花齐放无疑解决了单链的许多局限性问题，但也形成了一个个孤岛，用户数据信息在链间无法传递，跨链需求应运而生。
+跨链技术的发展 区块链技术早期都是基于单链的形式发展，但由于单链的性能优化和技术升级存在较大难度，愈发不能满足实际需求；另一方面，跨链技术其实从比特币诞生之初就被初步研究，初期是为了探索、实验新技术，后面逐渐聚焦于资产转移、信息跨链。
+区块链数十年的发展，也是网络架构由 单链扩容 逐步过渡到 多链协同 的时期：
+2008年 中本聪发表论文 《Bitcoin: A Peer-to-Peer Electronic Cash System》；
+2012 年瑞波实验室提出了 Ripple协议 ，旨在全球范围内进行金融交易的去中心化账本协议；
+2013 年在 bitcointalk 上 TierNolan 提出了 原子交换 的概念，后面逐步演进形成 哈希时间锁定 机制；
+同年末 以太坊 白皮书 发布；
+2014 年 BlockStream 团队发表白皮书《Enabling Blockchain Innovations with Pegged Sidechains》 提出了侧链机制，利用 双向锚定（2WP） 实现了代币在主侧链之间的转移；
+2015 年 Joseph Poon 和 Thaddeus Dryja 在论文 《The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments》中提出 闪电网络 的概念和原理，利用 哈希时间锁定 创建链下的支付通道，释放了链上频繁交易的压力，实现了对比特链的扩容；</description><content>&lt;h1 id="跨链----链接信息孤岛的桥梁">跨链 &amp;ndash; 链接信息孤岛的桥梁&lt;/h1>
+&lt;h2 id="背景">背景&lt;/h2>
+&lt;h3 id="区块链的发展">区块链的发展&lt;/h3>
+&lt;p>区块链借由密码学、共识等机制创建了一个存储庞大交易资料的点对点网络系统。&lt;/p>
+&lt;p>公链自2008年中本聪在《比特币白皮书》中提出区块链概念伊始，经过了十余年的发展，整个区块链架构也在不断升级迭代着，大致可以分为三个阶段：&lt;/p>
+&lt;ul>
+&lt;li>第一阶段即区块链技术的源头 &amp;ndash; 比特链时期。当时区块链技术主要应用是作为数字货币的基础建设，例如比特链就是比特币的基础建设，比特币是比特链的&lt;strong>原生代币&lt;/strong>也是&lt;strong>唯一代币&lt;/strong>，想要发行一种新代币，只能部署新链；&lt;/li>
+&lt;li>第二阶段是以太坊时期，它为区块链引入了智能合约的概念，并将可编程能力抽象、完善，形成一套图灵完备的编程语言（Solidity）和 &lt;strong>近乎&lt;/strong>（Gas）图灵完备的虚拟机（EVM）。此时区块链的能力不再局限于单一货币，图灵完备保障了各种代币合约、DAPP的构建，以太坊也逐渐成为最大的去中心化应用公链。&lt;/li>
+&lt;li>第三阶段是多链时期，随着以太坊的大火，整个网络逐渐变得拥挤，而且代币价格攀升，每次的交互成本让人难以接受；另一方面以太坊也不能满足所有需求，于是一众区块链如雨后春笋般冒出，有的是为了满足低交互成本的需求，有的是为了探索新技术如隐私、共识、多链网络等。&lt;/li>
+&lt;/ul>
+&lt;p>区块链的百花齐放无疑解决了单链的许多局限性问题，但也形成了一个个孤岛，用户数据信息在链间无法传递，跨链需求应运而生。&lt;/p>
+&lt;h3 id="跨链技术的发展">跨链技术的发展&lt;/h3>
+&lt;p>区块链技术早期都是基于单链的形式发展，但由于单链的性能优化和技术升级存在较大难度，愈发不能满足实际需求；另一方面，跨链技术其实从比特币诞生之初就被初步研究，初期是为了探索、实验新技术，后面逐渐聚焦于资产转移、信息跨链。&lt;/p>
+&lt;p>区块链数十年的发展，也是网络架构由 &lt;strong>单链扩容&lt;/strong> 逐步过渡到 &lt;strong>多链协同&lt;/strong> 的时期：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>2008年 中本聪发表论文 &lt;a href="https://bitcoin.org/bitcoin.pdf">《Bitcoin: A Peer-to-Peer Electronic Cash System》&lt;/a>；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2012 年瑞波实验室提出了 &lt;a href="https://en.wikipedia.org/wiki/Ripple_%5C(payment_protocol%5C)">Ripple协议&lt;/a> ，旨在全球范围内进行金融交易的去中心化账本协议；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2013 年在 bitcointalk 上 TierNolan 提出了 &lt;a href="https://bitcointalk.org/index.php?topic=193281.0">原子交换&lt;/a> 的概念，后面逐步演进形成 哈希时间锁定 机制；&lt;/p>
+&lt;p>同年末 以太坊 &lt;a href="https://ethereum.org/zh/whitepaper/">白皮书&lt;/a> 发布；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2014 年 BlockStream 团队发表白皮书&lt;a href="https://blockstream.com/sidechains.pdf">《Enabling Blockchain Innovations with Pegged Sidechains》&lt;/a> 提出了侧链机制，利用 双向锚定（2WP） 实现了代币在主侧链之间的转移；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2015 年 Joseph Poon 和 Thaddeus Dryja 在论文 &lt;a href="https://lightning.network/lightning-network-paper.pdf">《The Bitcoin Lightning Network: Scalable Off-Chain Instant Payments》&lt;/a>中提出 闪电网络 的概念和原理，利用 哈希时间锁定 创建链下的支付通道，释放了链上频繁交易的压力，实现了对比特链的扩容；&lt;/p>
+&lt;p>瑞波实验室在 Ripple 的基础上提出了 &lt;a href="https://interledger.org/interledger.pdf">InterLedger 协议&lt;/a> ，尝试解决区块链跨账本系统之间的金融结算问题；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2016 年 &lt;a href="https://github.com/ethereum/btcrelay">BTC Relay&lt;/a> 利用 中继 实现了 比特链 到 以太坊 的单向跨链通信；&lt;/p>
+&lt;p>Vitalik Buterin 发表 &lt;a href="https://www.r3.com/wp-content%2Fuploads%2F2017%2F06%2Fchain_interoperability_r3.pdf">《Chain Interoperability》&lt;/a>，总结了跨链互操作技术和安全问题；&lt;/p>
+&lt;p>同年 &lt;a href="https://v1.cosmos.network/resources/whitepaper">Cosmos&lt;/a> 和 &lt;a href="https://polkadot.network/PolkaDotPaper.pdf">Polkadot&lt;/a> 白皮书发布，提出了以 中继 为中枢，建设多链网络的设想；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2017 年 Vitalik Buterin 和 Joseph Poon 提出了 以太坊 的侧链机制 &lt;a href="https://plasma.io/plasma.pdf">Plasma&lt;/a>；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2018 年 Plasma 的实现过程中暴露出一系列问题，&lt;a href="https://github.com/barryWhiteHat/roll_up">barryWhiteHat 提出 Rollup 方案&lt;/a>；&lt;/p>
+&lt;p>同年 以太坊 提出了 &lt;a href="https://eth.wiki/sharding/Sharding-FAQs">分片&lt;/a> 扩容；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>2019年 Thunnini 提出 &lt;a href="https://github.com/cosmos/ibc/issues/251">跨链帐户&lt;/a> 的概念，进一步解耦 IBC 跨链通信的标准；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="./img/blockchain/cross_chain.png" alt="跨链技术发展史">&lt;/p>
+&lt;h2 id="名词解析">名词解析&lt;/h2>
+&lt;h3 id="公证人机制">公证人机制&lt;/h3>
+&lt;p>在Web2的交易场景中，买家将财产交付于中间服务器，等收到卖家的货物时，再同意解除锁定，中间服务器就充当着公证人的角色，负责保管买家财产和防止买家、卖家作恶。&lt;/p>
+&lt;p>在Web3的交易场景中，公证人是一方或多方可信节点，交易双方将代币发送到相应链上的节点地址，验证、签名通过后再分别转发到对应的交易地址。&lt;/p>
+&lt;p>这里的资产锁定可以通过中心服务器、智能合约等方式；签名方式也有单签名、多签名、分布式签名（多方计算）等机制。&lt;/p>
+&lt;p>公证人机制是技术上可实现的最简单的交易机制，无须考虑单链还是跨链、同构链还是异构链；缺点在于可能存在中心化风险，交易双方需要信任公证人。&lt;/p>
+&lt;p>PS：甚至可以认为区块链共识也是一种公证人机制，利用全球节点作背书。&lt;/p>
+&lt;h3 id="ripple协议">Ripple协议&lt;/h3>
+&lt;p>Ripple 是一个开源、分布式的金融支付协议，支持法币、比特币等虚拟币，对标 &lt;a href="https://en.wikipedia.org/wiki/SWIFT">SWIFT&lt;/a> 体系，想要成为国际支付和清算的方式。&lt;/p>
+&lt;p>Ripple 网络可以被认为是一条区块链，通过共享的公开数据库账本达成共识。Ripple并不是基于传统的 PoW 共识，而是 &lt;a href="https://github.com/funnystack/white-papers/blob/master/%E7%91%9E%E6%B3%A2%E5%B8%81Ripple%E7%99%BD%E7%9A%AE%E4%B9%A6%5C(%E8%8B%B1%E6%96%87%5C).pdf">RPCA算法&lt;/a>，利用最小信任的UNLs节点来加速共识。&lt;/p>
+&lt;p>在 Ripple 网络的交易中，用户可以随意选择支付的货类型币：用户的账户上可以持有一种货币，但使用另一种货币来支付。Ripple通过在大量争相赚取差价的做市商之间传递兑换单的方法来进行自动的货币兑换。&lt;/p>
+&lt;p>虽然 Ripple 对于用户来说很便捷，但其想要成为国际间通用的支付手段的愿景是注定不会成功的：它相当于一个新的 SWIFT 协议加上公开的账本信息，这些特点注定无法被拥有传统账本、崇尚私密的银行所接受。于是在 Ripple 的基础上，瑞波实验室又推出了 InterLedger 协议。&lt;/p>
+&lt;p>既然建立一个人人都同意的全球金融传输协议很困难，那么我们可以开发一个协议，它能将所有我们目前正在使用记账系统连接在一起。&lt;/p>
+&lt;h3 id="哈希时间锁定hash-timelock-contract">哈希时间锁定（Hash TimeLock Contract）&lt;/h3>
+&lt;p>哈希时间锁定机制利用 原子性 和 博弈论 实现了跨链交易的流程，相比于公证人机制用第三方信用背书，哈希时间锁定则用代码逻辑作为担保，具有更高的安全性。&lt;/p>
+&lt;p>假如有两条区块链 ChainA 和 ChainB，两个用户 Alice 和 Bob，Alice 有资产 a，Bob 有资产 b，Alice 与 Bob 想通过 哈希时间锁定 来交换资产，那么他们可以使用以下方式：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. Alice 选取一个秘密随机数 S，计算出 S 的哈希值 H(S) ；
+2. Alice 指定一个时间点 T1，根据 H(S) 和 T1 在 ChainA 上创建资产锁定合约：
+只有 Bob 签名的 S 并且在时间点 T1 之前才能将资产 a 转移走，如果到时间点 T1 后仍未解锁，则允许 Alice 撤销资产锁定。
+3. Bob 也指定一个小于 T1 的时间点 T2，根据 H(S) 和 T2 在 ChainB 上创建资产锁定合约：
+只有 Alice 签名的 S 并且在时间点 T2 之前才能将资产 b 转移走，如果到时间点 T2 后仍未解锁，则允许 Bob 撤销资产锁定，同时可以考虑对 Alice 做相应处罚。
+4. Alice 使用 S 在时间点 T2 前调用 ChainB 上的智能合约解锁消费资产 b；
+5. 由于在 Alice 解锁资产 b 的过程中公开了参数 S ，所以 Bob 也获得 S 的值。Bob 使用 S 在时间点 T1 前解锁消费资产 a。
+&lt;/code>&lt;/pre>&lt;p>签名哈希锁是为了限制特定人员提取资产；加上时间锁是为了防止一方作恶不操作，导致资产一直处于锁定状态。&lt;/p>
+&lt;p>若一方作恶导致交易流程中断，另一方除了损失一些手续费和资产锁定时间，没有其他资产损失；而对作恶一方的惩处，可以在代码逻辑中具体实现。&lt;/p>
+&lt;p>PS：哈希时间锁定的关键点在于交易内容是公开的，因此 Bob 可以读取到参数 S，如果是在 Secret 这样的隐私链，该机制无法生效。&lt;/p>
+&lt;p>哈希时间锁定的使用场景局限于 &lt;strong>跨链资产交换&lt;/strong>，无法实现 &lt;strong>跨链资产转移&lt;/strong>；换言之，必须自行匹配到交易对手方才能进行资产互换，无法实现单方的资产转移。&lt;/p>
+&lt;h3 id="闪电网络">闪电网络&lt;/h3>
+&lt;p>最初的区块链系统为了实现公平、安全的目标，采用的是全部节点间的共识，再加上 PoW 机制，导致整个链上共识的时间是很长的，用户交易需要等待很长时间。&lt;/p>
+&lt;p>而 闪电网络 通过 哈希时间锁定 机制创造了一个链下的支付通道，将链上的频繁交易转移至链下，等到最终结算时再到链上进行状态共识。整个过程只需在链上进行两笔交易。&lt;/p>
+&lt;p>假如在比特链上有两个用户 Alice 和 Bob，他们是商业合作关系，想要使用闪电网络进行链下交易，那么他们可以使用以下的方式来实现：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. Alice 和 Bob 先各自把 5 个 BTC 转到一个 2/2 的多重签名地址 M（P2SH）：只有双方签名才可以消费代币，通道开启；
+2. 一天 Alice 需要向 Bob 支付 1 个 BTC，此时 Alice 拥有 4 个 BTC， Bob 拥有 6 个 BTC；
+1. Alice 首先选取一个秘密随机数 S1，计算出 S 的哈希值 H(S1) ；
+2. Bob 指定一个时间点 T1，根据 H(S1) 和 T1 创建资产锁定交易 C1：
+1. 将 6 个 BTC 从 M 转给 Bob；
+2. 将 4 个 BTC 从 M 转到一个 1/2 的多重签名：满足下面一个条件即可消费
+a. Bob 签名的 S1；
+b. 在 T1 时间后 Alice 的签名；
+3. Bob 对该交易签名后发给 Alice，Alice此时只能选择 接受并记录 或 发布交易强制中断通道
+3. 一天 Alice 又向 Bob 支付 1 个 BTC，此时 Alice 拥有 3 个 BTC， Bob 拥有 7 个 BTC；
+4. 这时 Alice 可以作恶了，因为此时有两笔 Bob 签名的交易 C1、C2，分别代表 Alice 拥有 4 和 3 个 BTC，Alice 肯定想要广播 C1 到链上，并强行中断通道；
+5. 别担心，在 Bob 第二次签名 C2 之前，还有一个机制：Alice 需要公开 S1；
+6. 此时如果 Alice 广播 C1，Bob 就可以在 T1 时间前通过 S1 消费掉通道内的所有代币；
+7. 经过多次交易后，如果想要关闭通道：
+a. 双方协商在 M 发起一笔最终的交易状态到链上；
+b. 一方强行广播最后一次交易；
+&lt;/code>&lt;/pre>&lt;p>闪电网络主要面向高频、小额支付，节省了大量交易时间和费用，是比特链高扩展、低延迟一个解决方案。之所以称之为网络，是因为通道不只存在于两个人之间，利用中间人，P2P的通道可以最终扩展成一个网络，具体交易流程见下方 InterLedger 协议。&lt;/p>
+&lt;p>PS：以太坊扩容中也有类似实现，称为状态通道（&lt;a href="https://docs.ethhub.io/ethereum-roadmap/layer-2-scaling/state-channels/">State Channels&lt;/a>）。&lt;/p>
+&lt;h3 id="interledger-协议">InterLedger 协议&lt;/h3>
+&lt;p>关于 Interledger 协议，一个简单的解释是：两个不同的记账系统可以通过第三方连接器来中继货币的传输和转换。整个过程可以看作是单向的哈希时间锁定，为此 Interledger 还专门规定了 &lt;a href="https://github.com/interledger/rfcs/blob/master/0022-hashed-timelock-agreements/0022-hashed-timelock-agreements.md">HTLA&lt;/a> 协议。流程大致如下：&lt;/p>
+&lt;p>假如有两条区块链 ChainA 和 ChainB，两个用户 Alice 和 Bob，Alice 有资产 a，Alice 要通过链接器 Mo 向 Bob 支付款项 b，那么他们可以使用以下的方式来实现：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. Bob 选取一个秘密随机数 S，计算出 S 的哈希值 H(S) ；
+2. Alice 指定一个时间点 T1，根据 H(S) 和 T1 在 ChainA 上创建资产锁定合约：
+只有 Mo 签名的 S 并且在时间点 T1 之前才能将资产 a 转移走，如果到时间点 T1 后仍未解锁，则允许 Alice 撤销资产锁定。
+3. Mo 也指定一个小于 T1 的时间点 T2，根据 H(S) 和 T2 在 ChainB 上创建资产锁定合约：
+只有 Bob 签名的 S 并且在时间点 T2 之前才能将资产 b 转移走，如果到时间点 T2 后仍未解锁，则允许 Mo 撤销资产锁定。
+4. Bob 使用 S 在时间点 T2 前调用 ChainB 上的智能合约解锁消费资产 b；
+5. 由于在 Bob 解锁资产 b 的过程中公开了参数 S ，所以 Mo 也获得 S 的值。Mo 使用 S 在时间点 T1 前解锁消费资产 a。
+&lt;/code>&lt;/pre>&lt;p>PS：不一定每次交易都上链，如 Alice 和 Mo 、Mo 和 Bob 之间都可以存在闪电网络。&lt;/p>
+&lt;p>整个过程很好理解，就是一个单向的哈希时间锁定。但我们之前提到过瑞波想做的不只是链间账本交易，对于那些和区块链毫无关系的，如银行系统之间的结算，Interledger 又要如何处理呢？&lt;/p>
+&lt;p>很遗憾，Interledger 也没有一个完美的解决方案。在草案中 Interledger 给出了两种方式：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>采用第三方公证人机制，对不支持 哈希时间锁定 或 账本 的资金进行托管；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>采用信任线，寻找一条可信的、支持 哈希时间锁定 的中继；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>还是上面的例子，假如Bob一端不是ChainB，而是一个银行系统，那么：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>公证人机制&lt;/strong>：Mo 和 Bob 协商确定一个公证人系统，Mo 将银行资金托管给公证人，只有当 Bob 共享 S 后，才同意转账；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>信任线&lt;/strong>：Mo 和 Bob 是长期可信的商业合作关系；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="2wp">2WP&lt;/h3>
+&lt;p>上面我们了解了 &lt;strong>跨链资产交换&lt;/strong> 的协议，在学习 &lt;strong>跨链资产转移&lt;/strong> 的 侧链 / 中继 技术前，我们先来了解下什么是 双向锚定（2 Way Peg）。&lt;/p>
+&lt;p>跨链的过程不是一个真实物体从一条链转移到另一条，而是一些代币在一条链被锁定，在另一条链被生成。&lt;/p>
+&lt;p>跨链过程中最棘手的一个问题是，对应链如何判断代币在当前链已被 &lt;strong>完全锁定&lt;/strong>，这就是 2WP 承诺。&lt;/p>
+&lt;p>由于 比特链 / 以太坊 等基于 &lt;a href="https://ethereum.org/zh/developers/docs/consensus-mechanisms/pow/">PoW&lt;/a> / &lt;a href="https://ethereum.org/zh/developers/docs/consensus-mechanisms/pos/">PoS&lt;/a> 的共识机制是 &lt;strong>概率性&lt;/strong> 的，即当前区块被挖出、共识，但不一定是最终结果，等到未来有一个更长的链出现，现有的链还是要被废弃、否决。&lt;/p>
+&lt;p>而对于 &lt;a href="https://docs.tendermint.com/master/introduction/what-is-tendermint.html">Tendermint&lt;/a> 等 &lt;strong>确定性&lt;/strong>共识机制，一旦区块被挖出、共识，结果就不会更改。&lt;/p>
+&lt;p>因此确定性共识的 2WP 很容易证明，而对于概率性共识的跨链，2WP的实现必须作出妥协。&lt;/p>
+&lt;p>具体实现方式：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>公证人机制，通过公证人进行托管，负责资产的锁定、验证和释放；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>维护 完整节点 或 轻节点，验证交易，妥协接受 概率性；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;del>区块纠缠，在链间区块上建立纠缠关系，假如未来其中一笔交易被撤销，那么交易所在的区块回滚，同时依赖于这一区块的另一条链上的区块也会回滚，其交易也会被撤销。&lt;/del>（没有找到详细说明文章）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="侧链">侧链&lt;/h3>
+&lt;p>侧链通过双向锚定，允许主侧链之间能够互相操作、资产互转。&lt;/p>
+&lt;p>顾名思义，侧链偏指附属关系，在早期比特链时期，侧链作为比特链新技术的实验链被研究、发展，通过将高频交易转移至侧链，实现对主链的扩容。&lt;/p>
+&lt;p>侧链是一个独立的区块链，有自己的账本系统、共识机制、脚本合约等，所以侧链发生事故对主链没有影响。&lt;/p>
+&lt;p>&lt;strong>公证人模式&lt;/strong>&lt;/p>
+&lt;p>最简单的实现方式是通过公证人托管，其同时负责主侧链的资产锁定和验证释放。&lt;/p>
+&lt;p>&lt;strong>SPV模式&lt;/strong>&lt;/p>
+&lt;p>主侧链维护 完整节点 或 轻节点，验证交易是否确认。大致流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 当用户要向侧链转移代币时，首先在主链创建交易，将代币发送至一个特定地址锁定，这个地址是包含了侧链信息的特殊地址；
+2. 等待一段确认期，使得上述交易获得共识；
+3. 用户在侧链根据 SPV证明 提取代币；
+4. 等待一段竞争期，防止双花攻击；
+5. 原生代币解锁，在侧链上自由流通；
+6. 当用户想要返回主链时，采取类似的反向操作。
+&lt;/code>&lt;/pre>&lt;p>&lt;img src="./img/blockchain/side_chain.png" alt="摘自：https://yeasy.gitbook.io/blockchain_guide/06_bitcoin/sidechain">&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>确认期&lt;/strong>：为了能够获取区块内交易的 Merkle Proof 证明，可以证明资产已被锁定；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>竞争期&lt;/strong>：为了确保资产被 &lt;strong>完全锁定&lt;/strong>。如等待SPV区块头的确认数大于 6 次。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>资产锁定到特殊地址，可以通过主侧链软分叉升级协议来原生支持。&lt;/p>
+&lt;p>2017 年 1 月，基于一年多的探索，Blockstream 发表了文章&lt;a href="https://arxiv.org/pdf/1612.05491.pdf">《Strong Federations: An Interoperable Blockchain Solution to Centralized Third Party Risks》&lt;/a>，着重描述了 联合挂钩（Federated Pegs）的相关概念和应用。&lt;/p>
+&lt;p>可以看作是 公证人机制 + 分布式私钥 的结合，用普通地址锁定释放资金，无需升级区块链协议，大致流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 在 TEE 中，内部存在一个 Master Secret，生成两个私钥 sk1 和 sk2；
+2. sk1 对应于 锁定地址 a1； sk2 对应于 释放地址 a2；
+3. Master Secret的重构拆分为 n 个秘钥，只有 m of n 才可以重构 Master Secret；
+4. 用户要跨链转账时，发送代币到 a1；
+5. 当至少有 m 个 公证人确认交易后，发送密钥碎片到 TEE，重构生成sk2；
+6. a2 地址释放资金；
+&lt;/code>&lt;/pre>&lt;h3 id="plasma">Plasma&lt;/h3>
+&lt;p>Plasma 是以太坊的侧链解决方案，也是通过将大量交易和计算下放到侧链来实现主链的可扩展性。&lt;/p>
+&lt;p>Plasma 框架被设计成一个树状的区块链，以分层方式排列，使得可以在主链之上创建许多较小的链，这些链被称为 Plasma chain 或者 子链，主链的智能合约充当两者通信的媒介。&lt;/p>
+&lt;p>子链聚焦于不同需求的实现，主链则负责维持网络安全并惩罚作恶者，子链和主链之间的通信由防伪证明保护，每个子链都有自己的 共识机制 和 防伪证明。如果发生恶意行为，子链可以向其 父链 或 主链 提交投诉，回滚区块。大致流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 当用户要向子链转移代币时，首先在父链创建交易，将代币发送合约锁定；
+2. Plasma 验证后生成相应数量代币在子链流通；
+3. 子链周期性地向父链同步状态，提交 SPV 区块头信息；
+4. 当用户要向父链转移代币时，在父链提交 Merkle Proof 资产证明；
+5. 等待一段争议期，期间任何用户都可以对该区块提交 防伪证明；
+&lt;/code>&lt;/pre>&lt;p>在用户向父链转移代币退出子链时，&lt;a href="https://github.com/omgnetwork/research/blob/master/plasma/plasma-mvp/explore/priority.md">处理过程是有优先级的&lt;/a>，因为矿工可以作恶，他们可以构造虚假交易，通过退出优先级可以确保在错误交易之前的交易，都会比错误交易先处理。那错误交易之后的交易呢？为了处理这种情况，Plasma 要求每次交易必须有两次签名，一次是对自己的交易签名，一次是对区块签名，如果区块内包含作恶交易，用户为了自己的利益可以拒绝签名。两次签名无疑让用户很厌烦，为了解决这个问题，又提出了 &lt;a href="https://ethresear.ch/t/more-viable-plasma/2160">More Viable Plasma&lt;/a>。&lt;/p>
+&lt;p>退出的争议期一般在一周左右，用户如果不想浪费时间，可以通过 中间人LP 付出一些手续费快速退款，中间人负责检验交易合法性。当子链遇到故障导致堵塞时，还可以通过批量退款，同样的任何涉及用户都可以对该区块提交防伪证明。&lt;/p>
+&lt;p>Plasma 在实现的过程中暴露出了一系列问题：批量退出、争议期、防伪证明、智能合约等。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>用户需要时刻监听交易详情、在争议期提交防伪证明，以避免有人”偷“走自己的代币；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>子链故障退出时，用户代币很容易释放，但智能合约的状态如何退出是一个问题，因此 Plasma 基本不支持智能合约；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>PS:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/ethereum-plasma">https://github.com/ethereum-plasma&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.learnplasma.org/">https://www.learnplasma.org/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="relay">Relay&lt;/h3>
+&lt;p>中继，即转发链间通信的中间节点。在链间的交互中，侧链偏向于附属关系，一般共享原生代币；而中继主要指平等的链间关系。&lt;/p>
+&lt;p>侧链因为只连接主链，所以链间是可以直接通信的；但对于多链网络，不同于链下的闪电网络，如果每条链都直接通信，整个网络充斥着杂乱的通道，链路数量呈平方级上升，很快网络就会不堪重负。这时就需要以中继为中枢，形成一个可以多链协同的中心核轮辐模型。&lt;/p>
+&lt;p>侧链 / 中继模式下，链间通信都依赖于可信第三方进行信息转发，而之后的交易验证可以在 中继链 或 目标链上进行。&lt;/p>
+&lt;p>&lt;strong>BTC Relay&lt;/strong>&lt;/p>
+&lt;p>BTC Relay 是 以太坊 上的一个智能合约，依赖于 Relayer 提交正确的区块头数据，通过存储 SPV 验证交易，及时提交正确 SPV 数据的 Relayer 将会得到奖励。BTC Relay 通过相对简单的设计实现了 比特链 到 以太坊 的单向跨链通信。&lt;/p>
+&lt;p>&lt;strong>Polkadot&lt;/strong>&lt;/p>
+&lt;p>Polkadot 提出了一种异构的多链架构，支持多个高度差异化的共识系统进行访问和互操作。Polkadot 还计划将 私有链 / 联盟链 融入到公有链的共识网络中，同时又能保有 私有链 / 联盟链 的数据隐私和许可的特性。&lt;/p>
+&lt;p>Polkadot 网络主要由 中继链 和 平行链 构成，除此之外还有 转接桥 负责连接其他异构的区块链。平行链作为应用链实现特殊应用场景，但它们自身却不具备区块的共识能力，&lt;a href="https://wiki.polkadot.network/docs/learn-consensus">共识机制&lt;/a>通过中继链执行，因此平行链甚至可以不是一条区块链。所有平行链共享中继链的安全，链间通过 XCMP 进行通信。&lt;/p>
+&lt;p>Polkadot 网络的参与方分为四类：验证者（Validators，负责验证平行链的数据）、收集者（Collator，负责采集平行链的数据并提交给验证者）、提名者（Nominator，Token质押者，为验证者提供押金和信用背书）和渔夫（Fisherman，负责举报和证明恶意行为）。&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/j4fl_uFkiz4ZN62Aa7LWw.png?height=1088&amp;amp;width=1236" alt="摘自 Polkadot 白皮书">&lt;/p>
+&lt;p>假如有两条平行链 ChainA 和 ChainB，它们通过 Polkadot 进行跨链转账的大致流程如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. 平行链 A 上的 Collator 收集跨链交易并验证交易的有效性，将交易打包进区块；
+2. 中继链上 Validator 和 Nominator 质押原生代币，Validator 参与网络治理；
+3. Polkadot 随机分组 Validator 并指定平行链，Validator 验证 ChainA 的区块；
+4. 中继链上 Fisherman 质押原生代币，监控网络行为，举报作恶获得奖励；
+&lt;/code>&lt;/pre>&lt;p>&lt;strong>Cosmos&lt;/strong>&lt;/p>
+&lt;p>和 Polkadot 类似：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Cosmos主要由 Hub（枢纽）和 Zone（分区）两部分组成，Hub 作为中继负责转发 Zone 之间的通信；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>网络都是确定性共识机制；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Cosmos 也将要推出共享中枢安全 &amp;ndash; &lt;a href="https://blog.cosmos.network/interchain-security-is-coming-to-the-cosmos-hub-f144c45fb035">Interchain Security&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>和 Polkadot 不同的是：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Hub 只负责转发数据，由目标 Zone 作最终的交易验证；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Zone 是一条独立的区块链，拥有自己的 &lt;strong>确定性&lt;/strong>共识机制（&lt;a href="https://docs.tendermint.com/master/introduction/what-is-tendermint.html">Tendermint&lt;/a>）和独立安全；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>链间通过 &lt;a href="https://github.com/cosmos/cosmos-sdk/tree/6f070623741fe0d6851d79ada41e6e2b1c67e236/docs/ibc">IBC&lt;/a> 协议进行通信。IBC 是抽象的通信协议，而 Polkadot 的 XCMP 只是一个通信流程，强耦合于 Polkadot 架构。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Cosmos 在已有区块链的架构上进行了抽象、解耦，Cosmos 只规定了网络层通信多链间利用 IBC协议 传输，之上的共识层（&lt;a href="https://blog.cosmos.network/the-internet-of-blockchains-how-cosmos-does-interoperability-starting-with-the-ethereum-peg-zone-8744d4d2bc3f">确定性&lt;/a>）、应用层并无严格要求。&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/WorFJy_cGnQogAkxu3Fat.png?height=1928&amp;amp;width=3448" alt="摘自 https://www.youtube.com/watch?v=yR4ORIQICYs">&lt;/p>
+&lt;p>Cosmos的跨链转账流程大致如下：&lt;/p>
+&lt;pre tabindex="0">&lt;code>1. Chain A 要向 Chain B 进行跨链资产转移，两个链会相互进行注册 或 握手；
+2. Chain A 根据 Chain ID 和 Channel ID，计算出锁定地址，发送资产并锁定；
+3. Relay 将 锁定证明 Proof 转发到 Chain B；
+4. Chain B 维持着 Chain A 的一条轻节点，可以进行交易验证，通过后生成资产；
+5. 当资产从 Chain B 退回 Chain A 时，进行销毁；
+6. Chain A 根据相应证明释放锁定资产。
+&lt;/code>&lt;/pre>&lt;p>类似的，通过 Peg，Cosmos 与 以太坊 可以通过 Gravity Bridge 跨链通信，详细流程请见：https://www.gravitybridge.net/post/how-gravity-works&lt;/p>
+&lt;p>&lt;strong>EVMOS&lt;/strong>&lt;/p>
+&lt;p>前面我们已经提到过了，Cosmos 只规定了多链间的通信标准，每条链的具体实现是自定义的。因此 Evmos 的目标就是通过对 以太坊EVM 的兼容，实现 Cosmos 多链网络对 以太坊 应用的无缝迁移支持。&lt;/p>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.evmos.org/">https://docs.evmos.org/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>跨链帐户&lt;/strong>&lt;/p>
+&lt;p>一个初步了解可见：&lt;/p>
+&lt;p>&lt;a href="https://medium.com/chainapsis/why-interchain-accounts-change-everything-for-cosmos-interoperability-59c19032bf11">https://medium.com/chainapsis/why-interchain-accounts-change-everything-for-cosmos-interoperability-59c19032bf11&lt;/a>&lt;/p>
+&lt;p>首先要说明的是，跨链帐户 不是指通过一个帐户就可以在 Cosmos 的多链网络进行互操作，它最初被命名为 IBC 托管账户，目的是为了抽象、解耦 IBC 在多链间通信的协议标准。&lt;/p>
+&lt;p>假如 Chain A 链上的 Alice 要和 Chain B 上的智能合约 Bob 通信：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>通过托管账户，IBC 的跨链通信只需要定义 Alice 帐户 到 B 链上托管账户的通信标准，具体 托管账户 与 Bob 交互的数据格式是封装的黑盒，无需关心。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>没有托管账户，AB链间的互操作需要定义 Alice 帐户 到 B 链上合约 Bob 的通信标准，涉及到多个合约时对应多个通信标准。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>其实也不尽然，进一步思考，既然 IBC 可以定义 托管账户到合约 的黑盒标准，那一定也可以定义 A链帐户到合约 的数据格式黑盒，只是相对高耦合了一些。&lt;/p>
+&lt;p>采用 跨链帐户 的另一个原因是，区块链发展至今，功能其实主要还是虚拟代币、金融交易。既然是交易，肯定需要一个帐户，跨链帐户就是原链账户在对应链上的一个托管账户，负责在对应链上的金融交易，如质押、defi等。&lt;/p>
+&lt;h3 id="rollup--shard">Rollup &amp;amp;&amp;amp; Shard&lt;/h3>
+&lt;p>最后是 以太坊 的扩容，利用 链下的零知识证明 和 链上的分片 技术，我之前写过两篇小结可作参考：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://kutugu.eth.limo/D19E5932-4374-48C2-87F7-CC053FB1FBB2/">https://kutugu.eth.limo/D19E5932-4374-48C2-87F7-CC053FB1FBB2/&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://kutugu.eth.limo/8EF699BF-BC77-415F-A04B-619519B53BAD/">https://kutugu.eth.limo/8EF699BF-BC77-415F-A04B-619519B53BAD/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="跨链原理概述">跨链原理概述&lt;/h3>
+&lt;p>通过上述的了解我们发现，其实跨链的实现也没有什么银弹。总结来说就两种实现原理，各有千秋：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>跨链资产交换：哈希时间锁定&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>跨链资产转移：双向锚定&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>再加上 以太坊 的扩容：Rollup 和 分片，仅此而已。&lt;/p>
+&lt;p>其他跨链桥项目的原理大致都基于 2WP，不再赘述，只是具体实现方式不同：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>锁定证明：MPT（Merkle Proof Tree）；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>信息转发：人肉跨链、公证人、预言机、中继节点等；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>验证链维护：验证节点、预言机等；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>从安全性上看，跨链交互其实需要很大的信任。因为连接起来的多链网络会是一个很复杂的系统，其安全性会受限于于木桶原理，整个网络中的短板有可能会拉低这个网络中所有其他连接链的安全性。一旦一条链被攻破，它就可以制造出大量虚假数据，最终会污染整个网络。&lt;/p>
+&lt;p>这也是为什么 以太坊 选择了 扩容 而非 跨链，接下来就让我们进一步了解跨链安全和事故。&lt;/p>
+&lt;h2 id="跨链安全">跨链安全&lt;/h2>
+&lt;p>区块链网络的攻击手段，既有传统网络攻击，也有基于共识等机制的攻击，我们这里主要分析相关跨链合约的代码逻辑缺陷：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>网络：堵塞超时、日蚀、DDoS&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>共识：双花、长短距离攻击、女巫攻击&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>合约：整数溢出攻击、权限管理漏洞&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>随着多链网络的兴起，跨链桥在加密世界中变得越来越普遍，但由于其木桶原理，一旦出现问题会波及多个网络、大量资金；再加上项目方的“自大”，合约逻辑常常会出现问题。因此跨链桥获得黑客的”青睐”，从2021年至今，跨链安全事故数量接&lt;a href="https://rekt.news/leaderboard/">近百次&lt;/a>，多数合约未经审计。&lt;/p>
+&lt;p>下面通过几个著名事故来简单分析下合约漏洞问题：&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/ghhXjpx_D9TCk4t-fnGZQ.png?height=522&amp;amp;width=1720" alt="摘自 https://medium.com/coinmonks/cross-chain-bridge-vulnerability-summary-f16b7747f364">&lt;/p>
+&lt;h3 id="chainswap">ChainSwap&lt;/h3>
+&lt;p>ChainSwap 在短短半个月内暴露了两个漏洞利用，主要是由于权限校验逻辑问题，导致用户代币可以被黑客取出，依赖其跨链桥的超 20 个项目代币都遭遇黑客盗取。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>黑客地址：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>第一次：&lt;a href="https://etherscan.io/address/0x941a9e3b91e1cc015702b897c512d265fae88a9c">0x941a9e3b91e1cc015702b897c512d265fae88a9c&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>第二次：&lt;a href="https://etherscan.io/address/0xEda5066780dE29D00dfb54581A707ef6F52D8113">0xEda5066780dE29D00dfb54581A707ef6F52D8113&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Factory Proxy 合约：&lt;a href="https://etherscan.io/address/0xbf515ff38d55737c56d62e8b6a8eea322ec38aa5">0xBF515ff38D55737C56D62E8B6a8eea322Ec38Aa5&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>旧 MappableToken 合约：&lt;a href="https://etherscan.io/address/0x06c24002f43e3AF904EeEc581734EA3A7DbF355E#code">0x06c24002f43e3AF904EeEc581734EA3A7DbF355E&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/ztJZVADua_7BUxe69ZYSm.png?height=646&amp;amp;width=2252" alt="MappableToken receive函数">&lt;/p>
+&lt;p>两次攻击都是这个逻辑：（有点离谱，中间一个星期时间没有修复）&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>初始要求最少三个验证节点，但是后面改成一个，攻击者成本降低，拥有更多攻击配额；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>签名验证只验证了发送地址，没有验证是否为可信的验证节点；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>攻击配额的减少，也没有校验是否为可信的验证节点；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>所以只需要任意一个地址伪造签名就可以完成攻击，等配额为0时换个地址，或等待一段时间恢复&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="poly-network">Poly Network&lt;/h3>
+&lt;p>官方详细时间线总结：&lt;/p>
+&lt;p>&lt;a href="https://medium.com/poly-network/honour-exploit-and-code-how-we-lost-610m-dollar-and-got-it-back-c4a7d0606267">https://medium.com/poly-network/honour-exploit-and-code-how-we-lost-610m-dollar-and-got-it-back-c4a7d0606267&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>源链没有检查发起的跨链操作，黑客可以任意构造数据；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>目标链也没有检查解析的目标调用合约和调用参数；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>putCurEpochConPubKeyBytes&lt;/code> 可以修改 可信记账人 节点地址；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>虽然这个函数是 &lt;code>onlyOwner&lt;/code>，但跨链函数调用者就是合约的 owner；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>黑客通过伪造跨链数据，使目标链 owner 解析执行函数，修改地址；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="qubit-bridge">Qubit Bridge&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>黑客地址：&lt;a href="https://etherscan.io/address/0xd01ae1a708614948b2b5e0b7ab5be6afa01325c7">0xd01ae1a708614948b2b5e0b7ab5be6afa01325c7&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>QBridge Proxy 合约：&lt;a href="https://etherscan.io/address/0x20e5e35ba29dc3b540a1aee781d0814d5c77bce6#code">0x20E5E35ba29dC3B540a1aee781D0814D5c77Bce6&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>旧 QBridgeHandler 合约：&lt;a href="https://etherscan.io/address/0x80d1486ef600cc56d4df9ed33baf53c60d5a629b#code">0x80D1486eF600cc56d4df9ed33bAF53C60D5A629b&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/PQpiO_CEkexY8BdkRUPXZ.png?height=844&amp;amp;width=1792" alt="QBridge deposit函数">&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/OLjvDh5gB-Sz3gbGxJ4o3.png?height=536&amp;amp;width=1782" alt="QBridgeHandler deposit函数">&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>传入任意非法值 resourceID，取得零地址，由于零地址在白名单，通过检测；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>合约自行实现了 &lt;code>safeTransferFrom&lt;/code>，没有检测是否为合约，零地址通过检测；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>deposit 执行成功，&lt;code>Deposit&lt;/code> 事件触发，由于存入 ETH 和 ERC20 合约（WETH）的事件一样（当然区分事件也没有用），所以黑客可以凭借 ERC20 的 “存入证明” 提取对应数量的 ETH；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="meter-bridge">Meter Bridge&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>黑客地址：&lt;a href="https://etherscan.io/address/0x8d3d13cac607b7297ff61a5e1e71072758af4d01">0x8d3d13cac607b7297ff61a5e1e71072758af4d01&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Bridge 合约：&lt;a href="https://etherscan.io/address/0xa2a22b46b8df38cd7c55e6bf32ea5a32637cf2b1#code">0xa2a22b46b8df38cd7c55e6bf32ea5a32637cf2b1&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Handler 合约：&lt;a href="https://etherscan.io/address/0xde4fC7C3C5E7bE3F16506FcC790a8D93f8Ca0b40#code">0xde4fC7C3C5E7bE3F16506FcC790a8D93f8Ca0b40&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/zxR2pP2E0VBAtPhrLyy1q.png?height=1554&amp;amp;width=1648" alt="Handler deposit函数">&lt;/p>
+&lt;p>代码逻辑真的辣眼睛：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>调用 Bridge 的 depositETH 函数存款，Bridge 会将 ETH 转为 WETH，接着 Handler 的 deposit 触发存款事件，由于存款逻辑在 Bridge 进行了，Handler 检测到是 WETH 合约就会跳过存款处理；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>调用 Bridge 的 deposit 函数存款，接着调用 Handler 的 deposit 函数，如果是 WETH 合约也会跳过存款处理&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="multichain">MultiChain&lt;/h3>
+&lt;p>详细分析 + 工具：&lt;/p>
+&lt;p>&lt;a href="https://medium.com/zengo/without-permit-multichains-exploit-explained-8417e8c1639b">https://medium.com/zengo/without-permit-multichains-exploit-explained-8417e8c1639b&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>黑客伪造虚假 token，合约解析出错误的 underlying Token 地址 &amp;ndash; WETH；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>WETH 没有 permit 函数，但有 fallback 函数，且两者都没有返回值，签名检查通过；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>调用 &lt;code>safeTransferFrom&lt;/code> 盗取其他用户资金&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="wormhole">Wormhole&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>合约源码：&lt;a href="https://github.com/certusone/wormhole">certusone/wormhole&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>修复分支：&lt;a href="https://github.com/certusone/wormhole/compare/sec/instructions-fix">sec/instructions-fix&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>官方整理时间线：&lt;/p>
+&lt;p>&lt;a href="https://wormholecrypto.medium.com/wormhole-incident-report-02-02-22-ad9b8f21eec6">https://wormholecrypto.medium.com/wormhole-incident-report-02-02-22-ad9b8f21eec6&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>黑客攻击路径：&lt;a href="https://github.com/certusone/wormhole/blob/sec/instructions-fix/solana/modules/token_bridge/program/src/instructions.rs#L150">complete_wrapped&lt;/a>→ &lt;a href="https://github.com/certusone/wormhole/blob/sec/instructions-fix/solana/bridge/program/src/api/post_vaa.rs#L104">post_vaa&lt;/a> → &lt;a href="https://github.com/certusone/wormhole/blob/sec/instructions-fix/solana/bridge/program/src/api/verify_signature.rs#L68">verify_signatures&lt;/a>，分别对应三个tx：&lt;a href="https://solscan.io/tx/2zCz2GgSoSS68eNJENWrYB48dMM1zmH8SZkgYneVDv2G4gRsVfwu5rNXtK5BKFxn7fSqX9BvrBc1rdPAeBEcD6Es">complete&lt;/a>、&lt;a href="https://solscan.io/tx/2SohoVoPDSdzgsGCgKQPByKQkLAXHrYmvtE7EEqwKi3qUBTGDDJ7DcfYS7YJC2f8xwKVVa6SFUpH5MZ5xcyn1BCK">vaa&lt;/a>、&lt;a href="https://solscan.io/tx/25Zu1L2Q9uk998d5GMnX43t9u9eVBKvbVtgHndkc2GmUFed8Pu73LGW6hiDsmGXHykKUTLkvUdh4yXPdL3Jo4wVS">signature&lt;/a>；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>简单来说就是黑客为了通过 &lt;code>complete_wrapped&lt;/code> 函数攻击，需要提交 vaa 和 验证；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>问题出在验证&lt;a href="https://github.com/certusone/wormhole/blob/sec/instructions-fix/solana/bridge/program/src/api/verify_signature.rs#L105">这里&lt;/a>，从 Solana 1.8 起，该函数由于安全性被弃用，因为相关地址并没有被检查；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用&lt;code>load_instruction_at&lt;/code>，意味着黑客可创建自己的 &lt;code>sysvar account&lt;/code>，存储与 Instructions sysvar 中相同的数据，然后在调用 &lt;code>verify_signatures&lt;/code> 时将该帐户替换为 Instruction sysvar，就可完全绕过签名验证；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>值得一提的是，该攻击就发生在 &lt;a href="https://github.com/certusone/wormhole/commit/7edbbd3677ee6ca681be8722a607bc576a3912c8">Wormhole 要升级 Solana 版本&lt;/a>的前夕&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="li-finance">Li Finance&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>黑客地址：&lt;a href="https://etherscan.io/address/0xC6f2bDE06967E04caAf4bF4E43717c3342680d76">0xC6f2bDE06967E04caAf4bF4E43717c3342680d76&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>旧 CBridgeFacet 合约：&lt;a href="https://etherscan.io/address/0x73a499e043b03fc047189ab1ba72eb595ff1fc8e#code">0x73a499e043b03fc047189ab1ba72eb595ff1fc8e&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/Liihek43JpYW2FV_wLLR0.png?height=1512&amp;amp;width=1654" alt="CBridgeFacet swapAndStartBridgeTokensViaCBridge函数">&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/QC6zhVUl5W-ny6aLrsYwZ.png?height=962&amp;amp;width=1646" alt="LibSwap swap函数">&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>swapAndStartBridgeTokensViaCBridge&lt;/code> 调用 &lt;code>swap&lt;/code> 函数批量处理；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>但 &lt;code>swap&lt;/code> 没有鉴权，任何人都可以调用他人授权的地址进行转账等操作；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>另外由于 &lt;code>swapAndStartBridgeTokensViaCBridge&lt;/code> 下方有数量检测，所以需要真正存入一笔资金；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>官方的总结也说明了为什么合约问题屡见不鲜：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Our mission is to maximize UX；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The timing could not have been more unfortunate as we are only a week away from the start of our audits；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>也希望能给其他项目方一个警醒，安全是第一位的，不要出事了才想到审计。&lt;/p>
+&lt;h3 id="ronin-network">Ronin Network&lt;/h3>
+&lt;ul>
+&lt;li>黑客地址：&lt;a href="https://etherscan.io/address/0x098b716b8aaf21512996dc57eb0615e2383e2f96">0x098B716B8Aaf21512996dC57EB0615e2383E2f96&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>本次攻击和合约无关，是网络层面的攻击，因此没有太多要讲的。&lt;/p>
+&lt;blockquote>
+&lt;p>黑客通过对 Sky Mavis 实施&lt;a href="https://www.cisa.gov/uscert/ncas/alerts/aa22-108a">网络钓鱼攻击&lt;/a>渗透 Sky Mavis IT 基础设备，获得 4 个验证节点的访问权限，又通过 Gas-Free RPC 节点发现了一个后门，获取了 Axie DAO 验证节点的签名，从而控制了 5/9 的验证节点。&lt;/p>
+&lt;/blockquote>
+&lt;p>除了黑客攻击外，主要是授权不够去中心化，之前有临时状况进行集权，但后续没有及时撤销，后续 Ronin 计划将在网络中添加几个新的验证者节点，以进一步去中心化。&lt;/p>
+&lt;h3 id="layer-zero">Layer Zero&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>合约升级：&lt;a href="https://www.diffchecker.com/RJdDTCx7">https://www.diffchecker.com/RJdDTCx7&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>原始漏洞代码在进行 MPT（Merkle Proof Tree） 验证时，通过外部传入的 pointer 来获取下一层计算所用到的 hashRoot；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>由于没有限制 pointer 在 proofBytes 长度内，可以通过传入越界的 pointer，使合约读取到 proofBytes 以外的数据作为下一层的 hashRoot；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>这样存在伪造 hashRoot 的可能，进一步可能导致伪造交易可以通过 MPT 验证；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>这个攻击和权限管控、是否为多签无关&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>PS：撰写本文时，基于 Layer Zero 的 Stargate 项目的 &lt;a href="https://twitter.com/AlexAuroraDev/status/1520810591803293696?s=20&amp;amp;t=hfdqM8kxarVVSZ2XO-MOhw">Rainbow Bridge（Near）被黑客尝试攻击&lt;/a>，一个 SPV 类的攻击，黑客尝试创建轻节点伪造交易，但是被挑战，攻击失败了。&lt;/p>
+&lt;h3 id="bnb-iavl-攻击">BNB IAVL 攻击&lt;/h3>
+&lt;p>IAVL 树是 Cosmos 团队设计的一种新的数据结构，其结合了 Merkle 树和 AVL 树的优点。但在计算 Proof 的过程中，&lt;a href="https://github.com/cosmos/iavl/commit/5c85bf74040fe72fbd5fb4e0a19890fc11677b8c#diff-8900a93a6d474bd8973beabf67b04383bde602d3bf747ac747eaaae531bcf889R81">没有考虑到边界情况&lt;/a>，导致存在右节点不为空的情况下未参与 hash 计算，攻击者可以构造带有恶意 payload 的节点通过 Proof 校验。&lt;/p>
+&lt;p>详细分析请见：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://foresightnews.pro/article/detail/15928">https://foresightnews.pro/article/detail/15928&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://foresightnews.pro/article/detail/16070">https://foresightnews.pro/article/detail/16070&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h3 id="跨链安全概述">跨链安全概述&lt;/h3>
+&lt;p>虽然跨链出现了很多事故，大部分跨链的安全问题没有出自状态的同步、共识，而仅仅是因为普通的代码逻辑。其实不只是跨链，目前整个区块链发展都仍处于野蛮生长阶段，安全问题不容小觑。&lt;/p></content></item><item><title>浅谈以太坊扩容</title><link>/post/%E6%B5%85%E8%B0%88%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%89%A9%E5%AE%B9/</link><pubDate>Tue, 03 Aug 2021 08:57:49 +0800</pubDate><guid>/post/%E6%B5%85%E8%B0%88%E4%BB%A5%E5%A4%AA%E5%9D%8A%E6%89%A9%E5%AE%B9/</guid><description>浅谈以太坊扩容 这两天看了下以太坊扩容相关文章，囫囵吞枣、不甚理解。
+简单写下小结，权当学习资料汇总了，欢迎一起探讨。
+背景 区块链诞生之初的一个愿景就是去中心化，要实现这一目标就需要更多节点参与到区块链的共识中来。
+考虑到不同设备的计算水平不同，区块链节点类型大致可以分成三类：全节点、轻节点和SPV节点。
+我们知道每个区块由区块头和这个区块所有的交易数据组成，这三种节点的区别就在于：
+全节点：验证所有区块的全部数据并存储的完整节点； 轻节点：仍需下载验证区块的全部数据，只需存储部分数据； SPV节点：只需验证并存储区块头数据。 PS：
+https://www.reddit.com/r/CryptoTechnology/comments/8eft7h/spv_wallets_vs_api_wallets/ 扩容方案 为了解决日益严重的交易费和吞吐量低下问题，以太坊的扩容途径主要有两种：
+直接提高区块链交易吞吐量 增大区块容量，区块验证对节点设备要求提高，逐渐变得中心化； 缩短区块产生时间，分叉概率提高。 重构以太坊架构 分层 State channels Plasma Rollup 分片 Sharding Danksharding &amp;amp;&amp;amp; crList PS：POW和POS的主要区别不在于交易吞吐量，而是出于环保、安全等方面的考虑。 PS：POS机制是分片的基础，在POW中由于矿工不需要质押，很容易在分片中作恶，无法对矿工进行实际惩处；通过POS质押可以直接扣除作恶提议者的资金，确保分片的安全性。
+分层 方案一的缺点已经说明，我们下面来分析方案二，我们先了解下分层的概念：
+不必将所有交易放在以太坊主网上，而是在 Layer2 层执行大部分交易；L1层只需执行两个任务：处理存取款和验证L2交易的有效性，减轻L1负担，提高交易处理效率。
+分层的方案大致可以分为三类，前两种是「完全的」Layer2 方案，它们试图将数据和计算都转移至链下，但由于 owner 问题，无法兼容所有的EVM应用；
+而Rollup 是一种「混合」的 Layer2 方案，将计算以及状态存储转移至链下，但同时将每笔交易的部分数据保留在链上。
+PS：
+https://vitalik.ca/general/2021/01/05/rollup.html 数据可用性（DA） 我们上面所说的这些交易验证都是基于SPV证明，那么问题来了，SPV节点如何知道区块头的数据是正确的呢？又要如何验证Rollup数据的置信度呢？ 这便是数据可用性问题。解决方案主要有两种：
+欺诈性证明：依赖于随机采样证明或可信节点的警报； 有效性证明：数据中就包含有相关证明 Rollup因此也分为两类：
+Optimistic rollup，采用欺诈性证明，惰性计算，优化计算性能； ZK rollup，采用有效性证明，只需压缩后的相关证明，优化存储性能 由于目前 ZK proof 计算成本高，趋于中心化。因此前期 Optimistic rollup 可能占有一定优势，随着 ZK proof 算法的优化，ZK rollup 应该会逐渐成为主流。
+欺诈证明 欺诈证明主要依赖于 SPV节点 和 全节点 两部分。</description><content>&lt;h1 id="浅谈以太坊扩容">浅谈以太坊扩容&lt;/h1>
+&lt;p>这两天看了下以太坊扩容相关文章，囫囵吞枣、不甚理解。&lt;/p>
+&lt;p>简单写下小结，权当学习资料汇总了，欢迎一起探讨。&lt;/p>
+&lt;h2 id="背景">背景&lt;/h2>
+&lt;p>区块链诞生之初的一个愿景就是去中心化，要实现这一目标就需要更多节点参与到区块链的共识中来。&lt;/p>
+&lt;p>考虑到不同设备的计算水平不同，区块链节点类型大致可以分成三类：全节点、轻节点和SPV节点。&lt;/p>
+&lt;p>我们知道每个区块由区块头和这个区块所有的交易数据组成，这三种节点的区别就在于：&lt;/p>
+&lt;ul>
+&lt;li>全节点：验证所有区块的全部数据并存储的完整节点；&lt;/li>
+&lt;li>轻节点：仍需下载验证区块的全部数据，只需存储部分数据；&lt;/li>
+&lt;li>SPV节点：只需验证并存储区块头数据。&lt;/li>
+&lt;/ul>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://www.reddit.com/r/CryptoTechnology/comments/8eft7h/spv_wallets_vs_api_wallets/">https://www.reddit.com/r/CryptoTechnology/comments/8eft7h/spv_wallets_vs_api_wallets/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="扩容方案">扩容方案&lt;/h2>
+&lt;p>为了解决日益严重的交易费和吞吐量低下问题，以太坊的扩容途径主要有两种：&lt;/p>
+&lt;ul>
+&lt;li>直接提高区块链交易吞吐量
+&lt;ul>
+&lt;li>增大区块容量，区块验证对节点设备要求提高，逐渐变得中心化；&lt;/li>
+&lt;li>缩短区块产生时间，分叉概率提高。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>重构以太坊架构
+&lt;ul>
+&lt;li>分层
+&lt;ul>
+&lt;li>State channels&lt;/li>
+&lt;li>Plasma&lt;/li>
+&lt;li>Rollup&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>分片
+&lt;ul>
+&lt;li>Sharding&lt;/li>
+&lt;li>Danksharding &amp;amp;&amp;amp; crList&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;del>PS：POW和POS的主要区别不在于交易吞吐量，而是出于&lt;a href="https://vitalik.ca/general/2020/11/06/pos2020.html">环保、安全&lt;/a>等方面的考虑。&lt;/del> &lt;br>
+PS：POS机制是分片的基础，在POW中由于矿工不需要质押，很容易在分片中作恶，无法对矿工进行实际惩处；通过POS质押可以直接扣除作恶提议者的资金，确保分片的安全性。&lt;/p>
+&lt;h2 id="分层">分层&lt;/h2>
+&lt;p>方案一的缺点已经说明，我们下面来分析方案二，我们先了解下分层的概念：&lt;/p>
+&lt;p>不必将所有交易放在以太坊主网上，而是在 Layer2 层执行大部分交易；L1层只需执行两个任务：处理存取款和验证L2交易的有效性，减轻L1负担，提高交易处理效率。&lt;/p>
+&lt;p>分层的方案大致可以分为三类，前两种是「完全的」Layer2 方案，它们试图将数据和计算都转移至链下，但由于 owner 问题，无法兼容所有的EVM应用；&lt;/p>
+&lt;p>而Rollup 是一种「混合」的 Layer2 方案，将计算以及状态存储转移至链下，但同时将每笔交易的部分数据保留在链上。&lt;/p>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://vitalik.ca/general/2021/01/05/rollup.html">https://vitalik.ca/general/2021/01/05/rollup.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="数据可用性da">数据可用性（DA）&lt;/h2>
+&lt;p>我们上面所说的这些交易验证都是基于SPV证明，那么问题来了，SPV节点如何知道区块头的数据是正确的呢？又要如何验证Rollup数据的置信度呢？ 这便是数据可用性问题。解决方案主要有两种：&lt;/p>
+&lt;ul>
+&lt;li>欺诈性证明：依赖于随机采样证明或可信节点的警报；&lt;/li>
+&lt;li>有效性证明：数据中就包含有相关证明&lt;/li>
+&lt;/ul>
+&lt;p>Rollup因此也分为两类：&lt;/p>
+&lt;ul>
+&lt;li>Optimistic rollup，采用欺诈性证明，惰性计算，优化计算性能；&lt;/li>
+&lt;li>ZK rollup，采用有效性证明，只需压缩后的相关证明，优化存储性能&lt;/li>
+&lt;/ul>
+&lt;p>由于目前 ZK proof 计算成本高，趋于中心化。因此前期 Optimistic rollup 可能占有一定优势，随着 ZK proof 算法的优化，ZK rollup 应该会逐渐成为主流。&lt;/p>
+&lt;h2 id="欺诈证明">欺诈证明&lt;/h2>
+&lt;p>欺诈证明主要依赖于 SPV节点 和 全节点 两部分。&lt;/p>
+&lt;p>对于全节点来讲：&lt;/p>
+&lt;ul>
+&lt;li>通过激励来鼓励它们举报坏家伙们&lt;/li>
+&lt;li>通过惩罚来限制它们进行警报的DOS攻击&lt;/li>
+&lt;/ul>
+&lt;p>但有时全节点是无法确定是欺诈的，比如矿工广播区块头和tx1外的所有交易数据，由于不可归因的性质，全节点无法证明tx1不可用。&lt;/p>
+&lt;p>利用纠删码技术，我们可以将n块数据扩展为2n块数据，任意的n块数据都可以恢复原始数据块。除非矿工隐藏一半以上的数据，否则全节点可以保证能拿到所有数据。&lt;/p>
+&lt;p>对于SPV节点来讲：&lt;/p>
+&lt;ul>
+&lt;li>通过历史数据等验证区块头数据的正确性（如无效、双花等问题）&lt;/li>
+&lt;li>通过随机采样等验证全节点知道该区块头对应的所有交易数据&lt;/li>
+&lt;/ul>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://polygon.technology/blog/the-data-availability-problem-6b74b619ffcc">https://polygon.technology/blog/the-data-availability-problem-6b74b619ffcc&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.truthcoin.info/blog/fraud-proofs/">https://www.truthcoin.info/blog/fraud-proofs/&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="有效证明">有效证明&lt;/h2>
+&lt;p>上面提到了通过纠删码技术，可以避免矿工隐藏某些交易，但这项技术仍需要依赖一个可信的全节点； 而且如果优化不好，一些欺诈证明的大小可能与区块本身的大小差不多，这个问题可以采用多维纠删码技术来改进。&lt;/p>
+&lt;p>而通过 KZG的多项式承诺，我们可以生成一个有效性证明，从而使SPV节点跳过欺诈证明。&lt;/p>
+&lt;p>当然除此之外，还有Coded Merkle Tree、Coded Interleaving Tree、FRI等技术。&lt;/p>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html">https://dankradfeist.de/ethereum/2020/06/16/kate-polynomial-commitments.html&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="分片">分片&lt;/h2>
+&lt;p>分片就是将主链拆分成多个拥有单独共识机制的分片，全节点无需再同步验证所有交易数据，只需处理分片内的交易。同时为了保证安全性，信标链（Beacon）每隔一段时间会将验证者随机分配给各个分片。&lt;/p>
+&lt;p>Danksharding 区别于传统的分片技术，首先采用PBS（proposer builder separation）策略将 proposer 和 builder 分离，来避免矿工（既是 proposer 又是 builder）审查交易内容，获取MEV。&lt;/p>
+&lt;p>传统分片技术中，每个分片都有各自的 proposer 和 builder，每个分片打包的 shard block 聚合成最终的 execution block。当有一个 shard block 作恶不可用时，整个execution block都会不可用。&lt;/p>
+&lt;p>在 Danksharding 架构中，每个分片的 proposer 只需要广播可执行交易，由执行层的 builder 同时负责打包 shard block 和 execution block。&lt;/p>
+&lt;p>而 crList（Censorship resistance）类似于 flashbot，可以确保区块按 proposer 提交的交易列表打包，以免 builder 任意审查交易数据，获取MEV；与后者的区别在于 crList 是公开的交易列表。&lt;/p>
+&lt;p>PS：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://notes.ethereum.org/@hww/workshop_feb_2022">https://notes.ethereum.org/@hww/workshop_feb_2022&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://notes.ethereum.org/Dh7NaB59TnuUW5545msDJQ?view">https://notes.ethereum.org/Dh7NaB59TnuUW5545msDJQ?view&lt;/a>&lt;/li>
+&lt;/ul></content></item><item><title>零知识学习零知识证明</title><link>/post/%E9%9B%B6%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/</link><pubDate>Sat, 03 Jul 2021 08:57:49 +0800</pubDate><guid>/post/%E9%9B%B6%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0%E9%9B%B6%E7%9F%A5%E8%AF%86%E8%AF%81%E6%98%8E/</guid><description>零知识学习零知识证明 杂谈 Math is law !
+数学真的太迷人了，虽然我不懂 ;)
+水一篇小短文，总结下这两天的学习成果。
+抛开数学、多项式不谈，零知识学习零知识证明。
+概念 首先，零知识证明大致可以概述为：Prover 向 Verifier 证明拥有某个数据，但证明的同时并不暴露这个数据具体是什么。
+https://youtu.be/fOGdb1CTu5c （介绍视频）
+https://mp.weixin.qq.com/s/ZIXOxidlYZExzDZuEdg8Yg（中文翻译）
+视频中科学家提到一个很有意思的点，为什么叫 零知识 而不是 零信息、零数据 ？
+我的一个理解：因为在证明的过程中，Prover 需要向 Verifier 提供 部分数据 用于验证，最终 Verifier 得到一个信息：Prover 是 大概率 拥有这个完整数据的。
+通过大量验证Verifier不断提高这个概率直到可信阈值，但在整个过程中所有的 Verifier 都无法拼凑出数据的完整体 —- 知识。
+下面再通过一个经典的数独故事来理解这一概念：
+https://medium.com/qed-it/the-incredible-machine-4d1270d7363a（原文链接）
+https://zhuanlan.zhihu.com/p/34072069（中文翻译）
+零知识性 零知识证明有三种性质，完备性和可靠性不再赘述，我在理解零知识性时遇到了一个误区：地图三染色问题上的零知识证明，可能存在知识泄漏？理由如下：
+Prover 需要向 Verifier 提供相邻两个地域的颜色，以便 Verifier 验证；
+但是颜色一共只有三种，虽然第二次通过随机数更换了颜色，但如果 Verifier 第二次选择的地域和第一次存在交集，那么 Verifier 可以拿到前后两次颜色的映射；
+// 第一种映射 绿色 —&amp;gt; 红色 A —&amp;gt; 棕色 橙色 —&amp;gt; B // 第二种映射 绿色 —&amp;gt; 红色 橙色 —&amp;gt; 棕色 A —&amp;gt; B 那 Verifier 是不是可以反推回去，拿到第一次 &amp;amp; 第二次的结果？</description><content>&lt;h1 id="零知识学习零知识证明">零知识学习零知识证明&lt;/h1>
+&lt;h2 id="杂谈">杂谈&lt;/h2>
+&lt;p>Math is law !&lt;/p>
+&lt;p>数学真的太迷人了，虽然我不懂 ;)&lt;/p>
+&lt;p>水一篇小短文，总结下这两天的学习成果。&lt;/p>
+&lt;p>抛开数学、多项式不谈，零知识学习零知识证明。&lt;/p>
+&lt;h2 id="概念">概念&lt;/h2>
+&lt;p>首先，零知识证明大致可以概述为：Prover 向 Verifier 证明拥有某个数据，但证明的同时并不暴露这个数据具体是什么。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://youtu.be/fOGdb1CTu5c">https://youtu.be/fOGdb1CTu5c&lt;/a> （介绍视频）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://mp.weixin.qq.com/s/ZIXOxidlYZExzDZuEdg8Yg">https://mp.weixin.qq.com/s/ZIXOxidlYZExzDZuEdg8Yg&lt;/a>（中文翻译）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>视频中科学家提到一个很有意思的点，为什么叫 零知识 而不是 零信息、零数据 ？&lt;/p>
+&lt;p>我的一个理解：因为在证明的过程中，Prover 需要向 Verifier 提供 部分数据 用于验证，最终 Verifier 得到一个信息：Prover 是 大概率 拥有这个完整数据的。&lt;/p>
+&lt;p>通过大量验证Verifier不断提高这个概率直到可信阈值，但在整个过程中所有的 Verifier 都无法拼凑出数据的完整体 —- 知识。&lt;/p>
+&lt;p>下面再通过一个经典的数独故事来理解这一概念：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://medium.com/qed-it/the-incredible-machine-4d1270d7363a">https://medium.com/qed-it/the-incredible-machine-4d1270d7363a&lt;/a>（原文链接）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/34072069">https://zhuanlan.zhihu.com/p/34072069&lt;/a>（中文翻译）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="零知识性">零知识性&lt;/h2>
+&lt;p>零知识证明有三种性质，完备性和可靠性不再赘述，我在理解零知识性时遇到了一个误区：地图三染色问题上的零知识证明，可能存在知识泄漏？理由如下：&lt;/p>
+&lt;p>Prover 需要向 Verifier 提供相邻两个地域的颜色，以便 Verifier 验证；&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/hq40z3y4EyQzYK1gMdlu9.png?height=344&amp;amp;width=730" alt=" 图片来源：https://secbit.io/blog/2019/07/31/zero-knowledge-and-proof">&lt;/p>
+&lt;p>但是颜色一共只有三种，虽然第二次通过随机数更换了颜色，但如果 Verifier 第二次选择的地域和第一次存在交集，那么 Verifier 可以拿到前后两次颜色的映射；&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/H0hUTy0KBLwEsTF6x30iQ.png?height=331&amp;amp;width=730" alt="图片来源：https://secbit.io/blog/2019/07/31/zero-knowledge-and-proof">&lt;/p>
+&lt;pre tabindex="0">&lt;code>// 第一种映射
+绿色 —&amp;gt; 红色
+A —&amp;gt; 棕色
+橙色 —&amp;gt; B
+// 第二种映射
+绿色 —&amp;gt; 红色
+橙色 —&amp;gt; 棕色
+A —&amp;gt; B
+&lt;/code>&lt;/pre>&lt;p>那 Verifier 是不是可以反推回去，拿到第一次 &amp;amp; 第二次的结果？&lt;/p>
+&lt;p>&lt;img src="https://images.mirror-media.xyz/publication-images/t399gL1TSnnbOSh-_JAhd.png?height=331&amp;amp;width=730" alt="图片来源：https://secbit.io/blog/2019/07/31/zero-knowledge-and-proof">&lt;/p>
+&lt;p>即第二次棕色的位置，对应第一次的橙色或A色。这样每次我们都有1 / 2的概率可以猜对，最终拿到所有结果。&lt;/p>
+&lt;p>这样是不是说明存在知识泄漏的风险？当然不是，我们可以通过以下三种方式来证明：&lt;/p>
+&lt;h3 id="证明1">证明1&lt;/h3>
+&lt;p>我们要知道虽然每次都有1 / 2的概率猜对，但整个计算的时间复杂度却是 O(2^n) 级别的，这是一个&lt;a href="https://zh.wikipedia.org/wiki/P/NP%E9%97%AE%E9%A2%98">NP问题&lt;/a>。NP的具体介绍不在本文范围内，只需要知道它的计算时间很复杂。&lt;/p>
+&lt;p>所以 Verifier 基本是无法反推出来的。反过来讲，既然这个NP问题可以应用零知识证明，那通过NP的性质，我们可以得出零知识证明可以应用于所有的NP问题这一结论。&lt;/p>
+&lt;h3 id="证明2">证明2&lt;/h3>
+&lt;p>上面 Verifier 的反推过程，大家不觉得有点眼熟吗？这不就是地图三染色问题的 穷举 解法吗？和零知识证明、知识泄漏并无任何关系。&lt;/p>
+&lt;h3 id="证明3">证明3&lt;/h3>
+&lt;p>下面我们通过理论的角度，也可以验证上面的结论，参考&lt;a href="https://blog.cryptographyengineering.com/2014/11/27/zero-knowledge-proofs-illustrated-primer/">文章&lt;/a>。&lt;/p>
+&lt;p>如果你没有看过上面数独的故事，我建议你先去阅读一遍。故事中提到了一个人为的作弊行为，下面我们用编程来替代人为交互：&lt;/p>
+&lt;p>我们想象一个这样的程序，假设一个由 Prover 完全操控的验证程序 （当然事实不可能是这样，只是为了模拟作弊），可以在任意节点 倒带回溯，修复该节点的错误，那么 Prover 完全可以通过操控这个验证程序来蒙混过关，欺骗 Verifier。&lt;/p>
+&lt;p>基于上述背景，我们再来思考两个场景：&lt;/p>
+&lt;ul>
+&lt;li>Prover 提供了标准答案给 Verifier 验证；&lt;/li>
+&lt;li>Prover 通过回溯欺骗 Verifier，通过验证。&lt;/li>
+&lt;/ul>
+&lt;p>两个场景在 Verifier 的角度看有区别吗？没有，两种场景对于 Verifier 的结果都是正确通过验证。所以假设像误区所提到的那样，Verifier 有一种策略可以获取 Prover 的完整知识。但是在上述第二种场景中 Prover 根本就不知道完整知识(答案)，所以 Verifier 不会获取到任何知识。&lt;/p>
+&lt;p>而且既然两种场景在 Verifier 的视角并无区别，那么在第一种场景中 Verifier 也不应能获取任何知识。&lt;/p></content></item><item><title>一个事件循环引发的Async原理探究</title><link>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</link><pubDate>Tue, 06 Oct 2020 13:17:27 +0800</pubDate><guid>/post/%E4%B8%80%E4%B8%AA%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E5%BC%95%E5%8F%91%E7%9A%84async%E5%8E%9F%E7%90%86%E6%8E%A2%E7%A9%B6/</guid><description>一个事件循环引发的Async原理探究 起因 最近在复习前端事件循环机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：
 function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end...&amp;#34;); } test(); console.log(&amp;#34;suspend!&amp;#34;); new Promise((resolve) =&amp;gt; { resolve(&amp;#34;promise&amp;#34;); }).then(val =&amp;gt; console.log(val)); /* 输出 test start... suspend! testing... test end... promise */ 微调 &amp;ndash; 声明async 现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：
 // 只是函数声明微调为async async function testSometing() { return &amp;#34;testing...&amp;#34;; } async function test() { console.log(&amp;#34;test start...&amp;#34;); const v1 = await testSometing(); console.log(v1); console.log(&amp;#34;test end.</description><content>&lt;h1 id="一个事件循环引发的async原理探究">一个事件循环引发的Async原理探究&lt;/h1>
 &lt;h2 id="起因">起因&lt;/h2>
 &lt;p>最近在复习前端&lt;code>事件循环&lt;/code>机制，在无意间修改了下代码，返回了不一样的结果。代码简化如下：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">test&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="微调----声明async">微调 &amp;ndash; 声明async&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="微调----声明async">微调 &amp;ndash; 声明async&lt;/h2>
 &lt;p>现在的输出结果完全正常，是常见的事件循环，具体流程不再赘述，下面来微调一下代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 只是函数声明微调为async
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">test&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>async&lt;/code>和&lt;code>await&lt;/code>的语法糖使得&lt;code>Promise&lt;/code>的&lt;code>链式调用&lt;/code>转为&lt;code>同步&lt;/code>的写法。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 只是函数声明微调为async
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;code>async&lt;/code>和&lt;code>await&lt;/code>的语法糖使得&lt;code>Promise&lt;/code>的&lt;code>链式调用&lt;/code>转为&lt;code>同步&lt;/code>的写法。&lt;/p>
 &lt;p>我们常常&lt;code>await&lt;/code>一个函数，这里的执行顺序需要注意：&lt;/p>
 &lt;ul>
 &lt;li>执行到这个语句会先执行&lt;code>await&lt;/code>后面的函数，获得一个返回值，&lt;code>await&lt;/code>会将其&lt;code>&amp;quot;修饰&amp;quot;&lt;/code>为一个&lt;code>Promise&lt;/code>对象，再&lt;code>&amp;quot;中断跳出&amp;quot;&lt;/code>；&lt;/li>
@@ -67,160 +1306,178 @@ function testSometing() { return &amp;#34;testing...&amp;#34;; } async function 
 &lt;p>而&lt;code>async&lt;/code>函数会返回一个&lt;code>Promise&lt;/code>对象，所以我们常常&lt;code>await&lt;/code>一个&lt;code>async&lt;/code>函数的返回值。&lt;/p>
 &lt;p>综上所述，这个微调合情合理，且无影响。但是当我们再来微调下：&lt;/p>
 &lt;h2 id="微调----显式返回promise">微调 &amp;ndash; 显式返回Promise&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#75715e">// 只是函数返回值显式声明为Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">test&lt;/span>();
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>细心的童鞋已经发现了，让我们再来看下输出队列，&lt;code>'promise'&lt;/code>的输出提前了。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 只是函数返回值显式声明为Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">v1&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">await&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">v1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">test&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>细心的童鞋已经发现了，让我们再来看下输出队列，&lt;code>'promise'&lt;/code>的输出提前了。&lt;/p>
 &lt;p>&lt;code>async&lt;/code>不是会返回&lt;code>Promise&lt;/code>对象吗？现在我们只是&lt;code>显式声明&lt;/code>呀，为什么顺序会发生变化？&lt;/p>
 &lt;h2 id="定位问题">定位问题&lt;/h2>
 &lt;p>我们再简化一下代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 隐式返回Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#a6e22e">testSometing&lt;/span>()
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;span style="color:#75715e">// 显式声明Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">testSometing&lt;/span>()
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>诶，为什么又一致了？难道是&lt;code>await&lt;/code>的原因？&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 隐式返回Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">testSometing&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 显式声明Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">testSometing&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>诶，为什么又一致了？难道是&lt;code>await&lt;/code>的原因？&lt;/p>
 &lt;p>但&lt;code>await&lt;/code>是一个黑盒，直接打&lt;code>断点&lt;/code>调试，发现底层有很多事件循环的源码。&lt;/p>
 &lt;p>尝试&lt;code>编译&lt;/code>，但&lt;code>babel&lt;/code>官方&lt;code>async&lt;/code>编译插件只支持转为&lt;code>generator&lt;/code>。emmm，那&lt;code>yield&lt;/code>和&lt;code>await&lt;/code>有什么区别&amp;hellip;&lt;/p>
 &lt;p>看看有没有第三方插件，有两个有bug，第三次输出结果和前两个一样，不符合&lt;code>ES6&lt;/code>标准（→_→）&lt;/p>
 &lt;p>那只能去找些&lt;a href="https://github.com/lfp1024/promise/blob/master/src/async-await/async-await.js">polyfill&lt;/a>看看，让我们修改一下代码：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 隐式返回Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
-}
-&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
-})
-})
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面我们曾提到了&lt;code>await&lt;/code>的执行顺序，但还有些细节需要我们深究：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 隐式返回Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>上面我们曾提到了&lt;code>await&lt;/code>的执行顺序，但还有些细节需要我们深究：&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>await&lt;/code>的&lt;code>&amp;quot;中断跳出&amp;quot;&lt;/code>实现，只是将函数内下面的代码全部封装到&lt;code>Promise&lt;/code>回调中，函数内没有代码执行，自然跳出函数，执行&lt;code>后面代码&lt;/code>；&lt;/li>
 &lt;li>&lt;code>await&lt;/code>是怎么&lt;code>&amp;quot;修饰&amp;quot;&lt;/code>返回值为&lt;code>Promise&lt;/code>的？&lt;code>await&lt;/code>内部通过&lt;code>Promise.then&lt;/code>来实现（见下文）；&lt;/li>
 &lt;li>接下来只需要等待&lt;code>Promise&lt;/code>转为&lt;code>最终态&lt;/code>，执行后面回调即可；多个&lt;code>await&lt;/code>就是多个嵌套的回调函数。&lt;/li>
 &lt;/ul>
 &lt;p>我们也看到了上面的输出和之前的隐式输出一致，那显式呢？&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 显式声明Promise
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
-&lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
-})
-})
-&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
-&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
-}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
-&lt;span style="color:#75715e">/* 输出
-&lt;/span>&lt;span style="color:#75715e">test start...
-&lt;/span>&lt;span style="color:#75715e">suspend!
-&lt;/span>&lt;span style="color:#75715e">promise
-&lt;/span>&lt;span style="color:#75715e">testing...
-&lt;/span>&lt;span style="color:#75715e">test end...
-&lt;/span>&lt;span style="color:#75715e">*/&lt;/span>
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出结果一致！&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 显式声明Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">test&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test start...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">_await&lt;/span>(&lt;span style="color:#a6e22e">_async&lt;/span>(&lt;span style="color:#a6e22e">testSometing&lt;/span>))(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;test end...&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;suspend!&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;promise&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span> =&amp;gt; &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#a6e22e">val&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/* 输出
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test start...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">suspend!
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">testing...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">test end...
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">*/&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出结果一致！&lt;/p>
 &lt;p>但根据代码，显式和隐式的&lt;code>await&lt;/code>似乎并无不同，反而是传入&lt;code>async&lt;/code>的函数返回值存在差异，看来问题似乎出现在&lt;code>async&lt;/code>内部。&lt;/p>
 &lt;h2 id="polyfill源码分析">polyfill源码分析&lt;/h2>
 &lt;p>我们下面贴下源码，深入分析：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_async&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">func&lt;/span>) =&amp;gt; {
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) =&amp;gt; {
-&lt;span style="color:#75715e">// 捕获同步错误
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">try&lt;/span> {
-&lt;span style="color:#75715e">// 返回值
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>()
-&lt;span style="color:#75715e">// 检查返回值是否是 对象 | 函数，它们可能是thenable对象
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (
-(
-(&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;object&amp;#39;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>) &lt;span style="color:#f92672">||&lt;/span>
-&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
-) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>
-&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>.&lt;span style="color:#a6e22e">then&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
-) {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 如果是thenable对象
-&lt;/span>&lt;span style="color:#75715e"> * 将其解析封装为Promise对象，并递归调用then函数
-&lt;/span>&lt;span style="color:#75715e"> * 最终解析为非thenable值返回
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>)
-} &lt;span style="color:#66d9ef">else&lt;/span> {
-&lt;span style="color:#75715e">// 如果不是直接将其状态转为最终态
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>)
-}
-} &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
-&lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>)
-}
-})
-&lt;span style="color:#75715e">// 返回Promise对象
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span>
-}
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 接受一个任意参数，返回一个高阶函数
-&lt;/span>&lt;span style="color:#75715e"> * 这个高阶函数接收两个参数，分别代表await后，应该执行的正常回调函数和发生错误的回调函数
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_await&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">arg&lt;/span>) =&amp;gt; (&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) =&amp;gt; {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 将参数解析为Promise对象，再为其添加回调函数
-&lt;/span>&lt;span style="color:#75715e"> * 如果有onRejected回调函数参数
-&lt;/span>&lt;span style="color:#75715e"> * 先通过catch解析期间可能产生的错误
-&lt;/span>&lt;span style="color:#75715e"> * 再执行onResolved回调函数
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">onRejected&lt;/span> &lt;span style="color:#f92672">?&lt;/span>
-Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
-.&lt;span style="color:#66d9ef">catch&lt;/span>(&lt;span style="color:#a6e22e">onRejected&lt;/span>)
-.&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) &lt;span style="color:#f92672">:&lt;/span>
-Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
-.&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>)
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span>
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 接受一个函数参数，根据情况执行，并将返回值封装为一个Promise对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_async&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">func&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise((&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 捕获同步错误
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 返回值
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">func&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 检查返回值是否是 对象 | 函数，它们可能是thenable对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> (&lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;object&amp;#39;&lt;/span> &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">!==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>) &lt;span style="color:#f92672">||&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ) &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">typeof&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>.&lt;span style="color:#a6e22e">then&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;function&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果是thenable对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 将其解析封装为Promise对象，并递归调用then函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 最终解析为非thenable值返回
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 如果不是直接将其状态转为最终态
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 返回Promise对象
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">p&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 接受一个任意参数，返回一个高阶函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 这个高阶函数接收两个参数，分别代表await后，应该执行的正常回调函数和发生错误的回调函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">_await&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">arg&lt;/span>) =&amp;gt; (&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 将参数解析为Promise对象，再为其添加回调函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果有onRejected回调函数参数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 先通过catch解析期间可能产生的错误
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 再执行onResolved回调函数
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">onRejected&lt;/span> &lt;span style="color:#f92672">?&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#66d9ef">catch&lt;/span>(&lt;span style="color:#a6e22e">onRejected&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>) &lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">arg&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#a6e22e">onResolved&lt;/span>, &lt;span style="color:#a6e22e">onRejected&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">innerPromise&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>实现原理大家可以跟着上面的源码和注释走一遍，注意一些实现细节：&lt;/p>
 &lt;ul>
 &lt;li>为什么会多次调用&lt;a href="https://github.com/lfp1024/promise/blob/master/src/promise/promise-es6.js#L173">Promise.resolve&lt;/a>&lt;/li>
 &lt;li>&lt;code>_async&lt;/code>是怎么解析&lt;code>thenable&lt;/code>对象的&lt;/li>
@@ -294,60 +1551,63 @@ Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#
 &lt;p>其实有一个错误不知道大家有没有发现，在我们第一次定位问题的时候，我们简化了代码，只输出&lt;code>async&lt;/code>的两种情况，但结果却似乎完全一致。&lt;/p>
 &lt;p>其实这是因为我调试失误的原因(￣ε(#￣)，我没有打&lt;code>断点&lt;/code>，而是直接在调试台查看最终输出。最终异步队列全部清空，结果肯定是一致的。&lt;/p>
 &lt;p>然后我们认为是&lt;code>await&lt;/code>的原因，所以直接抛弃了&lt;code>babel&lt;/code>转译，其实将&lt;code>async&lt;/code>编译为&lt;code>generator&lt;/code>也可以解决这个问题(￣▽￣)&amp;quot;，编译代码如下:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 让我们再次简化一下源代码：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-}
-&lt;span style="color:#75715e">// 编译后：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (() =&amp;gt; {
-&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span>&lt;span style="color:#f92672">*&lt;/span> () {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
-});
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
-};
-})();
-&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#a6e22e">fn&lt;/span>) {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
-&lt;span style="color:#75715e">// fn执行完后，生成gen指针引用
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">fn&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) {
-&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#a6e22e">key&lt;/span>, &lt;span style="color:#a6e22e">arg&lt;/span>) {
-&lt;span style="color:#66d9ef">try&lt;/span> {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 调用next方法后
-&lt;/span>&lt;span style="color:#75715e"> * done变为true
-&lt;/span>&lt;span style="color:#75715e"> * value即返回的Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span>[&lt;span style="color:#a6e22e">key&lt;/span>](&lt;span style="color:#a6e22e">arg&lt;/span>);
-&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>;
-} &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
-&lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>);
-&lt;span style="color:#66d9ef">return&lt;/span>;
-}
-&lt;span style="color:#75715e">// 进入if，执行传入的resolve
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">done&lt;/span>) {
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 进入resolve源码
-&lt;/span>&lt;span style="color:#75715e"> * 由于value是Promise，所以会将value.then推入微任务队列
-&lt;/span>&lt;span style="color:#75715e"> * 然后去执行其他代码，比如实例化一个Promise
-&lt;/span>&lt;span style="color:#75715e"> * 然后清空微任务队列，执行value.then
-&lt;/span>&lt;span style="color:#75715e"> * 此时才会执行resolve的赋值语句，将其他回调函数推入微任务队列
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>);
-} &lt;span style="color:#66d9ef">else&lt;/span> {
-&lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">value&lt;/span>) {
-&lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">value&lt;/span>);
-}, &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">err&lt;/span>) {
-&lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;throw&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>);
-});
-}
-}
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>);
-});
-};
-}
-&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>前端日志工具小结</title><link>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</link><pubDate>Thu, 03 Sep 2020 08:57:49 +0800</pubDate><guid>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</guid><description>前端日志工具小结 在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 让我们再次简化一下源代码：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">async&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 编译后：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">let&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (() =&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span>&lt;span style="color:#f92672">*&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;testing...&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">testSometing&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">_ref&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>})();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">_asyncToGenerator&lt;/span>(&lt;span style="color:#a6e22e">fn&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">function&lt;/span> () {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// fn执行完后，生成gen指针引用
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">fn&lt;/span>.&lt;span style="color:#a6e22e">apply&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>, &lt;span style="color:#a6e22e">arguments&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> Promise(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">resolve&lt;/span>, &lt;span style="color:#a6e22e">reject&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#a6e22e">key&lt;/span>, &lt;span style="color:#a6e22e">arg&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 调用next方法后
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * done变为true
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * value即返回的Promise {&amp;lt;resolved&amp;gt;: &amp;#34;testing...&amp;#34;}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">gen&lt;/span>[&lt;span style="color:#a6e22e">key&lt;/span>](&lt;span style="color:#a6e22e">arg&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">value&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (&lt;span style="color:#a6e22e">error&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">reject&lt;/span>(&lt;span style="color:#a6e22e">error&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 进入if，执行传入的resolve
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#a6e22e">info&lt;/span>.&lt;span style="color:#a6e22e">done&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 进入resolve源码
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 由于value是Promise，所以会将value.then推入微任务队列
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 然后去执行其他代码，比如实例化一个Promise
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 然后清空微任务队列，执行value.then
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 此时才会执行resolve的赋值语句，将其他回调函数推入微任务队列
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> Promise.&lt;span style="color:#a6e22e">resolve&lt;/span>(&lt;span style="color:#a6e22e">value&lt;/span>).&lt;span style="color:#a6e22e">then&lt;/span>(&lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">value&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">value&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }, &lt;span style="color:#66d9ef">function&lt;/span> (&lt;span style="color:#a6e22e">err&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;throw&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">step&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;next&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> };
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></content></item><item><title>前端日志工具小结</title><link>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</link><pubDate>Thu, 03 Sep 2020 08:57:49 +0800</pubDate><guid>/post/%E5%89%8D%E7%AB%AF%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7%E5%B0%8F%E7%BB%93/</guid><description>前端日志工具小结 在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构
 项目内容 Feflow https://github.com/Tencent/feflow
 https://feflowjs.com/
 Feflow是腾讯开发的一款基于模板进行快速开发的开源脚手架工具，主要目的是为了提升工程效率和保障工作流的规范性。
@@ -374,7 +1634,15 @@ babel插件在打包时会忽略掉ts检查，如果要进行ts检查需要CLI�
 内部实现高耦合，不易扩展 日志数据固定、取均值或随机采样，无法获取精准、自定义数据 不支持各类型日志数据的不同处理 前后端高耦合，不易拆分 另一方面，这些工具大都提供一站式服务，对于希望使用多种不同工具的项目来说又显得过于臃肿。
 所以这个库的目的不只是为了重复造轮子，除了具体功能外，还想要提供一种轻量级地前端日志上报的通用化解决方案。
 为了实现上述需求，一个大体的思路如下：
-内部功能模块采用插件化设计模式，支持自定义、自由替换 将日志生命周期划分为收集、处理、存储、上报等阶段，生命周期具体实现可以插件化替换 生命周期通过参数式策略模式组合为一个完整的日志流； 生命周期之间做低耦合处理，统一在日志流类中做观察者模式的注册，这样实现生命周期的链式注册、链式调用 对不同类型日志如客户端指纹、首屏加载、用户交互、资源请求等提供内置功能模块，其他类型扩展提供内部暴露的抽象类、虚函数来继承覆写 日志上报 第四部分是处理日志上报：</description><content>&lt;h1 id="前端日志工具小结">前端日志工具小结&lt;/h1>
+内部功能模块采用插件化设计模式，支持自定义、自由替换 将日志生命周期划分为收集、处理、存储、上报等阶段，生命周期具体实现可以插件化替换 生命周期通过参数式策略模式组合为一个完整的日志流； 生命周期之间做低耦合处理，统一在日志流类中做观察者模式的注册，这样实现生命周期的链式注册、链式调用 对不同类型日志如客户端指纹、首屏加载、用户交互、资源请求等提供内置功能模块，其他类型扩展提供内部暴露的抽象类、虚函数来继承覆写 日志上报 第四部分是处理日志上报：
+通过编写腾讯云SCF函数，将日志上报到私有网络，SCF相当于一个网关，避免后端服务直接暴露到公网中 后端日志存储和可视化采用Elastic产品栈：Elasticsearch Service存储日志，Kibana用作可视化页面展示 为保护后端服务和数据，Elasticsearch Service只开放内网接口，由SCF进行远程并行调用，只支持上报操作 前端日志上报原理 数据采集 根据不同的数据类型，采取不同的采集方式，一般来讲比较通用的数据如下：
+用户身份、设备、网络环境、PV等环境因素，直接采集上报
+页面首屏加载性能：
+传统多页面首屏性能可以直接由performance API采集数据，加工后上报
+SPA单页面比较麻烦，因为前端请求完成后得到的只是一个js文件，组件加载时可能还要请求具体数据，所以我们说的首屏是指首次有效绘制：
+如果支持ssr，类似多页面直接由performance API采集数据即可
+否则只能去侵入式地在生命周期钩子埋点或监听首屏的图片加载等较慢请求，或者手动埋点
+既然是首次有效绘制，应该和页面视图（DOM）紧密相关，那可不可以通过这个来判断呢？ Chrome力推的以用户为中心的性能指标就基于此，详见捕获FMP的原理</description><content>&lt;h1 id="前端日志工具小结">前端日志工具小结&lt;/h1>
 &lt;p>在腾讯实习期间的一个主要工作是负责一个前端日志工具库以及底层脚手架工具的重构&lt;/p>
 &lt;h2 id="项目内容">项目内容&lt;/h2>
 &lt;h3 id="feflow">Feflow&lt;/h3>
@@ -566,7 +1834,7 @@ componentWillUpdate可能被多次打断，在这个钩子获取更新前的视�
 React新版本的到来，与之相应的是核心架构的替换和异步渲染概念的引入。
 React框架的视图更新取决于virtual dom和diff算法，找到变化之后再将新的virtual dom渲染到不同视图(如android、pc)，这一通用的过程称为Reconciler。
 旧版本的React使用的是Stack Reconciler，新版本采用的是Fiber Reconciler，因为其中任务调度处理的最小单元为Fiber数据结构：
-// Fiber 基于链表结构，拥有一个个指针，指向它的父节点子节点和兄弟节点。 // 在 diff 的过程中，依照节点的链接关系进行遍历 Fiber = { &amp;#39;tag&amp;#39; // 标记任务节点类型 &amp;#39;return&amp;#39; // 父节点 &amp;#39;child&amp;#39; // 子节点 &amp;#39;sibling&amp;#39; // 兄弟节点 &amp;#39;alternate&amp;#39; // 变化记录 // .</description><content>&lt;h1 id="react新版本为什么要移除掉一些生命周期">React新版本为什么要移除掉一些生命周期？&lt;/h1>
+// Fiber 基于链表结构，拥有一个个指针，指向它的父节点子节点和兄弟节点。 // 在 diff 的过程中，依照节点的链接关系进行遍历 Fiber = { &amp;#39;tag&amp;#39; // 标记任务节点类型 &amp;#39;return&amp;#39; // 父节点 &amp;#39;child&amp;#39; // 子节点 &amp;#39;sibling&amp;#39; // 兄弟节点 &amp;#39;alternate&amp;#39; // 变化记录 // ..... }; 两者的主要区别在于： 相比于Stack Reconciler的递归调用渲染，虽然diff算法被React优化为O(n)复杂度，但对于特别庞大的dom树来说，递归调用依旧会消耗特别长的时间，在这期间任何交互都会被阻塞。</description><content>&lt;h1 id="react新版本为什么要移除掉一些生命周期">React新版本为什么要移除掉一些生命周期？&lt;/h1>
 &lt;p>从上图新版本React的生命周期来看，React废弃了以下三种生命周期钩子：&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>componentWillMount&lt;/code>&lt;/li>
@@ -607,17 +1875,17 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 &lt;p>React新版本的到来，与之相应的是&lt;code>核心架构&lt;/code>的替换和&lt;code>异步渲染&lt;/code>概念的引入。&lt;/p>
 &lt;p>React框架的视图更新取决于&lt;code>virtual dom&lt;/code>和&lt;a href="https://juejin.im/post/5cb5b4926fb9a068b52fb823">diff算法&lt;/a>，找到变化之后再将新的&lt;code>virtual dom&lt;/code>渲染到不同视图(如android、pc)，这一通用的过程称为&lt;code>Reconciler&lt;/code>。&lt;/p>
 &lt;p>旧版本的React使用的是&lt;code>Stack Reconciler&lt;/code>，新版本采用的是&lt;code>Fiber Reconciler&lt;/code>，因为其中任务调度处理的最小单元为&lt;code>Fiber&lt;/code>数据结构：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-js" data-lang="js">&lt;span style="color:#75715e">// Fiber 基于链表结构，拥有一个个指针，指向它的父节点子节点和兄弟节点。
-&lt;/span>&lt;span style="color:#75715e">// 在 diff 的过程中，依照节点的链接关系进行遍历
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">Fiber&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
-&lt;span style="color:#e6db74">&amp;#39;tag&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 标记任务节点类型
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;return&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 父节点
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;child&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 子节点
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;sibling&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 兄弟节点
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;alternate&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 变化记录
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// .....
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>};
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>两者的主要区别在于：
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// Fiber 基于链表结构，拥有一个个指针，指向它的父节点子节点和兄弟节点。
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 在 diff 的过程中，依照节点的链接关系进行遍历
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">Fiber&lt;/span> &lt;span style="color:#f92672">=&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#39;tag&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 标记任务节点类型
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;return&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 父节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;child&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 子节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;sibling&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 兄弟节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#e6db74">&amp;#39;alternate&amp;#39;&lt;/span> &lt;span style="color:#75715e">// 变化记录
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">// .....
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>两者的主要区别在于：
 相比于&lt;code>Stack Reconciler&lt;/code>的递归调用渲染，虽然diff算法被React优化为&lt;code>O(n)&lt;/code>复杂度，但对于特别庞大的dom树来说，递归调用依旧会消耗特别长的时间，在这期间任何交互都会被阻塞。&lt;/p>
 &lt;p>&lt;code>Fiber Reconciler&lt;/code>引入了异步渲染的概念，虽然也是根据Fiber数据结构进行链式处理，但可以将其切割为一个个小任务，异步进行处理，避免堵塞高优先级的交互等事件：&lt;/p>
 &lt;blockquote>
@@ -628,16 +1896,16 @@ React框架的视图更新取决于virtual dom和diff算法，找到变化之后
 &lt;li>低优先级的任务如&lt;code>网络请求&lt;/code>、&lt;code>state变更&lt;/code>等，可以在后面进行延迟处理。 &lt;br>
 当然React会为其指定&lt;a href="https://www.zhihu.com/question/405268183">阈值&lt;/a>，避免长期被高优先级打断。&lt;/li>
 &lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-js" data-lang="js">&lt;span style="color:#75715e">// 一些优先级划分参考如下：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>{
-&lt;span style="color:#a6e22e">Synchronous&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#75715e">// 同步任务，优先级最高
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Task&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#75715e">// 当前调度正执行的任务
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Animation&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>, &lt;span style="color:#75715e">// 动画
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">High&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#75715e">// 高优先级
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Low&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#75715e">// 低优先级
-&lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Offscreen&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">6&lt;/span>, &lt;span style="color:#75715e">// 当前屏幕外的更新，优先级最低
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>}
-&lt;/code>&lt;/pre>&lt;/div>&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-js" data-lang="js">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 一些优先级划分参考如下：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>{
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">Synchronous&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#75715e">// 同步任务，优先级最高
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Task&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>, &lt;span style="color:#75715e">// 当前调度正执行的任务
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Animation&lt;/span> &lt;span style="color:#ae81ff">3&lt;/span>, &lt;span style="color:#75715e">// 动画
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">High&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">4&lt;/span>, &lt;span style="color:#75715e">// 高优先级
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Low&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>, &lt;span style="color:#75715e">// 低优先级
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">Offscreen&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#ae81ff">6&lt;/span>, &lt;span style="color:#75715e">// 当前屏幕外的更新，优先级最低
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/blockquote>
 &lt;p>&lt;img src="./img/react/fiber-phase.png" alt="Fiber阶段">&lt;/p>
 &lt;p>前面说了&lt;code>Fiber&lt;/code>算法中更新是分阶段的，首先是&lt;code>Reconciliation&lt;/code>阶段，这个阶段在diff前后&lt;code>virtual dom&lt;/code>树的差异，耗时过长，可以打断；然后是&lt;code>Commit&lt;/code>的阶段，这个阶段将一直把更新渲染到页面上。&lt;/p>
 &lt;p>&lt;code>Reconciliation&lt;/code>阶段有那些生命周期呢？没错，废除的三个生命周期赫然在列：&lt;/p>
@@ -749,7 +2017,14 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 为了使CSS像素能够在不同的设备上显示尺寸一致，规范对于CSS像素有一些规定：
 对于高分辨率设备（打印机等），1px就等于96分之一英寸，约等于0.2646mm。 对于低分辨率设备（绝大部分显示器，手机屏幕），建议CSS像素参考最接近参考像素的整数个的物理像素。 这里我们先来了解下参考像素（reference pixel）的概念：
 根据规范，一个参考像素即为从一臂之遥看解析度为96DPI的设备输出（即1英寸96点）时，1点（即1/96英寸）的视角（visual angle）。
-通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.</description><content>&lt;h1 id="像素的相关知识浅析">像素的相关知识浅析&lt;/h1>
+通常认为常人臂长为28英寸，所以参考像素为: (1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度。
+参考像素的原理 这个规范的原理是什么呢？
+近小远大：近处的物体显示的小一点，远处的物体显示的大一点，从而使两者看起来大致保持一致，而这一特点通过视角来实现。
+从上图也可以看出，参考像素对应的这个视角，映射到具体屏幕上：
+对于28英寸远的屏幕来说，一个参考像素大致为0.26mm； 对于140英寸远的屏幕来说，一个参考像素大致为1.3mm。 这个距离又是什么呢？
+一般是由设备的典型视距决定的，在出厂时已经确定。比如视距：电视 &amp;gt; 电脑 &amp;gt; 手机。
+而CSS像素在低分辨率设备就基于这个参考像素，从而实现1个CSS像素在不同视距的屏幕上，显示的尺寸大致相同。
+而且最接近参考像素的整数个的物理像素，也被称为DPR（= 物理像素分辨率 / CSS像素分辨率）。一般在js中可以通过window.</description><content>&lt;h1 id="像素的相关知识浅析">像素的相关知识浅析&lt;/h1>
 &lt;h2 id="像素分辨率和屏幕像素密度">像素、分辨率和屏幕像素密度&lt;/h2>
 &lt;p>首先来了解一下这些名词的相关定义：&lt;/p>
 &lt;ul>
@@ -832,42 +2107,48 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;p>在视网膜屏下，1个CSS像素对应多个&lt;code>物理像素&lt;/code>。
 对于一个&lt;code>2倍屏&lt;/code>，&lt;code>500 * 300&lt;/code>屏幕想要绘制一个高清图片，图片分辨率至少要大一倍，因为屏幕实际对应的是&lt;code>1000 * 600&lt;/code>个&lt;code>物理像素&lt;/code>。&lt;/p>
 &lt;p>和多倍图类似，在Canvas绘制图片进行&lt;code>缩放处理&lt;/code>，否则会导致&lt;code>失真&lt;/code>问题：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-JS" data-lang="JS">&lt;span style="color:#75715e">// 对于一个300 * 150画布：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">canvas&lt;/span> &lt;span style="color:#a6e22e">width&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;300&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;150&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/canvas&amp;gt;&lt;/span>
-&lt;span style="color:#75715e">// 如果直接绘制：
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span>, &lt;span style="color:#ae81ff">150&lt;/span>);
-&lt;span style="color:#75715e">// 浏览器会计算出Canvas绘制缓冲区大小
-&lt;/span>&lt;span style="color:#75715e">// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
-&lt;/span>&lt;span style="color:#75715e">&lt;/span>
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * backingStorePixelRatio是Canvas的缓冲像素比
-&lt;/span>&lt;span style="color:#75715e"> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
-&lt;/span>&lt;span style="color:#75715e"> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
-&lt;/span>&lt;span style="color:#75715e"> *
-&lt;/span>&lt;span style="color:#75715e"> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span> , &lt;span style="color:#ae81ff">150&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 但是直接这样绘制，图片也会被放大显示；
-&lt;/span>&lt;span style="color:#75715e"> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> , &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>);
-&lt;span style="color:#75715e">/*
-&lt;/span>&lt;span style="color:#75715e"> * 如果canvas只有图片，那这样没有什么问题；
-&lt;/span>&lt;span style="color:#75715e"> * 如果有其他元素，如文字、图形时，它们也会被缩小
-&lt;/span>&lt;span style="color:#75715e"> * 我们利用scale来调整
-&lt;/span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">scale&lt;/span>(window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>, window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
-&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>) , parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>))
-&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="viewport">viewport&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JS" data-lang="JS">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 对于一个300 * 150画布：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#a6e22e">canvas&lt;/span> &lt;span style="color:#a6e22e">width&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;300&amp;#34;&lt;/span> &lt;span style="color:#a6e22e">height&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;150&amp;#34;&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;lt;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">/canvas&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 如果直接绘制：
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span>, &lt;span style="color:#ae81ff">150&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 浏览器会计算出Canvas绘制缓冲区大小
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * backingStorePixelRatio是Canvas的缓冲像素比
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> *
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">300&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span> , &lt;span style="color:#ae81ff">150&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 但是直接这样绘制，图片也会被放大显示；
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> , &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/*
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果canvas只有图片，那这样没有什么问题；
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 如果有其他元素，如文字、图形时，它们也会被缩小
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 我们利用scale来调整
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#e6db74">&amp;#39;px&amp;#39;&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span> &lt;span style="color:#f92672">*&lt;/span> window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">scale&lt;/span>(window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>, window.&lt;span style="color:#a6e22e">devicePixelRatio&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">ctx&lt;/span>.&lt;span style="color:#a6e22e">drawImage&lt;/span>(&lt;span style="color:#a6e22e">image&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">width&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>) , parseInt(&lt;span style="color:#a6e22e">myCanvas&lt;/span>.&lt;span style="color:#a6e22e">style&lt;/span>.&lt;span style="color:#a6e22e">height&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>))
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="viewport">viewport&lt;/h2>
 &lt;p>相对于电脑来说，手机屏幕是很&amp;quot;窄的&amp;quot;，而随着智能手机的发展，其&lt;code>屏幕分辨率&lt;/code>也在不断提高。&lt;br>
 上面我们已经了解了：&lt;/p>
 &lt;ul>
@@ -917,4 +2198,7 @@ CSS像素和DPR 在前端CSS代码中，我们也常常用像素来控制页面U
 &lt;li>&lt;a href="https://zhuanlan.zhihu.com/p/23405435">前端如何适配手机屏幕之viewport&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.jianshu.com/p/2cd5143cf9aa">High DPI Canvas 高分辨率Canvas（译）&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.css88.com/archives/9297">解决 canvas 在高清屏中绘制模糊的问题&lt;/a>&lt;/li>
-&lt;/ul></content></item></channel></rss>
+&lt;/ul></content></item><item><title>介绍</title><link>/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/about/</guid><description>简介 Javascript 熟练工，Solidity、Golang、Rust 学习中。
+热爱编程，保持好奇心，涉猎广泛：网络安全、游戏开发、图形学，目前在 区块链 兔子洞探索中。</description><content>&lt;h1 id="简介">简介&lt;/h1>
+&lt;p>&lt;code>Javascript&lt;/code> 熟练工，&lt;code>Solidity&lt;/code>、&lt;code>Golang&lt;/code>、&lt;code>Rust&lt;/code> 学习中。&lt;/p>
+&lt;p>热爱编程，保持好奇心，涉猎广泛：&lt;code>网络安全&lt;/code>、&lt;code>游戏开发&lt;/code>、&lt;code>图形学&lt;/code>，目前在 &lt;code>区块链&lt;/code> 兔子洞探索中。&lt;/p></content></item></channel></rss>

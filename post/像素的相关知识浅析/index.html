@@ -1,280 +1,49 @@
-<!doctype html><html lang=en>
-<head>
-<title>像素的相关知识浅析 :: KuTuGu的博客</title>
-<link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="前端涉及到的像素相关知识浅析">
-<meta name=keywords content="像素,Canvas,Viewport">
-<meta name=robots content="noodp">
-<link rel=canonical href=../../post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/>
-<link rel=stylesheet href=../../assets/style.css>
-<link rel=stylesheet id=themeColor href=../../assets/orange.css>
-<link rel=apple-touch-icon href=../../img/apple-touch-icon-192x192.png>
-<link rel="shortcut icon" href=../../img/favicon/icon.png>
-<meta name=twitter:card content="summary">
-<meta property="og:locale" content="en">
-<meta property="og:type" content="article">
-<meta property="og:title" content="像素的相关知识浅析">
-<meta property="og:description" content="前端涉及到的像素相关知识浅析">
-<meta property="og:url" content="/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/">
-<meta property="og:site_name" content="KuTuGu的博客">
-<meta property="og:image" content="/img/pixel/pixel.png">
-<meta property="og:image:width" content="2048">
-<meta property="og:image:height" content="1024">
-<meta property="article:published_time" content="2019-01-12 12:36:18 +0800 +0800">
-</head>
-<body>
-<div class="container center headings--one-size">
-<header class=header>
-<div class=header__inner>
-<div class=header__logo>
-<a href=../../>
-<div class=logo>
-Main
-</div>
-</a>
-</div>
-<div class=menu-trigger>menu</div>
-</div>
-<nav class=menu>
-<ul class="menu__inner menu__inner--desktop">
-<li><a href=../../about>About</a></li>
-<li><a href=https://github.com/KuTuGu>Github</a></li>
-<li><a href=https://kutugu.github.io/resume>Resume</a></li>
-<li><a href=https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA>Revery</a></li>
-<li><a href=https://twitter.com/kutugu1>Twitter</a></li>
-</ul>
-<ul class="menu__inner menu__inner--mobile">
-<li><a href=../../about>About</a></li>
-<li><a href=https://github.com/KuTuGu>Github</a></li>
-<li><a href=https://kutugu.github.io/resume>Resume</a></li>
-<li><a href=https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA>Revery</a></li>
-<li><a href=https://twitter.com/kutugu1>Twitter</a></li>
-</ul>
-</nav>
-</header>
-<div class=content>
-<div class=post>
-<h1 class=post-title>
-<a href=../../post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/>像素的相关知识浅析</a></h1>
-<div class=post-meta>
-<span class=post-date>
-2019-01-12
-</span>
-<span class=post-author>:: KuTuGu</span>
-</div>
-<span class=post-tags>
-#<a href=../../tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/>前端知识点</a>&nbsp;
-</span>
-<img src=../../img/pixel/pixel.png class=post-cover alt=像素的相关知识浅析 title="Cover Image">
-<div class=post-content><div>
-<h1 id=像素的相关知识浅析>像素的相关知识浅析<a href=#像素的相关知识浅析 class=hanchor arialabel=Anchor>&#8983;</a> </h1>
-<h2 id=像素分辨率和屏幕像素密度>像素、分辨率和屏幕像素密度<a href=#像素分辨率和屏幕像素密度 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>首先来了解一下这些名词的相关定义：</p>
-<ul>
-<li>
-<p>在由一个数字序列表示的图像中的一个<code>最小单位</code>，称为<code>像素</code>，是一个<code>单一颜色</code>的小格存在。 <br>
-从<code>像素</code>的思想派生出几个其它类型的概念，如<code>体素</code>、<code>纹素</code>等，是组成<code>三维</code>、<code>纹理</code>的<code>最小单位</code>。</p>
-</li>
-<li>
-<p><code>屏幕分辨率</code>是<code>水平像素数目</code> * <code>垂直像素数目</code>的表示。</p>
-</li>
-<li>
-<p><code>屏幕像素密度</code>是显示设备包含的像素密度，一般称为<code>PPI</code>（Pixels Per Inch， 常用于图像）。 <br>
-与之相近的一个概念是<code>DPI</code>（Dots Per Inch，常用于印刷行业），且<code>DPI</code>表示水平方向或垂直方向，<code>PPI</code>表示对角线方向。 <br>
-公式：<code>PPI = 根号下(水平像素的平方 + 垂直像素的平方) / 对角线的英寸长度</code></p>
-</li>
-</ul>
-<p>根据这些定义，我们来深入思考一些问题：</p>
-<ul>
-<li>
-<p><code>像素</code>的<code>尺寸</code>是多大？ <br>
-由定义我们可知，<code>像素</code>即是一个<code>单一颜色</code>的小格，所以<code>像素</code>的大小并没有统一标准，厂商可以自行设置。 <br>
-当然，对于<code>同一块</code>屏幕尺寸，<code>像素</code>越多，<code>屏幕分辨率</code>越高，<code>屏幕像素密度</code>越密集，可以表现的细节越丰富，显示越精细。</p>
-</li>
-<li>
-<p><code>屏幕分辨率</code>的调整原理？ <br>
-<code>屏幕</code>本来是一个<code>物理设备</code>，从厂商制作出厂后，其<code>像素大小</code>、<code>屏幕分辨率</code>理应是<code>固定不变</code>的。 <br>
-但我们在电脑设置中往往可以看到一个<code>调整分辨率</code>的功能，这其实是因为我们操作的是一个<code>操作系统</code>，它充当着一个中间层的角色：</p>
-<ul>
-<li>向下通过操作系统控制显卡输出的内容尺寸，从而控制显示器的显示尺寸。物理的<code>屏幕分辨率</code>是不变的，显示的<code>分辨率</code>是动态调整的。</li>
-<li>向上暴露相关参数给用户，使其方便地动态调整<code>屏幕分辨率</code>。</li>
-</ul>
-<p>所以我们在下面提到的<code>物理像素</code>实际上也并不是真正的<code>物理像素点</code>，也是经过<code>操作系统</code>封装后的<code>逻辑像素</code>。</p>
-</li>
-</ul>
-<h2 id=css像素和dpr>CSS像素和DPR<a href=#css像素和dpr class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>在前端CSS代码中，我们也常常用<code>像素</code>来控制页面UI的尺寸大小（单位px）。这里的<code>像素</code>又和上面提及的<code>物理像素</code>不同：</p>
-<p>如上所述，<code>物理像素</code>的大小是任意的，并没有一个统一标准。如果CSS直接采用<code>物理像素</code>，则页面在不同设备之间的显示尺寸可能存在差异。</p>
-<p>为了使<code>CSS像素</code>能够在不同的设备上<code>显示尺寸一致</code>，规范对于<code>CSS像素</code>有一些规定：</p>
-<ul>
-<li>对于<code>高分辨率</code>设备（打印机等），<code>1px</code>就等于<code>96分之一英寸</code>，约等于<code>0.2646mm</code>。</li>
-<li>对于<code>低分辨率</code>设备（绝大部分显示器，手机屏幕），建议<code>CSS像素</code>参考最接近<code>参考像素</code>的<code>整数个</code>的<code>物理像素</code>。</li>
-</ul>
-<p>这里我们先来了解下<code>参考像素</code>（reference pixel）的概念：</p>
-<p><img src=../../img/pixel/reference-pixel.jpg alt=参考像素></p>
-<p>根据规范，一个<code>参考像素</code>即为从<code>一臂之遥</code>看解析度为<code>96DPI</code>的设备输出（即1英寸96点）时，1点（即1/96英寸）的<code>视角</code>（visual angle）。</p>
-<p>通常认为常人臂长为<code>28英寸</code>，所以<code>参考像素</code>为: <code>(1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度</code>。</p>
-<h3 id=参考像素的原理>参考像素的原理<a href=#参考像素的原理 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>这个规范的原理是什么呢？</p>
-<p><code>近小远大</code>：近处的物体显示的小一点，远处的物体显示的大一点，从而使两者看起来大致保持一致，而这一特点通过<code>视角</code>来实现。</p>
-<p>从上图也可以看出，<code>参考像素</code>对应的这个<code>视角</code>，映射到具体屏幕上：</p>
-<ul>
-<li>对于<code>28英寸</code>远的屏幕来说，一个<code>参考像素</code>大致为<code>0.26mm</code>；</li>
-<li>对于<code>140英寸</code>远的屏幕来说，一个<code>参考像素</code>大致为<code>1.3mm</code>。</li>
-</ul>
-<p>这个距离又是什么呢？</p>
-<p>一般是由设备的<code>典型视距</code>决定的，在出厂时已经确定。比如视距：电视 > 电脑 > 手机。</p>
-<p>而<code>CSS像素</code>在<code>低分辨率</code>设备就基于这个<code>参考像素</code>，从而实现<code>1个CSS像素</code>在<code>不同视距</code>的屏幕上，显示的尺寸大致相同。</p>
-<p>而且<code>最接近参考像素的整数个的物理像素</code>，也被称为<code>DPR</code>（= <code>物理像素分辨率</code> / <code>CSS像素分辨率</code>）。一般在js中可以通过<code>window.devicePixelRatio</code>获取。</p>
-<h3 id=dpr的变化>DPR的变化<a href=#dpr的变化 class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>这里又有一个问题：我调整<code>屏幕分辨率</code>会不会影响到<code>DPR</code>的大小？</p>
-<p>推导如下：</p>
-<ul>
-<li><code>屏幕分辨率</code>调低会使得<code>物理像素分辨率</code>降低</li>
-<li><code>像素点</code>变大，因为这里的<code>像素点</code>是被操作系统封装的<code>逻辑像素</code>（1个<code>逻辑像素</code>对应的多个<code>真实物理像素</code>变多）</li>
-<li>而<code>参考像素</code>是一定的，所以<code>1个CSS像素</code>对应的<code>整数个</code>的<code>物理像素</code>会减少，<code>DPR</code>也会降低</li>
-</ul>
-<p>但实际上经过测试：无论<code>屏幕分辨率</code>怎么变更，<code>DPR</code>都保持不变。</p>
-<p>具体原因未知，不过<a href=https://www.w3.org/TR/CSS2/syndata.html#length-units>规范</a>上有这样一句话，应该指的就是这个：</p>
-<blockquote>
-<p>Note that this definition of the pixel unit and the physical units differs from previous versions of CSS. In particular, in previous versions of CSS the pixel unit and the physical units were not related by a fixed ratio: the physical units were always tied to their physical measurements while the pixel unit would vary to most closely match the reference pixel. (This change was made because too much existing content relies on the assumption of 96dpi, and breaking that assumption breaks the content.)</p>
-<p>注意，这里<code>像素单位</code>和<code>物理单位</code>的定义与CSS之前版本不同。特别地，在CSS之前版本中，<code>像素单位</code>和<code>物理单位</code>与<code>固定比例</code>（fixed ratio）无关：<code>物理单位</code>总是与它们的物理测量紧密相关，而<code>像素单位</code>会变得最接近<code>参考像素</code>（出现这种变化是因为太多现有内容依赖96dpi的假设，而打破这个假设就会破坏这些内容）</p>
-</blockquote>
-<p>与调整<code>屏幕分辨率</code>相似的一个概念是<code>内容缩放</code>，在<code>windows10</code>系统中同时提供了这两个功能。 <br>
-而<code>内容缩放</code>（系统缩放，对网页进行缩放也可）会同时影响<code>DPR</code>的大小。</p>
-<p>其实这个比较好理解，<code>内容缩放</code>相当于直接缩放<code>CSS像素</code>，所以<code>1个CSS像素</code>对应的<code>物理像素</code>会相应变化。</p>
-<p>这里还有个细节：<code>缩放</code>导致<code>window.devicePixelRatio</code>可能出现小数。</p>
-<p>这说明<code>window.devicePixelRatio</code>并不是真正严格地表示<code>1个CSS像素</code>对应几个<code>物理像素</code>。 <br>
-它代表着<code>内容缩放</code>的一个平均比率，具体的对应关系由系统通过相应算法实现。</p>
-<h2 id=canvas在视网膜屏下绘制图片的失真问题>Canvas在视网膜屏下绘制图片的失真问题<a href=#canvas在视网膜屏下绘制图片的失真问题 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>在视网膜屏下，1个CSS像素对应多个<code>物理像素</code>。
-对于一个<code>2倍屏</code>，<code>500 * 300</code>屏幕想要绘制一个高清图片，图片分辨率至少要大一倍，因为屏幕实际对应的是<code>1000 * 600</code>个<code>物理像素</code>。</p>
-<p>和多倍图类似，在Canvas绘制图片进行<code>缩放处理</code>，否则会导致<code>失真</code>问题：</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=color:#75715e>// 对于一个300 * 150画布：
-</span><span style=color:#75715e></span><span style=color:#f92672>&lt;</span><span style=color:#a6e22e>canvas</span> <span style=color:#a6e22e>width</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;300&#34;</span> <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;150&#34;</span><span style=color:#f92672>&gt;&lt;</span><span style=color:#960050;background-color:#1e0010>/canvas&gt;</span>
-
-<span style=color:#75715e>// 如果直接绘制：
-</span><span style=color:#75715e></span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>300</span>, <span style=color:#ae81ff>150</span>);
-
-<span style=color:#75715e>// 浏览器会计算出Canvas绘制缓冲区大小
-</span><span style=color:#75715e>// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
-</span><span style=color:#75715e></span>
-<span style=color:#75715e>/* 
-</span><span style=color:#75715e> * backingStorePixelRatio是Canvas的缓冲像素比
-</span><span style=color:#75715e> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
-</span><span style=color:#75715e> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
-</span><span style=color:#75715e> *
-</span><span style=color:#75715e> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
-</span><span style=color:#75715e> */</span>
-<span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>300</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span> , <span style=color:#ae81ff>150</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>);
-
-<span style=color:#75715e>/* 
-</span><span style=color:#75715e> * 但是直接这样绘制，图片也会被放大显示；
-</span><span style=color:#75715e> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
-</span><span style=color:#75715e> */</span>
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
-
-<span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> , <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span>);
-
-<span style=color:#75715e>/* 
-</span><span style=color:#75715e> * 如果canvas只有图片，那这样没有什么问题；
-</span><span style=color:#75715e> * 如果有其他元素，如文字、图形时，它们也会被缩小
-</span><span style=color:#75715e> * 我们利用scale来调整
-</span><span style=color:#75715e> */</span>
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
-<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
-
-<span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>scale</span>(window.<span style=color:#a6e22e>devicePixelRatio</span>, window.<span style=color:#a6e22e>devicePixelRatio</span>);
-<span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, parseInt(<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>width</span>, <span style=color:#ae81ff>10</span>) , parseInt(<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span>, <span style=color:#ae81ff>10</span>))
-</code></pre></div><h2 id=viewport>viewport<a href=#viewport class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<p>相对于电脑来说，手机屏幕是很"窄的"，而随着智能手机的发展，其<code>屏幕分辨率</code>也在不断提高。<br>
-上面我们已经了解了：</p>
-<ul>
-<li>随着手机<code>屏幕分辨率</code>的提高，屏幕面积基本不变，<code>物理像素</code>变小，<code>PPI</code>增加</li>
-<li>对于手机来说其<code>视距</code>一定，<code>参考像素</code>是一定的，<code>CSS像素</code>也是一定的</li>
-<li>变化的只是一个<code>CSS像素</code>对应几个<code>物理像素</code>，<code>屏幕分辨率</code>的提高也只是降低<code>颗粒感</code>，提高<code>清晰度</code>。</li>
-</ul>
-<p><img src=../../img/pixel/retina.jpg alt=retina对比图></p>
-<p>所以移动端<code>全屏宽度</code>对于<code>CSS像素</code>来说也就是<code>300px</code>左右。</p>
-<p>接下来，我们来了解一下<code>viewport</code>：</p>
-<p><code>viewport</code>其实就是浏览器页面内容显示的那一块区域，注意它和<code>&lt;HTML></code>的关系：</p>
-<ul>
-<li><code>viewport</code>的宽度通过<code>document.documentElement.clientWidth</code>来获取</li>
-<li><code>&lt;HTML></code>的宽度通过<code>document.documentElement.offsetWidth</code>来获取</li>
-<li>默认情况下，<code>&lt;HTML></code>继承自<code>viewport</code>，但也可以自定义<code>&lt;HTML></code>的宽高</li>
-</ul>
-<h3 id=layout-viewport>layout viewport<a href=#layout-viewport class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>对于PC端，<code>viewport</code>就是浏览器的内容区域；但对于移动端我们不能这样直接指定：</p>
-<ul>
-<li>移动端<code>全屏宽度</code>才<code>300px</code>左右，如果<code>&lt;HTML></code>是默认的（如<code>100%</code>），即<code>300px</code>左右；</li>
-<li>用这个宽度来显示本该是<code>1000px</code>宽度的PC端页面，可能导致整个页面挤作一团。</li>
-</ul>
-<p>为了能使移动设备上的浏览器正常显示PC端页面，我们引入了第一个<code>默认</code>的<code>viewport</code>：<code>layout viewport</code>。</p>
-<p>默认情况，<code>viewport</code>即为<code>layout viewport</code>，一般在<code>1000px</code>左右，根据设备不同而有所差异。</p>
-<p>这也是为什么我们用手机看PC端页面时，如果没有相应的适配处理，页面会出现很长的滚动条。</p>
-<p><img src=../../img/pixel/layout-viewport.png alt="layout viewport"></p>
-<h3 id=visual-viewport>visual viewport<a href=#visual-viewport class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>如果不想获取整个内容区域的宽度，而只是获取当前可视区域的宽度。</p>
-<p>可以通过<code>window.innerWidth</code>来获取，这个当前可视区域也被称为<code>visual viewport</code>。</p>
-<p><img src=../../img/pixel/visual-viewport.png alt="visual viewport"></p>
-<h3 id=ideal-viewport>ideal viewport<a href=#ideal-viewport class=hanchor arialabel=Anchor>&#8983;</a> </h3>
-<p>上面的两个<code>viewport</code>是针对PC端页面显示的情况，移动端页面显示应该怎么处理？</p>
-<p>既然移动端的<code>全屏宽度</code>为<code>300px</code>左右，那我们直接将<code>viewport</code>设为这个宽度。 <br>
-这样一来<code>&lt;HTML></code>的<code>100%</code>也就是设备的<code>全屏宽度</code>，这个<code>viewport</code>被成为<code>ideal viewport</code>。</p>
-<p>当然不同的移动设备的<code>全屏宽度</code>是不尽相同的，如<code>320px</code>、<code>360px</code>等。但它们是很接近的。</p>
-<p>为了充分利用这两点情况，对于移动端的页面设计：</p>
-<ul>
-<li>设置<code>ideal viewport</code>：<code>&lt;meta name="viewport" content="width=device-width" /></code> <br>
-<code>device-width</code>即移动设备的<code>全屏宽度</code>。</li>
-<li>而设计师只需要出一份<code>320px</code>左右的设计稿，就可以适配大部分移动设备。</li>
-</ul>
-<h2 id=参考>参考<a href=#参考 class=hanchor arialabel=Anchor>&#8983;</a> </h2>
-<ul>
-<li><a href=https://juejin.im/post/5b95a8186fb9a05cd7772455>你真的了解css像素嘛？</a></li>
-<li><a href=http://www.cnblogs.com/2050/p/3877280.html>移动前端开发之viewport的深入理解</a></li>
-<li><a href=http://qingbob.com/RWD-things-about-pixel/>移动开发那些事</a></li>
-<li><a href=https://zhuanlan.zhihu.com/p/23405435>前端如何适配手机屏幕之viewport</a></li>
-<li><a href=https://www.jianshu.com/p/2cd5143cf9aa>High DPI Canvas 高分辨率Canvas（译）</a></li>
-<li><a href=https://www.css88.com/archives/9297>解决 canvas 在高清屏中绘制模糊的问题</a></li>
-</ul>
-</div></div>
-<div class=pagination>
-<div class=pagination__title>
-<span class=pagination__title-h>阅读其它文章</span>
-<hr>
-</div>
-<div class=pagination__buttons>
-<span class="button previous">
-<a href=../../post/react%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%A7%BB%E9%99%A4%E6%8E%89%E4%B8%80%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/>
-<span class=button__icon>←</span>
-<span class=button__text>React新版本为什么要移除掉一些生命周期</span>
-</a>
-</span>
-</div>
-</div>
-<div id=cryptostamping_v1 data-view=list data-theme=dark></div>
-</div>
-</div>
-<footer class=footer>
-<div class=footer__inner>
-<div class=copyright>
-<span>© 2022 Powered by <a href=http://gohugo.io>Hugo</a></span>
-<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span>
-</div>
-</div>
-<div id=cryptostamping_v1 data-view=button data-theme=dark></div>
-</footer>
-<script src=../../assets/main.js></script>
+<!doctype html><html lang=en><head><title>像素的相关知识浅析 :: KuTuGu's Blog</title><link href=https://embed.cryptostamping.org/widgets.css rel=stylesheet><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="前端涉及到的像素相关知识浅析"><meta name=keywords content="像素,Canvas,Viewport"><meta name=robots content="noodp"><link rel=canonical href=../../post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/><link rel=stylesheet href=../../assets/style.css><link rel=stylesheet id=themeColor href=../../assets/orange.css><link rel=apple-touch-icon href=../../img/apple-touch-icon-192x192.png><link rel="shortcut icon" href=../../img/favicon/icon.png><meta name=twitter:card content="summary"><meta property="og:locale" content="en"><meta property="og:type" content="article"><meta property="og:title" content="像素的相关知识浅析"><meta property="og:description" content="前端涉及到的像素相关知识浅析"><meta property="og:url" content="/post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/"><meta property="og:site_name" content="KuTuGu's Blog"><meta property="og:image" content="/img/pixel/pixel.png"><meta property="og:image:width" content="2048"><meta property="og:image:height" content="1024"><meta property="article:published_time" content="2019-01-12 12:36:18 +0800 +0800"></head><body><div class="container center headings--one-size"><header class=header><div class=header__inner><div class=header__logo><a href=../../><div class=logo>Main</div></a></div><div class=menu-trigger>menu</div></div><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=../../about>About</a></li><li><a href=https://github.com/KuTuGu>Github</a></li><li><a href=../../resume_en>Resume_en</a></li><li><a href=../../resume_zh>Resume_zh</a></li><li><a href=https://twitter.com/kutugu1>Twitter</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=../../about>About</a></li><li><a href=https://github.com/KuTuGu>Github</a></li><li><a href=../../resume_en>Resume_en</a></li><li><a href=../../resume_zh>Resume_zh</a></li><li><a href=https://twitter.com/kutugu1>Twitter</a></li></ul></nav></header><div class=content><div class=post><h1 class=post-title><a href=../../post/%E5%83%8F%E7%B4%A0%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E6%B5%85%E6%9E%90/>像素的相关知识浅析</a></h1><div class=post-meta><span class=post-date>2019-01-12</span>
+<span class=post-author>:: KuTuGu</span></div><span class=post-tags>#<a href=../../tags/%E5%89%8D%E7%AB%AF%E7%9F%A5%E8%AF%86%E7%82%B9/>前端知识点</a>&nbsp;</span>
+<img src=../../img/pixel/pixel.png class=post-cover alt=像素的相关知识浅析 title="Cover Image"><div class=post-content><div><h1 id=像素的相关知识浅析>像素的相关知识浅析<a href=#像素的相关知识浅析 class=hanchor arialabel=Anchor>&#8983;</a></h1><h2 id=像素分辨率和屏幕像素密度>像素、分辨率和屏幕像素密度<a href=#像素分辨率和屏幕像素密度 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>首先来了解一下这些名词的相关定义：</p><ul><li><p>在由一个数字序列表示的图像中的一个<code>最小单位</code>，称为<code>像素</code>，是一个<code>单一颜色</code>的小格存在。<br>从<code>像素</code>的思想派生出几个其它类型的概念，如<code>体素</code>、<code>纹素</code>等，是组成<code>三维</code>、<code>纹理</code>的<code>最小单位</code>。</p></li><li><p><code>屏幕分辨率</code>是<code>水平像素数目</code> * <code>垂直像素数目</code>的表示。</p></li><li><p><code>屏幕像素密度</code>是显示设备包含的像素密度，一般称为<code>PPI</code>（Pixels Per Inch， 常用于图像）。<br>与之相近的一个概念是<code>DPI</code>（Dots Per Inch，常用于印刷行业），且<code>DPI</code>表示水平方向或垂直方向，<code>PPI</code>表示对角线方向。<br>公式：<code>PPI = 根号下(水平像素的平方 + 垂直像素的平方) / 对角线的英寸长度</code></p></li></ul><p>根据这些定义，我们来深入思考一些问题：</p><ul><li><p><code>像素</code>的<code>尺寸</code>是多大？<br>由定义我们可知，<code>像素</code>即是一个<code>单一颜色</code>的小格，所以<code>像素</code>的大小并没有统一标准，厂商可以自行设置。<br>当然，对于<code>同一块</code>屏幕尺寸，<code>像素</code>越多，<code>屏幕分辨率</code>越高，<code>屏幕像素密度</code>越密集，可以表现的细节越丰富，显示越精细。</p></li><li><p><code>屏幕分辨率</code>的调整原理？<br><code>屏幕</code>本来是一个<code>物理设备</code>，从厂商制作出厂后，其<code>像素大小</code>、<code>屏幕分辨率</code>理应是<code>固定不变</code>的。<br>但我们在电脑设置中往往可以看到一个<code>调整分辨率</code>的功能，这其实是因为我们操作的是一个<code>操作系统</code>，它充当着一个中间层的角色：</p><ul><li>向下通过操作系统控制显卡输出的内容尺寸，从而控制显示器的显示尺寸。物理的<code>屏幕分辨率</code>是不变的，显示的<code>分辨率</code>是动态调整的。</li><li>向上暴露相关参数给用户，使其方便地动态调整<code>屏幕分辨率</code>。</li></ul><p>所以我们在下面提到的<code>物理像素</code>实际上也并不是真正的<code>物理像素点</code>，也是经过<code>操作系统</code>封装后的<code>逻辑像素</code>。</p></li></ul><h2 id=css像素和dpr>CSS像素和DPR<a href=#css像素和dpr class=hanchor arialabel=Anchor>&#8983;</a></h2><p>在前端CSS代码中，我们也常常用<code>像素</code>来控制页面UI的尺寸大小（单位px）。这里的<code>像素</code>又和上面提及的<code>物理像素</code>不同：</p><p>如上所述，<code>物理像素</code>的大小是任意的，并没有一个统一标准。如果CSS直接采用<code>物理像素</code>，则页面在不同设备之间的显示尺寸可能存在差异。</p><p>为了使<code>CSS像素</code>能够在不同的设备上<code>显示尺寸一致</code>，规范对于<code>CSS像素</code>有一些规定：</p><ul><li>对于<code>高分辨率</code>设备（打印机等），<code>1px</code>就等于<code>96分之一英寸</code>，约等于<code>0.2646mm</code>。</li><li>对于<code>低分辨率</code>设备（绝大部分显示器，手机屏幕），建议<code>CSS像素</code>参考最接近<code>参考像素</code>的<code>整数个</code>的<code>物理像素</code>。</li></ul><p>这里我们先来了解下<code>参考像素</code>（reference pixel）的概念：</p><p><img src=../../img/pixel/reference-pixel.jpg alt=参考像素></p><p>根据规范，一个<code>参考像素</code>即为从<code>一臂之遥</code>看解析度为<code>96DPI</code>的设备输出（即1英寸96点）时，1点（即1/96英寸）的<code>视角</code>（visual angle）。</p><p>通常认为常人臂长为<code>28英寸</code>，所以<code>参考像素</code>为: <code>(1 / 96)in / (28in * 2 * PI / 360deg) = 0.0213度</code>。</p><h3 id=参考像素的原理>参考像素的原理<a href=#参考像素的原理 class=hanchor arialabel=Anchor>&#8983;</a></h3><p>这个规范的原理是什么呢？</p><p><code>近小远大</code>：近处的物体显示的小一点，远处的物体显示的大一点，从而使两者看起来大致保持一致，而这一特点通过<code>视角</code>来实现。</p><p>从上图也可以看出，<code>参考像素</code>对应的这个<code>视角</code>，映射到具体屏幕上：</p><ul><li>对于<code>28英寸</code>远的屏幕来说，一个<code>参考像素</code>大致为<code>0.26mm</code>；</li><li>对于<code>140英寸</code>远的屏幕来说，一个<code>参考像素</code>大致为<code>1.3mm</code>。</li></ul><p>这个距离又是什么呢？</p><p>一般是由设备的<code>典型视距</code>决定的，在出厂时已经确定。比如视距：电视 > 电脑 > 手机。</p><p>而<code>CSS像素</code>在<code>低分辨率</code>设备就基于这个<code>参考像素</code>，从而实现<code>1个CSS像素</code>在<code>不同视距</code>的屏幕上，显示的尺寸大致相同。</p><p>而且<code>最接近参考像素的整数个的物理像素</code>，也被称为<code>DPR</code>（= <code>物理像素分辨率</code> / <code>CSS像素分辨率</code>）。一般在js中可以通过<code>window.devicePixelRatio</code>获取。</p><h3 id=dpr的变化>DPR的变化<a href=#dpr的变化 class=hanchor arialabel=Anchor>&#8983;</a></h3><p>这里又有一个问题：我调整<code>屏幕分辨率</code>会不会影响到<code>DPR</code>的大小？</p><p>推导如下：</p><ul><li><code>屏幕分辨率</code>调低会使得<code>物理像素分辨率</code>降低</li><li><code>像素点</code>变大，因为这里的<code>像素点</code>是被操作系统封装的<code>逻辑像素</code>（1个<code>逻辑像素</code>对应的多个<code>真实物理像素</code>变多）</li><li>而<code>参考像素</code>是一定的，所以<code>1个CSS像素</code>对应的<code>整数个</code>的<code>物理像素</code>会减少，<code>DPR</code>也会降低</li></ul><p>但实际上经过测试：无论<code>屏幕分辨率</code>怎么变更，<code>DPR</code>都保持不变。</p><p>具体原因未知，不过<a href=https://www.w3.org/TR/CSS2/syndata.html#length-units>规范</a>上有这样一句话，应该指的就是这个：</p><blockquote><p>Note that this definition of the pixel unit and the physical units differs from previous versions of CSS. In particular, in previous versions of CSS the pixel unit and the physical units were not related by a fixed ratio: the physical units were always tied to their physical measurements while the pixel unit would vary to most closely match the reference pixel. (This change was made because too much existing content relies on the assumption of 96dpi, and breaking that assumption breaks the content.)</p><p>注意，这里<code>像素单位</code>和<code>物理单位</code>的定义与CSS之前版本不同。特别地，在CSS之前版本中，<code>像素单位</code>和<code>物理单位</code>与<code>固定比例</code>（fixed ratio）无关：<code>物理单位</code>总是与它们的物理测量紧密相关，而<code>像素单位</code>会变得最接近<code>参考像素</code>（出现这种变化是因为太多现有内容依赖96dpi的假设，而打破这个假设就会破坏这些内容）</p></blockquote><p>与调整<code>屏幕分辨率</code>相似的一个概念是<code>内容缩放</code>，在<code>windows10</code>系统中同时提供了这两个功能。<br>而<code>内容缩放</code>（系统缩放，对网页进行缩放也可）会同时影响<code>DPR</code>的大小。</p><p>其实这个比较好理解，<code>内容缩放</code>相当于直接缩放<code>CSS像素</code>，所以<code>1个CSS像素</code>对应的<code>物理像素</code>会相应变化。</p><p>这里还有个细节：<code>缩放</code>导致<code>window.devicePixelRatio</code>可能出现小数。</p><p>这说明<code>window.devicePixelRatio</code>并不是真正严格地表示<code>1个CSS像素</code>对应几个<code>物理像素</code>。<br>它代表着<code>内容缩放</code>的一个平均比率，具体的对应关系由系统通过相应算法实现。</p><h2 id=canvas在视网膜屏下绘制图片的失真问题>Canvas在视网膜屏下绘制图片的失真问题<a href=#canvas在视网膜屏下绘制图片的失真问题 class=hanchor arialabel=Anchor>&#8983;</a></h2><p>在视网膜屏下，1个CSS像素对应多个<code>物理像素</code>。
+对于一个<code>2倍屏</code>，<code>500 * 300</code>屏幕想要绘制一个高清图片，图片分辨率至少要大一倍，因为屏幕实际对应的是<code>1000 * 600</code>个<code>物理像素</code>。</p><p>和多倍图类似，在Canvas绘制图片进行<code>缩放处理</code>，否则会导致<code>失真</code>问题：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-JS data-lang=JS><span style=display:flex><span><span style=color:#75715e>// 对于一个300 * 150画布：
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#f92672>&lt;</span><span style=color:#a6e22e>canvas</span> <span style=color:#a6e22e>width</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;300&#34;</span> <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;150&#34;</span><span style=color:#f92672>&gt;&lt;</span><span style=color:#960050;background-color:#1e0010>/canvas&gt;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 如果直接绘制：
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>300</span>, <span style=color:#ae81ff>150</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 浏览器会计算出Canvas绘制缓冲区大小
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// (300 * backingStorePixelRatio, 150 * backingStorePixelRatio)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/* 
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * backingStorePixelRatio是Canvas的缓冲像素比
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 曾经在safari上是2，即和window.devicePixelRatio保持一致，不需要额外处理自动高清
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 而在chrome上是1，缓冲区大小(300, 150)，但物理像素为(600, 300)，所以图片会放大模糊，需要额外处理
+</span></span></span><span style=display:flex><span><span style=color:#75715e> *
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 目前backingStorePixelRatio这一属性已经被废止，所以我们要手动实现backingStorePixelRatio的效果
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>300</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span> , <span style=color:#ae81ff>150</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/* 
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 但是直接这样绘制，图片也会被放大显示；
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 如果要保持图片原来大小，可以利用Canvas画布和dom大小不一致会缩放的特点，缩放内容
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> , <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/* 
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 如果canvas只有图片，那这样没有什么问题；
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 如果有其他元素，如文字、图形时，它们也会被缩小
+</span></span></span><span style=display:flex><span><span style=color:#75715e> * 我们利用scale来调整
+</span></span></span><span style=display:flex><span><span style=color:#75715e> */</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;px&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>width</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>height</span> <span style=color:#f92672>*</span> window.<span style=color:#a6e22e>devicePixelRatio</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>scale</span>(window.<span style=color:#a6e22e>devicePixelRatio</span>, window.<span style=color:#a6e22e>devicePixelRatio</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>drawImage</span>(<span style=color:#a6e22e>image</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, parseInt(<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>width</span>, <span style=color:#ae81ff>10</span>) , parseInt(<span style=color:#a6e22e>myCanvas</span>.<span style=color:#a6e22e>style</span>.<span style=color:#a6e22e>height</span>, <span style=color:#ae81ff>10</span>))
+</span></span></code></pre></div><h2 id=viewport>viewport<a href=#viewport class=hanchor arialabel=Anchor>&#8983;</a></h2><p>相对于电脑来说，手机屏幕是很"窄的"，而随着智能手机的发展，其<code>屏幕分辨率</code>也在不断提高。<br>上面我们已经了解了：</p><ul><li>随着手机<code>屏幕分辨率</code>的提高，屏幕面积基本不变，<code>物理像素</code>变小，<code>PPI</code>增加</li><li>对于手机来说其<code>视距</code>一定，<code>参考像素</code>是一定的，<code>CSS像素</code>也是一定的</li><li>变化的只是一个<code>CSS像素</code>对应几个<code>物理像素</code>，<code>屏幕分辨率</code>的提高也只是降低<code>颗粒感</code>，提高<code>清晰度</code>。</li></ul><p><img src=../../img/pixel/retina.jpg alt=retina对比图></p><p>所以移动端<code>全屏宽度</code>对于<code>CSS像素</code>来说也就是<code>300px</code>左右。</p><p>接下来，我们来了解一下<code>viewport</code>：</p><p><code>viewport</code>其实就是浏览器页面内容显示的那一块区域，注意它和<code>&lt;HTML></code>的关系：</p><ul><li><code>viewport</code>的宽度通过<code>document.documentElement.clientWidth</code>来获取</li><li><code>&lt;HTML></code>的宽度通过<code>document.documentElement.offsetWidth</code>来获取</li><li>默认情况下，<code>&lt;HTML></code>继承自<code>viewport</code>，但也可以自定义<code>&lt;HTML></code>的宽高</li></ul><h3 id=layout-viewport>layout viewport<a href=#layout-viewport class=hanchor arialabel=Anchor>&#8983;</a></h3><p>对于PC端，<code>viewport</code>就是浏览器的内容区域；但对于移动端我们不能这样直接指定：</p><ul><li>移动端<code>全屏宽度</code>才<code>300px</code>左右，如果<code>&lt;HTML></code>是默认的（如<code>100%</code>），即<code>300px</code>左右；</li><li>用这个宽度来显示本该是<code>1000px</code>宽度的PC端页面，可能导致整个页面挤作一团。</li></ul><p>为了能使移动设备上的浏览器正常显示PC端页面，我们引入了第一个<code>默认</code>的<code>viewport</code>：<code>layout viewport</code>。</p><p>默认情况，<code>viewport</code>即为<code>layout viewport</code>，一般在<code>1000px</code>左右，根据设备不同而有所差异。</p><p>这也是为什么我们用手机看PC端页面时，如果没有相应的适配处理，页面会出现很长的滚动条。</p><p><img src=../../img/pixel/layout-viewport.png alt="layout viewport"></p><h3 id=visual-viewport>visual viewport<a href=#visual-viewport class=hanchor arialabel=Anchor>&#8983;</a></h3><p>如果不想获取整个内容区域的宽度，而只是获取当前可视区域的宽度。</p><p>可以通过<code>window.innerWidth</code>来获取，这个当前可视区域也被称为<code>visual viewport</code>。</p><p><img src=../../img/pixel/visual-viewport.png alt="visual viewport"></p><h3 id=ideal-viewport>ideal viewport<a href=#ideal-viewport class=hanchor arialabel=Anchor>&#8983;</a></h3><p>上面的两个<code>viewport</code>是针对PC端页面显示的情况，移动端页面显示应该怎么处理？</p><p>既然移动端的<code>全屏宽度</code>为<code>300px</code>左右，那我们直接将<code>viewport</code>设为这个宽度。<br>这样一来<code>&lt;HTML></code>的<code>100%</code>也就是设备的<code>全屏宽度</code>，这个<code>viewport</code>被成为<code>ideal viewport</code>。</p><p>当然不同的移动设备的<code>全屏宽度</code>是不尽相同的，如<code>320px</code>、<code>360px</code>等。但它们是很接近的。</p><p>为了充分利用这两点情况，对于移动端的页面设计：</p><ul><li>设置<code>ideal viewport</code>：<code>&lt;meta name="viewport" content="width=device-width" /></code><br><code>device-width</code>即移动设备的<code>全屏宽度</code>。</li><li>而设计师只需要出一份<code>320px</code>左右的设计稿，就可以适配大部分移动设备。</li></ul><h2 id=参考>参考<a href=#参考 class=hanchor arialabel=Anchor>&#8983;</a></h2><ul><li><a href=https://juejin.im/post/5b95a8186fb9a05cd7772455>你真的了解css像素嘛？</a></li><li><a href=http://www.cnblogs.com/2050/p/3877280.html>移动前端开发之viewport的深入理解</a></li><li><a href=http://qingbob.com/RWD-things-about-pixel/>移动开发那些事</a></li><li><a href=https://zhuanlan.zhihu.com/p/23405435>前端如何适配手机屏幕之viewport</a></li><li><a href=https://www.jianshu.com/p/2cd5143cf9aa>High DPI Canvas 高分辨率Canvas（译）</a></li><li><a href=https://www.css88.com/archives/9297>解决 canvas 在高清屏中绘制模糊的问题</a></li></ul></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>阅读其它文章</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=../../post/react%E6%96%B0%E7%89%88%E6%9C%AC%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%A7%BB%E9%99%A4%E6%8E%89%E4%B8%80%E4%BA%9B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/><span class=button__icon>←</span>
+<span class=button__text>React新版本为什么要移除掉一些生命周期</span></a></span></div></div><div id=cryptostamping_v1 data-view=list data-theme=dark></div></div></div><footer class=footer><div class=footer__inner><div class=copyright><span>© 2023 Powered by <a href=http://gohugo.io>Hugo</a></span>
+<span>:: Theme made by <a href=https://twitter.com/panr>panr</a></span></div></div><div id=cryptostamping_v1 data-view=button data-theme=dark></div></footer><script src=../../assets/main.js></script>
 <script src=../../assets/prism.js></script>
-<script src=../../assets/colorful.js></script>
-</div>
-<script async src=https://embed.cryptostamping.org/widgets.js></script>
-</body>
-</html>
+<script src=../../assets/colorful.js></script></div><script async src=https://embed.cryptostamping.org/widgets.js></script></body></html>
