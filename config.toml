@@ -18,8 +18,7 @@ theme = "terminal"
 
 [languages]
   [languages.en]
-    title = "KuTuGu的博客"
-    keywords = "前端 博客"
+    title = "KuTuGu's Blog"
     menuMore = "显示更多"
     readMore = "阅读文章"
     readOtherPosts = "阅读其它文章"
@@ -38,13 +37,13 @@ theme = "terminal"
         name = "Twitter"
         url = "https://twitter.com/kutugu1"
       [[languages.en.menu.main]]
-        identifier = "revery"
-        name = "Revery"
-        url = "https://revery.so/u/0xCb3798bEbDa7B939754794dF7d5966ED756892EA"
+        identifier = "resume_zh"
+        name = "Resume_zh"
+        url = "/resume_zh"
       [[languages.en.menu.main]]
-        identifier = "resume"
-        name = "Resume"
-        url = "https://kutugu.github.io/resume"
+        identifier = "resume_en"
+        name = "Resume_en"
+        url = "/resume_en"
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
