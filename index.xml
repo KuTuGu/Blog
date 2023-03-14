@@ -2,8 +2,8 @@
 Gender: Male
 Age: 23
 Phone: +86 17610603152
-Email: zhongliwang48@gmail.com
-Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, FE Tencent 2020.7 - 2020.10 Cloud and Smart Industries Group, FE intern Google Summer of Code 2019.7 - 2019.10 OpenWISP, Contributor Central China Normal University 2017.9 - 2021.7 Digital Media Technology, Undergraduate Professional skills Skilled in Javascript, learning Solidity, Golang and Rust.
+Email: wangyufei.kutu@gmail.com
+Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, FE Tencent 2020.7 - 2020.10 Cloud and Smart Industries Group, FE intern Google Summer of Code 2019.7 - 2019.10 OpenWISP, Contributor Central China Normal University 2017.9 - 2021.7 Digital Media Technology, Undergraduate Professional skills Skilled in Javascript, learning Solidity, Rust.
 5 years of FE learning and project development experience.</description><content>&lt;h2 id="introduce">Introduce&lt;/h2>
 &lt;h4 id="yufei-wang">YuFei Wang&lt;/h4>
 &lt;ul>
@@ -20,7 +20,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;p>Phone: &lt;code>+86 17610603152&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Email: &lt;code>zhongliwang48@gmail.com&lt;/code>&lt;/p>
+&lt;p>Email: &lt;code>wangyufei.kutu@gmail.com&lt;/code>&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
@@ -33,7 +33,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;h2 id="professional-skills">Professional skills&lt;/h2>
 &lt;ul>
 &lt;li>
-&lt;p>Skilled in &lt;code>Javascript&lt;/code>, learning &lt;code>Solidity&lt;/code>, &lt;code>Golang&lt;/code> and &lt;code>Rust&lt;/code>.&lt;/p>
+&lt;p>Skilled in &lt;code>Javascript&lt;/code>, learning &lt;code>Solidity&lt;/code>, &lt;code>Rust&lt;/code>.&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>&lt;code>5&lt;/code> years of FE learning and project development experience.&lt;/p>
@@ -45,10 +45,10 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;p>Familiar with &lt;code>NodeJS&lt;/code>, have experience in maintaining &lt;code>BFF&lt;/code> service.&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Familiar with &lt;code>blockchain&lt;/code>, &lt;code>contract security&lt;/code>, &lt;code>reverse engineering&lt;/code>, &lt;code>DeFi&lt;/code> primitives, and grasp of &lt;code>symbol analysis&lt;/code>.&lt;/p>
+&lt;p>Familiar with &lt;code>blockchain&lt;/code>, &lt;code>contract security&lt;/code>, understand &lt;code>reverse engineering&lt;/code>, &lt;code>DeFi&lt;/code>.&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Passionate about open-source and programming, with a wide range of interests including &lt;code>network security&lt;/code>, &lt;code>game development&lt;/code>, &lt;code>computer graphics&lt;/code> and currently exploring &lt;code>blockchain&lt;/code> rabbit hole.&lt;/p>
+&lt;p>Passionate about open-source and programming, with a wide range of interests including &lt;code>network security&lt;/code>, &lt;code>game development&lt;/code>, &lt;code>computer graphics&lt;/code>.&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
@@ -56,26 +56,34 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;h4 id="blockchain-security-try-digging-down-various-rabbit-holes">Blockchain security &lt;code>Try digging down various rabbit holes&lt;/code>&lt;/h4>
 &lt;ul>
 &lt;li>
-&lt;p>Write &lt;code>front-run&lt;/code> / &lt;code>back-run&lt;/code> bot&lt;/p>
+&lt;p>&lt;a href="https://github.com/KuTuGu/Arbitrage">Written&lt;/a> &lt;code>front-run&lt;/code> bot and &lt;code>DeFi&lt;/code> attack &lt;code>POC&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Use &lt;code>Foundry&lt;/code> framework to reproduce the POC of various DeFi attacks&lt;/p>
+&lt;p>&lt;a href="https://github.com/KuTuGu/proof-of-innocence">Written&lt;/a> based on the &lt;code>Tornado&lt;/code> + &lt;code>ZkVM&lt;/code> proof-of-innocence circuit&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>Use &lt;code>Mythril&lt;/code> tool, &lt;code>symbolic analyze&lt;/code> contract vulnerabilities and find &lt;code>executable paths&lt;/code>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Try digging &lt;code>mev bot&lt;/code> exploits&lt;/p>
+&lt;p>Try decompilation to mine &lt;code>mev bot&lt;/code> &lt;a href="https://etherscan.io/tx/0x12d867ee837cec251b067319e2802c15b01dc2e18b052b95fcd6657e19ff2a5e">vulnerability&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
 &lt;h4 id="bytedance-responsible-for-maintaining-all-manual-moderation-platforms">ByteDance &lt;code>Responsible for maintaining all Manual Moderation platforms&lt;/code>&lt;/h4>
 &lt;ul>
 &lt;li>
+&lt;p>Build a set of &lt;code>configuration platform&lt;/code> to support the customized regulation of different audit capabilities of queues of different lines of business.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>The capabilities of &lt;code>extraction&lt;/code>, &lt;code>submission&lt;/code>, &lt;code>review&lt;/code> and &lt;code>visual template&lt;/code> of each business line queue all depend on the scheduling and customized configuration of different capabilities;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>For historical reasons, various configurations are hard-coded in the back-end code. By building this set of configuration system at the front end, the back-end manpower is liberated from frequent changes and on-line operation, which also improves the realization efficiency of business requirements for customization.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
 &lt;p>The ToB business is mostly in the form scene, and the logic of maintaining the internal state of each component separately is messy, the data flow is not clear&lt;/p>
 &lt;ol>
 &lt;li>
-&lt;p>Refactoring with &lt;code>MVC&lt;/code> mode, decoupling the state and logic, and realizing direct and &lt;code>two-way mapping&lt;/code> from URL to component value;&lt;/p>
+&lt;p>By using &lt;code>URL&lt;/code> + &lt;code>state machine&lt;/code>, refactor the form system with &lt;code>MVC&lt;/code> mode, decoupling the state and logic, and realizing direct and &lt;code>two-way mapping&lt;/code> from URL to component value;&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>&lt;code>Model&lt;/code>: URL is used as the main global state storage; URL Search natively supports &lt;code>scene snapshots&lt;/code>, which is convenient for scene reproduction and &lt;code>integration testing&lt;/code>;&lt;/p>
@@ -85,17 +93,6 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;/li>
 &lt;li>
 &lt;p>&lt;code>View&lt;/code>: only responsible for rendering related logic and styles, and only communicates with Control;&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>
-&lt;p>Historical problems, such as before the business split at home and abroad, there were different conditional branch scenarios in the code, the logic was messy, and it was not easy to maintain&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>Through the BFF layer integration and delivery of &lt;code>feature switches&lt;/code>, to better manage the branches, and to roll back in time when an accident occurs, reducing the impact of the accident;&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Build a visual management platform for feature switches, responsible for platform-related maintenance&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;/li>
@@ -133,10 +130,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;li>Participate in open source activity and rewrite a visualization tool library for organization, which is used to arrange network device node data and draw network device topology diagrams
 &lt;ol>
 &lt;li>
-&lt;p>Use &lt;code>WebWorker&lt;/code> parallel computing to optimize orchestration performance;&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>ECharts + Leaflet&lt;/code> rendering, stepped on the compatibility of the two frameworks, and also raised some PRs for third-party plug-in;&lt;/p>
+&lt;p>Based on &lt;code>ECharts&lt;/code> + &lt;code>Leaflet&lt;/code> rendering, use &lt;code>WebWorker&lt;/code> parallel computing to optimize orchestration performance;&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Participated in &lt;code>Google Code-in&lt;/code> as a Mentor at the end of the year to help college students get in touch with open source projects to improve their programming skills, and work with them to improve the project;&lt;/p>
@@ -148,15 +142,14 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 性别：男
 年龄：23
 手机：+86 17610603152
-邮箱：zhongliwang48@gmail.com
-座右铭：荼靡易逝，苦蛊甘饴​
-教育及工作经历 字节跳动 2021.7 - 至今 互娱研发内容安全 前端工程师 腾讯 2020.7 - 2020.10 云与智慧产业事业群 前端实习生 Google Summer of Code 2019.7 - 2019.10 OpenWISP Contributor 华中师范大学 2017.9 - 2021.7 数字媒体技术 本科 专业技能 Javascript 熟练工，Solidity、Golang、Rust 学习中
+邮箱：wangyufei.kutu@gmail.com
+教育及工作经历 字节跳动 2021.7 - 至今 互娱研发内容安全 前端工程师 腾讯 2020.7 - 2020.10 云与智慧产业事业群 前端实习生 Google Summer of Code 2019.7 - 2019.10 OpenWISP Contributor 华中师范大学 2017.9 - 2021.7 数字媒体技术 本科 专业技能 Javascript 熟练工，Solidity、Rust 学习中
 近 5 年的前端学习、项目开发经验，熟悉主流的前端技术栈、技术方案设计及项目开发流程
 熟练掌握前端框架、工程化、CI / CT / CD，熟悉 NodeJS，维护过 BFF 服务
-熟悉区块链技术、合约安全，了解 反编译、DeFi 原语，掌握 符号分析 合约
-热爱开源和编程，涉猎广泛：网络安全、游戏开发、图形学，目前在 区块链 兔子洞探索中
-项目经历 区块链安全 尝试挖掘各种兔子洞 编写 front-run / back-run bot
-用 Foundry 框架，复现各种 DeFi 攻击的 POC</description><content>&lt;h2 id="自我介绍">自我介绍&lt;/h2>
+熟悉区块链技术、合约安全，了解 反编译、DeFi
+热爱开源和编程，涉猎广泛：网络安全、游戏开发、图形学
+项目经历 区块链安全 尝试挖掘各种兔子洞 编写 front-run bot 和 DeFi 攻击的 POC
+编写 基于 Tornado + ZkVM 的无罪证明电路</description><content>&lt;h2 id="自我介绍">自我介绍&lt;/h2>
 &lt;h4 id="王玉飞">王玉飞&lt;/h4>
 &lt;ul>
 &lt;li>
@@ -172,10 +165,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;p>手机：&lt;code>+86 17610603152&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>邮箱：&lt;code>zhongliwang48@gmail.com&lt;/code>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>座右铭：&lt;code>荼靡易逝，苦蛊甘饴​&lt;/code>&lt;/p>
+&lt;p>邮箱：&lt;code>wangyufei.kutu@gmail.com&lt;/code>&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
@@ -188,7 +178,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;h2 id="专业技能">专业技能&lt;/h2>
 &lt;ul>
 &lt;li>
-&lt;p>&lt;code>Javascript&lt;/code> 熟练工，&lt;code>Solidity&lt;/code>、&lt;code>Golang&lt;/code>、&lt;code>Rust&lt;/code> 学习中&lt;/p>
+&lt;p>&lt;code>Javascript&lt;/code> 熟练工，&lt;code>Solidity&lt;/code>、&lt;code>Rust&lt;/code> 学习中&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>近 &lt;code>5&lt;/code> 年的前端学习、项目开发经验，熟悉主流的前端技术栈、技术方案设计及项目开发流程&lt;/p>
@@ -197,10 +187,10 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;p>熟练掌握前端框架、工程化、CI / CT / CD，熟悉 &lt;code>NodeJS&lt;/code>，维护过 &lt;code>BFF&lt;/code> 服务&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>熟悉&lt;code>区块链技术&lt;/code>、&lt;code>合约安全&lt;/code>，了解 &lt;code>反编译&lt;/code>、&lt;code>DeFi&lt;/code> 原语，掌握 &lt;code>符号分析&lt;/code> 合约&lt;/p>
+&lt;p>熟悉&lt;code>区块链技术&lt;/code>、&lt;code>合约安全&lt;/code>，了解 &lt;code>反编译&lt;/code>、&lt;code>DeFi&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>热爱开源和编程，涉猎广泛：&lt;code>网络安全&lt;/code>、&lt;code>游戏开发&lt;/code>、&lt;code>图形学&lt;/code>，目前在 &lt;code>区块链&lt;/code> 兔子洞探索中&lt;/p>
+&lt;p>热爱开源和编程，涉猎广泛：&lt;code>网络安全&lt;/code>、&lt;code>游戏开发&lt;/code>、&lt;code>图形学&lt;/code>&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
@@ -208,26 +198,34 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;h4 id="区块链安全-尝试挖掘各种兔子洞">区块链安全 &lt;code>尝试挖掘各种兔子洞&lt;/code>&lt;/h4>
 &lt;ul>
 &lt;li>
-&lt;p>编写 &lt;code>front-run&lt;/code> / &lt;code>back-run&lt;/code> bot&lt;/p>
+&lt;p>&lt;a href="https://github.com/KuTuGu/Arbitrage">编写&lt;/a> &lt;code>front-run&lt;/code> bot 和 &lt;code>DeFi&lt;/code> 攻击的 &lt;code>POC&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>用 &lt;code>Foundry&lt;/code> 框架，复现各种 &lt;code>DeFi&lt;/code> 攻击的 &lt;code>POC&lt;/code>&lt;/p>
+&lt;p>&lt;a href="https://github.com/KuTuGu/proof-of-innocence">编写&lt;/a> 基于 &lt;code>Tornado&lt;/code> + &lt;code>ZkVM&lt;/code> 的无罪证明电路&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>用 &lt;code>Mythril&lt;/code> 工具，&lt;code>符号分析&lt;/code>合约漏洞、寻找&lt;code>可执行路径&lt;/code>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>尝试挖掘 &lt;code>mev bot&lt;/code> 漏洞&lt;/p>
+&lt;p>尝试反编译挖掘 &lt;code>mev bot&lt;/code> &lt;a href="https://etherscan.io/tx/0x12d867ee837cec251b067319e2802c15b01dc2e18b052b95fcd6657e19ff2a5e">漏洞&lt;/a>&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
 &lt;h4 id="字节跳动-负责维护-人审质量各平台">字节跳动 &lt;code>负责维护 人审质量各平台&lt;/code>&lt;/h4>
 &lt;ul>
 &lt;li>
+&lt;p>搭建一套&lt;code>配置化&lt;/code>平台，支持各业务线队列对于不同审核能力的自定义调控&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>各业务线队列&lt;code>抽取&lt;/code>、&lt;code>送审&lt;/code>、&lt;code>审核&lt;/code>、&lt;code>可视化模版&lt;/code>等能力都依赖于不同能力的调度和自定义配置；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>历史原因，各种配置都硬编码在后端代码中，前端通过搭建这一套配置化系统，将后端人力从频繁的改动、上线中解放出来，也提升了业务对于定制化需求的实现效率。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
 &lt;p>中台业务以表单场景居多，单独维护各组件内部状态逻辑杂乱，数据流向不清晰&lt;/p>
 &lt;ol>
 &lt;li>
-&lt;p>以 &lt;code>MVC&lt;/code> 模式重构，将状态、逻辑解耦，实现 URL 到 组件value 的直接、&lt;code>双向映射&lt;/code>；&lt;/p>
+&lt;p>利用 &lt;code>URL&lt;/code> + &lt;code>状态机&lt;/code>，实现了一套基于 &lt;code>MVC&lt;/code> 模式的表单重构，将状态、逻辑解耦，同时实现 URL 到 组件value 的直接、&lt;code>双向映射&lt;/code>；&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>&lt;code>Model&lt;/code>：URL作为全局主要状态存储；同时 URL Search 原生支持&lt;code>场景快照&lt;/code>，方便场景复现、&lt;code>集成测试&lt;/code>；&lt;/p>
@@ -241,18 +239,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;/ol>
 &lt;/li>
 &lt;li>
-&lt;p>历史问题如海内外业务拆分前，代码中存在不同条件分支场景，逻辑杂乱、不易维护&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>通过BFF层集成下发&lt;code>功能开关&lt;/code>，来更好地管理功能分支，发生事故时也能及时回退，降低事故影响面；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>搭建功能开关可视化管理平台，负责平台相关维护&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>
-&lt;p>负责人审质量各平台一体化建设，推进&lt;code>Monorepo仓库迁移&lt;/code>和&lt;code>微前端平台&lt;/code>改造&lt;/p>
+&lt;p>负责人审质量各平台一体化建设，推进&lt;code>Monorepo仓库迁移&lt;/code>和&lt;code>微前端平台&lt;/code>的技术改造&lt;/p>
 &lt;/li>
 &lt;/ul>
 &lt;hr>
@@ -285,10 +272,7 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;li>参加开源活动，为开源组织重写一个可视化工具库，用于编排网络设备节点数据，绘制网络设备拓扑图
 &lt;ol>
 &lt;li>
-&lt;p>利用 &lt;code>WebWorker&lt;/code> 并行计算优化编排性能；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>ECharts + Leaflet&lt;/code> 渲染，踩坑了两个框架的兼容性问题，也给第三方插件提了一些&lt;code>PR&lt;/code>；&lt;/p>
+&lt;p>基于 &lt;code>ECharts + Leaflet&lt;/code> 渲染，利用 &lt;code>WebWorker&lt;/code> 并行计算优化数据编排性能；&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>年底以 Mentor 身份，参与了 &lt;code>Google Code-in&lt;/code>，帮助高校学生接触开源项目提升编程技能，与他们一同完善这个项目；&lt;/p>
