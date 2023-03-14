@@ -1,0 +1,1 @@
+window?.addEventListener?.("load",(()=>{const e=document.getElementById("themeColor"),n=["red","pink","green","blue","orange"];document?.body?.addEventListener?.("click",(()=>{const[t,d,o]=e?.href?.match(/^(.*)\/(.*)\.css$/),r=parseInt(Math.random()*n.length),c=n[r]===o?n[(r+1)%n.length]:n[r??0];e.href=`${d}/${c}.css`}))}));
