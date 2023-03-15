@@ -72,6 +72,17 @@ a.read-more:active {
   color: var(--accent);
 }
 
+.post-content a:not(.button):not(.hanchor)::after {
+  content: "";
+  display: inline-block;
+  --svg: url('data:image/svg+xml,<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M6.5 2A3.5 3.5 0 003 5.5v13A3.5 3.5 0 006.5 22H12a1.5 1.5 0 000-3H6.5a.5.5 0 01-.5-.5v-13a.5.5 0 01.5-.5H12a1.5 1.5 0 000-3H6.5zm9.44 3.94a1.5 1.5 0 012.12 0l5 5a1.497 1.497 0 010 2.12l-5 5a1.5 1.5 0 01-2.12-2.12l2.439-2.44H11a1.5 1.5 0 010-3h7.379l-2.44-2.44a1.5 1.5 0 010-2.12z" fill="currentColor"/></svg>');
+  background-color: var(--accent);
+  mask: var(--svg) no-repeat;
+  width: 20px;
+  height: 20px;
+  transform: rotate(-45deg) scale(0.6);
+}
+
 .code-toolbar {
   margin-bottom: 20px;
 
