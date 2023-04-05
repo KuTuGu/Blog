@@ -51,7 +51,9 @@ date = "2023-01-17T15:45:38+08:00"
 
 - [Written](https://github.com/KuTuGu/Arbitrage) `front-run` bot and `DeFi` attack `POC`
 
-- [Written](https://github.com/KuTuGu/proof-of-innocence) based on the `Tornado` + `ZkVM` proof-of-innocence circuit
+- [Written](https://github.com/KuTuGu/proof-of-innocence) proof-of-innocence `circuit` based on the `Tornado` + `ZkVM`
+
+- [Written] (https://github.com/KuTuGu/solidity-cfg) solidity `CFG` analysis based on `Trace` + `AST`
 
 - Try decompilation to mine `mev bot` [vulnerability](https://etherscan.io/tx/0x12d867ee837cec251b067319e2802c15b01dc2e18b052b95fcd6657e19ff2a5e)
 

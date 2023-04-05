@@ -51,6 +51,8 @@ date = "2023-01-17T15:45:38+08:00"
 
 - [编写](https://github.com/KuTuGu/proof-of-innocence) 基于 `Tornado` + `ZkVM` 的无罪证明电路
 
+- [编写](https://github.com/KuTuGu/solidity-cfg) 基于 `Trace` + `AST` 的 solidity `CFG` 分析
+
 - 尝试反编译挖掘 `mev bot` [漏洞](https://etherscan.io/tx/0x12d867ee837cec251b067319e2802c15b01dc2e18b052b95fcd6657e19ff2a5e)
 
 ------
