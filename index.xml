@@ -59,7 +59,10 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;p>&lt;a href="https://github.com/KuTuGu/Arbitrage">Written&lt;/a> &lt;code>front-run&lt;/code> bot and &lt;code>DeFi&lt;/code> attack &lt;code>POC&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>&lt;a href="https://github.com/KuTuGu/proof-of-innocence">Written&lt;/a> based on the &lt;code>Tornado&lt;/code> + &lt;code>ZkVM&lt;/code> proof-of-innocence circuit&lt;/p>
+&lt;p>&lt;a href="https://github.com/KuTuGu/proof-of-innocence">Written&lt;/a> proof-of-innocence &lt;code>circuit&lt;/code> based on the &lt;code>Tornado&lt;/code> + &lt;code>ZkVM&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>[Written] (&lt;a href="https://github.com/KuTuGu/solidity-cfg">https://github.com/KuTuGu/solidity-cfg&lt;/a>) solidity &lt;code>CFG&lt;/code> analysis based on &lt;code>Trace&lt;/code> + &lt;code>AST&lt;/code>&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Try decompilation to mine &lt;code>mev bot&lt;/code> &lt;a href="https://etherscan.io/tx/0x12d867ee837cec251b067319e2802c15b01dc2e18b052b95fcd6657e19ff2a5e">vulnerability&lt;/a>&lt;/p>
@@ -202,6 +205,9 @@ Education and work experience Bytedance 2016.9 - Present RD-IES Content-Safety, 
 &lt;/li>
 &lt;li>
 &lt;p>&lt;a href="https://github.com/KuTuGu/proof-of-innocence">编写&lt;/a> 基于 &lt;code>Tornado&lt;/code> + &lt;code>ZkVM&lt;/code> 的无罪证明电路&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://github.com/KuTuGu/solidity-cfg">编写&lt;/a> 基于 &lt;code>Trace&lt;/code> + &lt;code>AST&lt;/code> 的 solidity &lt;code>CFG&lt;/code> 分析&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>尝试反编译挖掘 &lt;code>mev bot&lt;/code> &lt;a href="https://etherscan.io/tx/0x12d867ee837cec251b067319e2802c15b01dc2e18b052b95fcd6657e19ff2a5e">漏洞&lt;/a>&lt;/p>
